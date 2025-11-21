@@ -478,7 +478,7 @@ PrefabInstance:
       objectReference: {fileID: 379062534}
     - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
       propertyPath: offsetX
-      value: 34
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
       propertyPath: objectPooler
@@ -490,7 +490,7 @@ PrefabInstance:
       objectReference: {fileID: 1565889641}
     - target: {fileID: 2140506794431624702, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 2140506794431624702, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
       propertyPath: m_LocalPosition.z
