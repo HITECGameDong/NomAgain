@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public UnityEvent onTilePassing;
     PlayerMovement playerMovement;
     BoxCollider boxCollider;
-    Rigidbody rb;
+
 
     bool isActionable = false;
 
@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     {
         boxCollider = GetComponent<BoxCollider>();
         playerMovement = GetComponent<PlayerMovement>();
-        rb = GetComponent<Rigidbody>();
     }
 
 
@@ -76,7 +75,7 @@ public class Player : MonoBehaviour
 
     void Jump()
     {
-        rb.AddForce(Vector3.up * 7f, ForceMode.Impulse);
+        playerMovement.Jump();
         isActionable = false;
     }
 
