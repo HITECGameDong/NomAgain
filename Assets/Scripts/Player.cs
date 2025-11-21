@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
             Debug.Log("Button Pressed");
             if(isActionable)
             {
-                rb.AddForce(Vector3.up * 7f, ForceMode.Impulse);
+                Jump();
             }
             else
             {
@@ -58,4 +58,11 @@ public class Player : MonoBehaviour
             Debug.Log("Action Unavailable (Trigger)");
         }
     } 
+
+
+    void Jump()
+    {
+        rb.AddForce(Vector3.up * 7f, ForceMode.Impulse);
+        isActionable = false;
+    }
 }
