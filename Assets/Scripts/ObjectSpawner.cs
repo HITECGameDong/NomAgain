@@ -48,6 +48,7 @@ public class ObjectSpawner : MonoBehaviour
         else
         {
             pool.Enqueue(SpawnObjectAndGet());
+            
         }
     }
 }

@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+
     void Update()
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -49,9 +50,18 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("HitLine"))
         {
             isActionable = true;
-            Debug.Log("Action Available (Trigger)");
+        }
 
+        if(other.gameObject.CompareTag("PassLine"))
+        {
             onTilePassing.Invoke();
+        }
+
+        if(other.gameObject.CompareTag("Item"))
+        {
+            Item item = other.GetComponent<Item>();
+            item.GetItem(this);
+            Destroy(other.gameObject);
         }
     }
 
@@ -60,7 +70,6 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("HitLine"))
         {
             isActionable = false;
-            Debug.Log("Action Unavailable (Trigger)");
         }
     } 
 
@@ -69,5 +78,10 @@ public class Player : MonoBehaviour
     {
         rb.AddForce(Vector3.up * 7f, ForceMode.Impulse);
         isActionable = false;
+    }
+
+    public void GetEnergyBoost(float speedAddition, float duration)
+    {
+        playerMovement.IncreaseSpeed(speedAddition, duration);
     }
 }
