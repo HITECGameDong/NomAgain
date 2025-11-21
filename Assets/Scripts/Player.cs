@@ -23,14 +23,9 @@ public class Player : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            Debug.Log("Button Pressed");
             if(isActionable)
             {
                 Jump();
-            }
-            else
-            {
-                Debug.Log("Aciton Failed");
             }
         }
     }
@@ -39,7 +34,6 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacles"))
         {
-            Debug.Log("Game Over");
             playerMovement.enabled = false;
         }
     }
