@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
+
+    public UnityEvent onTilePassing;
     PlayerMovement playerMovement;
     BoxCollider boxCollider;
     Rigidbody rb;
@@ -47,6 +50,8 @@ public class Player : MonoBehaviour
         {
             isActionable = true;
             Debug.Log("Action Available (Trigger)");
+
+            onTilePassing.Invoke();
         }
     }
 
