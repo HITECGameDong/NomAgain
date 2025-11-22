@@ -1,13 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIHealthBar : MonoBehaviour
+public class UIHealthBar : UIBasic
 {
-    [SerializeField] Player player;
-    [SerializeField] Image healthBar;
-
     void LateUpdate()
     {
-        healthBar.fillAmount = player.health / player.maxHealth;
+        UIBar.fillAmount = player.health / player.maxHealth;
     }
 }

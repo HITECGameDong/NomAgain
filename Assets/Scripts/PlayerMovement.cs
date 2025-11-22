@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float moveSpeed = 4f;
     float speedAddition = 0f;
     Rigidbody rb;
+    public UnityEvent onItemWorkingDone;
+
     
 
     void Start()
@@ -37,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
         speedAddition += addition;
         yield return new WaitForSeconds(duration);
         speedAddition -= addition;
+
+        onItemWorkingDone.Invoke();
     }
 
     public float GetCurrentSpeed()
@@ -59,5 +63,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(duration);
         moveSpeed = lastMoveSpeed;
         rb.useGravity = true;
+
+        onItemWorkingDone.Invoke();
     }
 }

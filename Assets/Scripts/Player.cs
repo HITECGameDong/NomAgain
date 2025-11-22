@@ -23,12 +23,21 @@ public class Player : MonoBehaviour
     [SerializeField] public float maxHealth {get; private set;} = 100f; 
     [SerializeField] float fatigueRate = 2f;
 
+    public UnityEvent<float> onItemGet;
+    bool isItemWorking = false;
+    float gainedItemDuration = 0f;
+
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         currentSteppingBlock = null;
 
         health = maxHealth;
+    }
+
+    void Start()
+    {
+        playerMovement.onItemWorkingDone.AddListener(ItemWorkingDone);
     }
 
 
@@ -70,8 +79,16 @@ public class Player : MonoBehaviour
         if(other.gameObject.CompareTag("Item"))
         {
             Item item = other.GetComponent<Item>();
-            item.GetItem(this);
+
+            if(!isItemWorking)
+            {
+                item.GetItem(this);
+            }  
+            
+            // TODO : no destroy. item pooling
             Destroy(other.gameObject);
+            onItemGet.Invoke(gainedItemDuration);
+            gainedItemDuration = 0f;
         }
 
         if(other.gameObject.CompareTag("BlockSelector"))
@@ -97,14 +114,23 @@ public class Player : MonoBehaviour
 
     public void GetEnergyBoost(float speedAddition, float duration, float healthAddition)
     {
+        isItemWorking = true;
         AddHealth(healthAddition);
         playerMovement.IncreaseSpeed(speedAddition, duration);
+        gainedItemDuration = duration;
     }
 
     public void GetRocketBoost(float speedAddition, float duration)
     {
+        isItemWorking = true;
         StartCoroutine(GetRocketBoostCoroutine(duration));
         playerMovement.RocketBoost(speedAddition, duration);
+        gainedItemDuration = duration;
+    }
+
+    void ItemWorkingDone()
+    {
+        isItemWorking = false;
     }
 
     System.Collections.IEnumerator GetRocketBoostCoroutine(float duration)
