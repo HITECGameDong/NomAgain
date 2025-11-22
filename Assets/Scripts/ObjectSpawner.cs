@@ -30,7 +30,8 @@ public class ObjectSpawner : MonoBehaviour
 
         GameObject objToActive = obstacleParent.GetChild(randomIndex).gameObject;
 
-        while(objToActive.activeSelf || objToActive == player.GetCurrentSteppingBlock())
+        //while(objToActive.activeSelf || objToActive == player.GetCurrentSteppingBlock())
+        while(objToActive.activeSelf)
         {
             // TODO : Fix Lagging. add more blocks in pool
             randomIndex = Random.Range(0, obstacleParent.childCount);

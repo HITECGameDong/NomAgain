@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public UnityEvent onArrivingCheckpoint;
 
     [SerializeField] float initLocX = -14f;
-    GameObject currentSteppingBlock;
+    //GameObject currentSteppingBlock = null;
 
     [SerializeField] GameManager gameManager;
 
@@ -31,7 +31,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
-        currentSteppingBlock = null;
 
         health = maxHealth;
     }
@@ -81,10 +80,11 @@ public class Player : MonoBehaviour
             gainedItemDuration = 0f;
         }
 
-        if(other.gameObject.CompareTag("BlockSelector"))
-        {
-            currentSteppingBlock = other.gameObject;
-        }
+        // Get Block Obj that player stands.
+        // if(other.gameObject.CompareTag("BlockSelector"))
+        // {
+        //     currentSteppingBlock = other.gameObject;
+        // }
     }
 
     void OnTriggerExit(Collider other)
@@ -155,11 +155,11 @@ public class Player : MonoBehaviour
         gameObject.transform.position = resetPosition;
     }
 
-    public GameObject GetCurrentSteppingBlock()
-    {
-        // WARN : 얕은복사. 원본 변경 주의
-        return currentSteppingBlock;
-    }
+    // public GameObject GetCurrentSteppingBlock()
+    // {
+    //     // WARN : 얕은복사. 원본 변경 주의
+    //     return currentSteppingBlock;
+    // }
 
     public float GetCurrentLocation()
     {
