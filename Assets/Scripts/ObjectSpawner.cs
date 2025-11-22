@@ -32,7 +32,7 @@ public class ObjectSpawner : MonoBehaviour
 
         while(objToActive.activeSelf || objToActive == player.GetCurrentSteppingBlock())
         {
-
+            // TODO : Fix Lagging. add more blocks in pool
             randomIndex = Random.Range(0, obstacleParent.childCount);
             objToActive = obstacleParent.GetChild(randomIndex).gameObject;
         }

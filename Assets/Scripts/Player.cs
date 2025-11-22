@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
 
     public float health {get; private set;}
     [SerializeField] public float maxHealth {get; private set;} = 100f; 
+    [SerializeField] float fatigueRate = 2f;
 
     private void Awake()
     {
@@ -102,7 +103,7 @@ public class Player : MonoBehaviour
     public void ResetPosition()
     {
         Vector3 resetPosition = new Vector3(gameObject.transform.position.x - gameManager.GetResetLoc(), 
-            gameObject.transform.position.y, gameObject.transform.position.z);
+        gameObject.transform.position.y, gameObject.transform.position.z);
         gameObject.transform.position = resetPosition;
     }
 
@@ -124,6 +125,7 @@ public class Player : MonoBehaviour
 
     void HealthDoSomething()
     {
+        GetDamage(fatigueRate * Time.deltaTime);
         if(health <= 0f)
         {
             Die();
