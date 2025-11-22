@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     bool isActionable = false;
 
     public float health {get; private set;}
+    bool isVulnerable = false;
     [SerializeField] public float maxHealth {get; private set;} = 100f; 
     [SerializeField] float fatigueRate = 2f;
 
@@ -100,6 +101,19 @@ public class Player : MonoBehaviour
         playerMovement.IncreaseSpeed(speedAddition, duration);
     }
 
+    public void GetRocketBoost(float speedAddition, float duration)
+    {
+        StartCoroutine(GetRocketBoostCoroutine(duration));
+        playerMovement.RocketBoost(speedAddition, duration);
+    }
+
+    System.Collections.IEnumerator GetRocketBoostCoroutine(float duration)
+    {
+        isVulnerable = false;
+        yield return new WaitForSeconds(duration);
+        isVulnerable = true;
+    }
+
     public void ResetPosition()
     {
         Vector3 resetPosition = new Vector3(gameObject.transform.position.x - gameManager.GetResetLoc(), 
@@ -125,6 +139,8 @@ public class Player : MonoBehaviour
 
     void HealthDoSomething()
     {
+        if(!isVulnerable) return;
+
         GetDamage(fatigueRate * Time.deltaTime);
         if(health <= 0f)
         {
@@ -147,4 +163,6 @@ public class Player : MonoBehaviour
     {
         health = Mathf.Max(health - amount, 0f);
     }
+
+
 }

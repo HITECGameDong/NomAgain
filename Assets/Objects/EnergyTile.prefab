@@ -159,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnergyBooster
   speedAddition: 2
   duration: 2
+  healthAddition: 30
 --- !u!1001 &7362911668048830442
 PrefabInstance:
   m_ObjectHideFlags: 0

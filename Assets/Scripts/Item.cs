@@ -4,6 +4,7 @@ public enum ItemType
 {
     NONE,
     ENERGY,
+    ROCKET,
 }
 public abstract class Item : MonoBehaviour
 {

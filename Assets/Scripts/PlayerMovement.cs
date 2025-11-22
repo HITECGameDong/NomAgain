@@ -44,4 +44,20 @@ public class PlayerMovement : MonoBehaviour
         return moveSpeed + speedAddition;
     }
 
+    public void RocketBoost(float rocketSpeed, float duration)
+    {
+        StartCoroutine(RocketBoostCoroutine(rocketSpeed, duration));
+    }
+
+    System.Collections.IEnumerator RocketBoostCoroutine(float rocketSpeed, float duration)
+    {
+        float lastMoveSpeed = moveSpeed;
+
+        moveSpeed = rocketSpeed;
+        rb.useGravity = false;
+        playerTransform.position = new Vector3(playerTransform.position.x, 10f, playerTransform.position.z);
+        yield return new WaitForSeconds(duration);
+        moveSpeed = lastMoveSpeed;
+        rb.useGravity = true;
+    }
 }
