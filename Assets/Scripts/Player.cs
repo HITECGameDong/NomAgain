@@ -48,16 +48,13 @@ public class Player : MonoBehaviour
         HealthDoSomething();
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Obstacles"))
+        if (other.gameObject.CompareTag("Obstacles"))
         {
             GetDamage(30f);
         }
-    }
 
-    void OnTriggerEnter(Collider other)
-    {
         if (other.gameObject.CompareTag("HitLine"))
         {
             isActionable = true;
