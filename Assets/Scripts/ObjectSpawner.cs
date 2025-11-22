@@ -48,8 +48,7 @@ public class ObjectSpawner : MonoBehaviour
 
     void SpawnAndPoolingObject()
     {
-        // WEIRD... POOL SIZE + 1 AFTER LOOP BUT OK
-        if(poolSize < pool.Count)
+        if(poolSize <= pool.Count)
         {
             GameObject objToDestroy = pool.Dequeue();
             objToDestroy.SetActive(false);
@@ -64,7 +63,7 @@ public class ObjectSpawner : MonoBehaviour
 
     public void ResetAndInitializeObjects()
     {
-        nextLocation.position = new Vector3(gameManager.GetCurrentLocationForBlock() - gameManager.GetResetLoc(), 0f, 0f);
+        nextLocation.position = new Vector3(nextLocation.position.x - offsetX*poolSize - gameManager.GetResetLoc(), 0f, 0f);
 
         for(int i = 0; i < poolSize; i++)
         {
@@ -73,8 +72,5 @@ public class ObjectSpawner : MonoBehaviour
             nextLocation.position += new Vector3(offsetX, 0f, 0f);
             pool.Enqueue(passedObj);
         }
-
-        
-        Debug.Log("Reset and Initialized Objects");
     }
 }

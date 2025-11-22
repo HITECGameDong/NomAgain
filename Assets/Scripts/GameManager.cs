@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Player player;
     [SerializeField] ObjectSpawner spawner;
 
-    readonly float checkPointX = 50f;
+    readonly float checkPointX = 200000f;
 
 
     void Start()
@@ -19,17 +19,14 @@ public class GameManager : MonoBehaviour
 
     void ResetAllPosition()
     {
-       player.ResetPosition();
-       spawner.ResetAndInitializeObjects();
+        Time.timeScale = 0f;
+        player.ResetPosition();
+        spawner.ResetAndInitializeObjects();
+        Time.timeScale = 1f;
     }
 
     public float GetResetLoc()
     {
         return checkPointX;
-    }
-
-    public float GetCurrentLocationForBlock()
-    {
-        return player.GetCurrentLocation() + player.GetInitLocation();
     }
 }   
