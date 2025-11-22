@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] Player player;
     [SerializeField] ObjectSpawner spawner;
+    [SerializeField] ScoreManager scoreManager;
+    
 
     readonly float checkPointX = 200000f;
 
@@ -34,5 +36,6 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         player.Kill();
+        scoreManager.StopScoring();
     }
 }   
