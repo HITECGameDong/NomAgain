@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     bool isActionable = false;
 
     public float health {get; private set;}
-    bool isVulnerable = false;
+    bool isVulnerable = true;
     public UnityEvent onPlayerDead;
     [SerializeField] public float maxHealth {get; private set;} = 100f; 
     [SerializeField] float fatigueRate = 2f;
