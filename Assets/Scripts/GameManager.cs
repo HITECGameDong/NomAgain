@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
 
         player.onArrivingCheckpoint.AddListener(ResetAllPosition);
+        player.onPlayerDead.AddListener(GameOver);
     }
 
     void ResetAllPosition()
@@ -28,5 +29,10 @@ public class GameManager : MonoBehaviour
     public float GetResetLoc()
     {
         return checkPointX;
+    }
+
+    void GameOver()
+    {
+        player.Kill();
     }
 }   

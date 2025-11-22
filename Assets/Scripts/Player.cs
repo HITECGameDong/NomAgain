@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
 
     public float health {get; private set;}
     bool isVulnerable = false;
+    public UnityEvent onPlayerDead;
     [SerializeField] public float maxHealth {get; private set;} = 100f; 
     [SerializeField] float fatigueRate = 2f;
 
@@ -43,19 +44,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            if(isActionable)
-            {
-                Jump();
-            }
-        }
-        
-        if(gameObject.transform.position.x >= gameManager.GetResetLoc())
-        {
-            onArrivingCheckpoint.Invoke();
-        }
-
+        InputChecking();
+        CheckToResetPos();
         HealthDoSomething();
     }
 
@@ -105,6 +95,24 @@ public class Player : MonoBehaviour
         }
     } 
 
+    void InputChecking()
+    {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            if(isActionable)
+            {
+                Jump();
+            }
+        }
+    }
+
+    void CheckToResetPos()
+    {
+        if(gameObject.transform.position.x >= gameManager.GetResetLoc())
+        {
+            onArrivingCheckpoint.Invoke();
+        }    
+    }
 
     void Jump()
     {
@@ -176,7 +184,11 @@ public class Player : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("DEADDEAD");
+        onPlayerDead.Invoke();
+    }
+
+    public void Kill()
+    {
         playerMovement.enabled = false;
     }
 

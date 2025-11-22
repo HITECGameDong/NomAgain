@@ -1446,6 +1446,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2806681549615336650, guid: e228262bb25d1a241b2cbe967b7b95dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3058496066040244587, guid: e228262bb25d1a241b2cbe967b7b95dc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14
@@ -1502,6 +1506,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 2c912073d899c174ebfd96549e55e51e, type: 2}
+    - target: {fileID: 6640197503110701674, guid: e228262bb25d1a241b2cbe967b7b95dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7476782402284547059, guid: e228262bb25d1a241b2cbe967b7b95dc, type: 3}
       propertyPath: gameManager
       value: 
