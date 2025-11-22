@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] Player player;
     [SerializeField] ObjectSpawner spawner;
 
+    readonly float checkPointX = 50f;
+
+
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -19,4 +22,14 @@ public class GameManager : MonoBehaviour
        player.ResetPosition();
        spawner.ResetAndInitializeObjects();
     }
-}
+
+    public float GetResetLoc()
+    {
+        return checkPointX;
+    }
+
+    public float GetCurrentLocationForBlock()
+    {
+        return player.GetCurrentLocation() + player.GetInitLocation();
+    }
+}   

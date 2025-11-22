@@ -13,7 +13,9 @@ public class ObjectSpawner : MonoBehaviour
     // POOLER
     [SerializeField] Transform obstacleParent;
     Queue<GameObject> pool = new Queue<GameObject>();
-    const int poolSize = 3;
+    const int poolSize = 5;
+
+    [SerializeField] GameManager gameManager;   
 
 
     void Start()
@@ -64,7 +66,7 @@ public class ObjectSpawner : MonoBehaviour
 
     public void ResetAndInitializeObjects()
     {
-        nextLocation.position = new Vector3(RESET_X_LOC, 0f, 0f);
+        nextLocation.position = new Vector3(gameManager.GetCurrentLocationForBlock() - gameManager.GetResetLoc(), 0f, 0f);
 
         for(int i = 0; i < poolSize; i++)
         {

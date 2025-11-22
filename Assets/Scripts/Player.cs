@@ -11,9 +11,9 @@ public class Player : MonoBehaviour
     public UnityEvent onArrivingCheckpoint;
 
     [SerializeField] float initLocX = -14f;
-    readonly float checkPointX = 50f;
     GameObject currentSteppingBlock;
 
+    [SerializeField] GameManager gameManager;
 
     bool isActionable = false;
 
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
             }
         }
         
-        if(gameObject.transform.position.x >= checkPointX)
+        if(gameObject.transform.position.x >= gameManager.GetResetLoc())
         {
             onArrivingCheckpoint.Invoke();
         }
@@ -95,7 +95,8 @@ public class Player : MonoBehaviour
 
     public void ResetPosition()
     {
-        Vector3 resetPosition = new Vector3(initLocX, gameObject.transform.position.y, gameObject.transform.position.z);
+        Vector3 resetPosition = new Vector3(gameObject.transform.position.x - gameManager.GetResetLoc(), 
+            gameObject.transform.position.y, gameObject.transform.position.z);
         gameObject.transform.position = resetPosition;
     }
 
@@ -103,5 +104,15 @@ public class Player : MonoBehaviour
     {
         // WARN : 얕은복사. 원본 변경 주의
         return currentSteppingBlock;
+    }
+
+    public float GetCurrentLocation()
+    {
+        return gameObject.transform.position.x;
+    }
+
+    public float GetInitLocation()
+    {
+        return initLocX;
     }
 }
