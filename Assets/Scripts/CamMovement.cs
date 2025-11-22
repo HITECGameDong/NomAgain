@@ -7,7 +7,7 @@ public class CamMovement : MonoBehaviour
     [SerializeField] float offsetX = 8f;    
     [SerializeField] float offsetZ = -15f;
     Vector3 camPosOffset;
-    readonly Vector3 camPosInitOffset = new Vector3(8f, 0f, -15f);
+    //readonly Vector3 camPosInitOffset = new Vector3(8f, 0f, -15f);
 
     void Start()
     {

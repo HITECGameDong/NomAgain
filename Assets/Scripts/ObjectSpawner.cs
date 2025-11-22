@@ -8,8 +8,6 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] Transform nextLocation;
     [SerializeField] float offsetX = 0f;
 
-    readonly float RESET_X_LOC = 0f;
-
     // POOLER
     [SerializeField] Transform obstacleParent;
     Queue<GameObject> pool = new Queue<GameObject>();

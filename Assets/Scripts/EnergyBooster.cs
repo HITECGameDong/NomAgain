@@ -7,7 +7,7 @@ public class EnergyBooster : Item
 
     void Awake()
     {
-        base.itemType = ItemType.ENERGY;
+        itemType = ItemType.ENERGY;
     }
 
     public override void GetItem(Player player)
