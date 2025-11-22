@@ -4,6 +4,7 @@ public class EnergyBooster : Item
 {
     [SerializeField] float speedAddition = 2f;
     [SerializeField] float duration = 2f;
+    [SerializeField] float healthAddition = 30f;
 
     void Awake()
     {
@@ -12,6 +13,6 @@ public class EnergyBooster : Item
 
     public override void GetItem(Player player)
     {
-       player.GetEnergyBoost(speedAddition, duration);
+       player.GetEnergyBoost(speedAddition, duration, healthAddition);
     }
 }

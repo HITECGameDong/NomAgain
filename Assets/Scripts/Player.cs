@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using Unity.VisualScripting;
 
 public class Player : MonoBehaviour
 {
@@ -17,10 +18,15 @@ public class Player : MonoBehaviour
 
     bool isActionable = false;
 
+    public float health {get; private set;}
+    [SerializeField] public float maxHealth {get; private set;} = 100f; 
+
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         currentSteppingBlock = null;
+
+        health = maxHealth;
     }
 
 
@@ -38,13 +44,15 @@ public class Player : MonoBehaviour
         {
             onArrivingCheckpoint.Invoke();
         }
+
+        HealthDoSomething();
     }
 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Obstacles"))
         {
-            playerMovement.enabled = false;
+            GetDamage(30f);
         }
     }
 
@@ -88,8 +96,9 @@ public class Player : MonoBehaviour
         isActionable = false;
     }
 
-    public void GetEnergyBoost(float speedAddition, float duration)
+    public void GetEnergyBoost(float speedAddition, float duration, float healthAddition)
     {
+        AddHealth(healthAddition);
         playerMovement.IncreaseSpeed(speedAddition, duration);
     }
 
@@ -114,5 +123,29 @@ public class Player : MonoBehaviour
     public float GetInitLocation()
     {
         return initLocX;
+    }
+
+    void HealthDoSomething()
+    {
+        if(health <= 0f)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("DEADDEAD");
+        playerMovement.enabled = false;
+    }
+
+    void AddHealth(float amount)
+    {
+        health = Mathf.Min(amount + health, maxHealth);
+    }
+
+    void GetDamage(float amount)
+    {
+        health = Mathf.Max(health - amount, 0f);
     }
 }
