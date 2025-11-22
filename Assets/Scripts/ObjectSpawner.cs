@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
-    [SerializeField] GameManager gameManager;
     [SerializeField] Player player;
     [SerializeField] Transform nextLocation;
     [SerializeField] float offsetX = 0f;
@@ -20,8 +19,6 @@ public class ObjectSpawner : MonoBehaviour
     void Start()
     {
         player.onTilePassing.AddListener(SpawnAndPoolingObject);
-        gameManager.onPositionReset.AddListener(ResetAndInitializeObjects);
-
         //POOLER, create objects first
         SpawnAndPoolingObject();
         SpawnAndPoolingObject();
@@ -51,7 +48,8 @@ public class ObjectSpawner : MonoBehaviour
 
     void SpawnAndPoolingObject()
     {
-        if(poolSize <= pool.Count)
+        // WEIRD... POOL SIZE + 1 AFTER LOOP BUT OK
+        if(poolSize < pool.Count)
         {
             GameObject objToDestroy = pool.Dequeue();
             objToDestroy.SetActive(false);
@@ -64,7 +62,7 @@ public class ObjectSpawner : MonoBehaviour
         }
     }
 
-    void ResetAndInitializeObjects()
+    public void ResetAndInitializeObjects()
     {
         nextLocation.position = new Vector3(RESET_X_LOC, 0f, 0f);
 

@@ -9,24 +9,14 @@ public class CamMovement : MonoBehaviour
     Vector3 camPosOffset;
     readonly Vector3 camPosInitOffset = new Vector3(8f, 0f, -15f);
 
-    [SerializeField] GameManager gameManager;  
-
-
     void Start()
     {
         camTransform = GetComponent<Transform>();
         camPosOffset = new Vector3(offsetX, 0f, offsetZ);
-
-        gameManager.onPositionReset.AddListener(ResetCamPos);
     }
 
     void LateUpdate()
     {
         camTransform.position = player.transform.position + camPosOffset;
-    }
-
-    void ResetCamPos()
-    {
-        camTransform.position = camPosInitOffset;
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    public UnityEvent onPositionReset;
     [SerializeField] Player player;
+    [SerializeField] ObjectSpawner spawner;
 
     void Start()
     {
@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     void ResetAllPosition()
     {
-        //onPositionReset.Invoke();
+       player.ResetPosition();
+       spawner.ResetAndInitializeObjects();
     }
 }

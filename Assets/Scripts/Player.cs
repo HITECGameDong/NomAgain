@@ -9,8 +9,6 @@ public class Player : MonoBehaviour
     PlayerMovement playerMovement;
     
     public UnityEvent onArrivingCheckpoint;
-    [SerializeField] GameManager gameManager;
-
 
     [SerializeField] float initLocX = -14f;
     readonly float checkPointX = 50f;
@@ -23,12 +21,6 @@ public class Player : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         currentSteppingBlock = null;
-    }
-
-    void Start()
-    {
-        gameManager.onPositionReset.AddListener(ResetPosition);
-
     }
 
 
@@ -101,7 +93,7 @@ public class Player : MonoBehaviour
         playerMovement.IncreaseSpeed(speedAddition, duration);
     }
 
-    void ResetPosition()
+    public void ResetPosition()
     {
         Vector3 resetPosition = new Vector3(initLocX, gameObject.transform.position.y, gameObject.transform.position.z);
         gameObject.transform.position = resetPosition;
