@@ -18,15 +18,19 @@ public class Player : MonoBehaviour
 
     bool isActionable = false;
 
+    // STAMINA , HEALTH VALUE
     public float health {get; private set;}
     bool isVulnerable = true;
     public UnityEvent onPlayerDead;
     [SerializeField] public float maxHealth {get; private set;} = 100f; 
     [SerializeField] float fatigueRate = 2f;
 
+    // ITEM VALUE
     public UnityEvent<float> onItemGet;
     bool isItemWorking = false;
     float gainedItemDuration = 0f;
+    Item grabbableItem = null;
+
 
     private void Awake()
     {
@@ -48,6 +52,7 @@ public class Player : MonoBehaviour
         HealthDoSomething();
     }
 
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Obstacles"))
@@ -67,17 +72,7 @@ public class Player : MonoBehaviour
 
         if(other.gameObject.CompareTag("Item"))
         {
-            Item item = other.GetComponent<Item>();
-
-            if(!isItemWorking)
-            {
-                item.GetItem(this);
-            }  
-            
-            // TODO : no destroy. item pooling
-            Destroy(other.gameObject);
-            onItemGet.Invoke(gainedItemDuration);
-            gainedItemDuration = 0f;
+            grabbableItem = other.GetComponent<Item>();
         }
 
         // Get Block Obj that player stands.
@@ -93,6 +88,11 @@ public class Player : MonoBehaviour
         {
             isActionable = false;
         }
+
+        if (other.gameObject.CompareTag("Item"))
+        {
+            grabbableItem = null;
+        }
     } 
 
     void InputChecking()
@@ -102,6 +102,21 @@ public class Player : MonoBehaviour
             if(isActionable)
             {
                 Jump();
+                return;
+            }
+
+            if(!isItemWorking)
+            {
+                if(grabbableItem == null) return;
+                
+                grabbableItem.GetItem(this);
+                
+                // TODO : no destroy. item pooling
+                Destroy(grabbableItem.gameObject);
+                onItemGet.Invoke(gainedItemDuration);
+                gainedItemDuration = 0f;
+                
+                return;
             }
         }
     }
