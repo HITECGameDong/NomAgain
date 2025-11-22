@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,10 +9,12 @@ public class PlayerMovement : MonoBehaviour
     float speedAddition = 0f;
     Rigidbody rb;
     
-    void Awake()
+
+    void Start()
     {
         playerTransform = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
+
     }
 
     void Update()
@@ -32,14 +35,13 @@ public class PlayerMovement : MonoBehaviour
     System.Collections.IEnumerator IncreaseSpeedCoroutine(float addition, float duration)
     {
         speedAddition += addition;
-        Debug.Log("BOOST START");
         yield return new WaitForSeconds(duration);
         speedAddition -= addition;
-        Debug.Log("BOOST DONE");
     }
 
     public float GetCurrentSpeed()
     {
         return moveSpeed + speedAddition;
     }
+
 }

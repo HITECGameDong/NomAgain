@@ -1,38 +1,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ObjectSpawner : MonoBehaviour
 {
+    [SerializeField] GameManager gameManager;
     [SerializeField] Player player;
-    [SerializeField] GameObject[] objs;
     [SerializeField] Transform nextLocation;
-    [SerializeField] float offsetX = 68f;
+    [SerializeField] float offsetX = 0f;
+
+    readonly float RESET_X_LOC = 0f;
 
     // POOLER
     [SerializeField] Transform obstacleParent;
     Queue<GameObject> pool = new Queue<GameObject>();
-    const int poolSize = 4;
+    const int poolSize = 3;
 
 
     void Start()
     {
         player.onTilePassing.AddListener(SpawnAndPoolingObject);
+        gameManager.onPositionReset.AddListener(ResetAndInitializeObjects);
 
-        //POOLER, get created objects first, REMOVE LATER
-        foreach(Transform child in obstacleParent)
-        {
-            pool.Enqueue(child.gameObject);
-        }
+        //POOLER, create objects first
+        SpawnAndPoolingObject();
+        SpawnAndPoolingObject();
     }
 
-    GameObject SpawnObjectAndGet()
+    void SpawnObject()
     {
-        int randomIndex = Random.Range(0, objs.Length);
-        GameObject obj = Instantiate(objs[randomIndex], nextLocation.position, Quaternion.identity, obstacleParent);
+        int randomIndex = Random.Range(0, obstacleParent.childCount);
+
+        GameObject objToActive = obstacleParent.GetChild(randomIndex).gameObject;
+
+        while(objToActive.activeSelf || objToActive == player.GetCurrentSteppingBlock())
+        {
+
+            randomIndex = Random.Range(0, obstacleParent.childCount);
+            objToActive = obstacleParent.GetChild(randomIndex).gameObject;
+        }
+
+        objToActive.transform.position = nextLocation.position;
+        objToActive.SetActive(true);
+
+        pool.Enqueue(objToActive);
 
         nextLocation.position += new Vector3(offsetX, 0f, 0f);
-        
-        return obj;
     }
 
 
@@ -41,14 +54,29 @@ public class ObjectSpawner : MonoBehaviour
         if(poolSize <= pool.Count)
         {
             GameObject objToDestroy = pool.Dequeue();
-            Destroy(objToDestroy);
-            pool.Enqueue(SpawnObjectAndGet());
+            objToDestroy.SetActive(false);
+            SpawnObject();
         }
 
         else
         {
-            pool.Enqueue(SpawnObjectAndGet());
-            
+            SpawnObject();
         }
+    }
+
+    void ResetAndInitializeObjects()
+    {
+        nextLocation.position = new Vector3(RESET_X_LOC, 0f, 0f);
+
+        for(int i = 0; i < poolSize; i++)
+        {
+            GameObject passedObj= pool.Dequeue();
+            passedObj.transform.position = nextLocation.position;
+            nextLocation.position += new Vector3(offsetX, 0f, 0f);
+            pool.Enqueue(passedObj);
+        }
+
+        
+        Debug.Log("Reset and Initialized Objects");
     }
 }

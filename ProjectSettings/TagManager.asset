@@ -8,6 +8,7 @@ TagManager:
   - HitLine
   - Item
   - PassLine
+  - BlockSelector
   layers:
   - Default
   - TransparentFX

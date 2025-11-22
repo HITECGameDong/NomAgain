@@ -786,7 +786,7 @@ MonoBehaviour:
   onPositionReset:
     m_PersistentCalls:
       m_Calls: []
-  player: {fileID: 379062534}
+  playerMovement: {fileID: 922174308}
 --- !u!4 &1068452483
 Transform:
   m_ObjectHideFlags: 0
@@ -819,6 +819,7 @@ GameObject:
   - component: {fileID: 1798922720}
   - component: {fileID: 1798922719}
   - component: {fileID: 1798922718}
+  - component: {fileID: 1798922721}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -909,6 +910,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1798922721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798922716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fda5d184e1e9540a694032b818bcbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1001 &342485716661490124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -955,7 +968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875338866943982379, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 7005386749428284538, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
       propertyPath: m_Name
@@ -1064,10 +1077,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 2c912073d899c174ebfd96549e55e51e, type: 2}
     - target: {fileID: 7476782402284547059, guid: e228262bb25d1a241b2cbe967b7b95dc, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 1068452482}
-    - target: {fileID: 7608818241357782658, guid: e228262bb25d1a241b2cbe967b7b95dc, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1068452482}

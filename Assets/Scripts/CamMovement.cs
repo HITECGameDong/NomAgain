@@ -7,12 +7,17 @@ public class CamMovement : MonoBehaviour
     [SerializeField] float offsetX = 8f;    
     [SerializeField] float offsetZ = -15f;
     Vector3 camPosOffset;
+    readonly Vector3 camPosInitOffset = new Vector3(8f, 0f, -15f);
+
+    [SerializeField] GameManager gameManager;  
 
 
-    void Awake()
+    void Start()
     {
         camTransform = GetComponent<Transform>();
         camPosOffset = new Vector3(offsetX, 0f, offsetZ);
+
+        gameManager.onPositionReset.AddListener(ResetCamPos);
     }
 
     void LateUpdate()
@@ -20,5 +25,8 @@ public class CamMovement : MonoBehaviour
         camTransform.position = player.transform.position + camPosOffset;
     }
 
-    
+    void ResetCamPos()
+    {
+        camTransform.position = camPosInitOffset;
+    }
 }

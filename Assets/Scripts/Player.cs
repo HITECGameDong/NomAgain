@@ -7,15 +7,28 @@ public class Player : MonoBehaviour
 
     public UnityEvent onTilePassing;
     PlayerMovement playerMovement;
-    BoxCollider boxCollider;
+    
+    public UnityEvent onArrivingCheckpoint;
+    [SerializeField] GameManager gameManager;
+
+
+    [SerializeField] float initLocX = -14f;
+    readonly float checkPointX = 50f;
+    GameObject currentSteppingBlock;
 
 
     bool isActionable = false;
 
     private void Awake()
     {
-        boxCollider = GetComponent<BoxCollider>();
         playerMovement = GetComponent<PlayerMovement>();
+        currentSteppingBlock = null;
+    }
+
+    void Start()
+    {
+        gameManager.onPositionReset.AddListener(ResetPosition);
+
     }
 
 
@@ -27,6 +40,11 @@ public class Player : MonoBehaviour
             {
                 Jump();
             }
+        }
+        
+        if(gameObject.transform.position.x >= checkPointX)
+        {
+            onArrivingCheckpoint.Invoke();
         }
     }
 
@@ -56,6 +74,11 @@ public class Player : MonoBehaviour
             item.GetItem(this);
             Destroy(other.gameObject);
         }
+
+        if(other.gameObject.CompareTag("BlockSelector"))
+        {
+            currentSteppingBlock = other.gameObject;
+        }
     }
 
     void OnTriggerExit(Collider other)
@@ -76,5 +99,17 @@ public class Player : MonoBehaviour
     public void GetEnergyBoost(float speedAddition, float duration)
     {
         playerMovement.IncreaseSpeed(speedAddition, duration);
+    }
+
+    void ResetPosition()
+    {
+        Vector3 resetPosition = new Vector3(initLocX, gameObject.transform.position.y, gameObject.transform.position.z);
+        gameObject.transform.position = resetPosition;
+    }
+
+    public GameObject GetCurrentSteppingBlock()
+    {
+        // WARN : 얕은복사. 원본 변경 주의
+        return currentSteppingBlock;
     }
 }
