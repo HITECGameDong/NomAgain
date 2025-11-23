@@ -1,36 +1,32 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
-using Unity.VisualScripting;
 
 public class Player : MonoBehaviour
 {
-
+    // EVENTS
     public UnityEvent onTilePassing;
-    PlayerMovement playerMovement;
-    
     public UnityEvent onArrivingCheckpoint;
-
-    [SerializeField] float initLocX = -14f;
-    //GameObject currentSteppingBlock = null;
-
-    [SerializeField] GameManager gameManager;
-
-    bool isBlockBreakable = false;
-
-    // STAMINA , HEALTH VALUE
-    public float health {get; private set;}
-    bool isVulnerable = true;
     public UnityEvent onPlayerDead;
-    [SerializeField] public float maxHealth {get; private set;} = 100f; 
-    [SerializeField] float fatigueRate = 2f;
-
-    // ITEM VALUE
     public UnityEvent<float> onItemGet;
+    // VARIABLES FROM EDITOR / COMPONENTS
+    PlayerMovement playerMovement;
+    [SerializeField] GameManager gameManager;
+    
+    // CONSTANTS..
+    [SerializeField] float initLocX = -14f;
+    [SerializeField] float fatigueRate = 2f;
+    [SerializeField] public float maxHealth {get; private set;} = 100f; 
+
+    // VARIABLES
+    //GameObject currentSteppingBlock = null;
+    bool isBlockBreakable = false;
+    bool isVulnerable = true;
+    public float health {get; private set;}
     bool isItemWorking = false;
     float gainedItemDuration = 0f;
     Item grabbableItem = null;
-    // TODO : this is terrible idea to set it as public. did it for scoremanager
+    // TODO : this is terrible idea to set it as public. did it for scoremanager , also remove SerializeField
     [SerializeField] public Weapon equippedWeapon;
 
 
@@ -60,6 +56,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Obstacles"))
         {
+            // TODO : check obstacle type and get diffrent damages
             GetDamage(30f);
         }
 
@@ -124,7 +121,7 @@ public class Player : MonoBehaviour
     public void GetEnergyBoost(float speedAddition, float duration, float healthAddition)
     {
         isItemWorking = true;
-        AddHealth(healthAddition);
+        GetHealth(healthAddition);
         playerMovement.IncreaseSpeed(speedAddition, duration);
         gainedItemDuration = duration;
     }
@@ -208,7 +205,7 @@ public class Player : MonoBehaviour
         playerMovement.enabled = false;
     }
 
-    void AddHealth(float amount)
+    void GetHealth(float amount)
     {
         health = Mathf.Min(amount + health, maxHealth);
     }
@@ -225,7 +222,7 @@ public class Player : MonoBehaviour
 
     void OnBreakingBlock()
     {
-        AddHealth(7f);
+        GetHealth(7f);
         isBlockBreakable = false;
     }
 

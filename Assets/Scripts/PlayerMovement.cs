@@ -4,16 +4,20 @@ using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // EVENTS
+    public UnityEvent onItemWorkingDone;
+    // VARIABLES FROM EDITOR / COMPONENTS
     Transform playerTransform;
+    Rigidbody rb;
+    [SerializeField] LayerMask groundLayer;
+    [SerializeField] Transform groundChecker;
+    // CONSTANTS
+    [SerializeField] int maxJumpCount = 1;
+    // VARIABLES
     [SerializeField] float moveSpeed = 4f;
     float speedAddition = 0f;
-    Rigidbody rb;
-    public UnityEvent onItemWorkingDone;
-    [SerializeField] Transform groundChecker;
-    [SerializeField] LayerMask groundLayer;
-    bool isFlying = true;
-    [SerializeField] int maxJumpCount = 1;
     int jumpCount;
+    bool isFlying = true;
 
     
 
