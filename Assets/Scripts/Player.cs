@@ -65,7 +65,6 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("HitLine"))
         {
             isBlockBreakable = true;
-            Debug.Log("HITLINEHITLINE");
         }
 
         if(other.gameObject.CompareTag("PassLine"))
