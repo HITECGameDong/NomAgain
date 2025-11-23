@@ -9,6 +9,11 @@ public class PlayerMovement : MonoBehaviour
     float speedAddition = 0f;
     Rigidbody rb;
     public UnityEvent onItemWorkingDone;
+    [SerializeField] Transform groundChecker;
+    [SerializeField] LayerMask groundLayer;
+    bool isFlying = true;
+    [SerializeField] int maxJumpCount = 1;
+    int jumpCount;
 
     
 
@@ -16,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     {
         playerTransform = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
-
+        jumpCount = maxJumpCount;
     }
 
     void Update()
@@ -24,9 +29,38 @@ public class PlayerMovement : MonoBehaviour
         playerTransform.Translate(Vector3.right * (moveSpeed + speedAddition) * Time.deltaTime);    
     }
 
+    void FixedUpdate()
+    {
+        OnGroundAction();
+    }
+
+    void OnGroundAction()
+    {  
+        bool isOnGround = Physics.CheckSphere(groundChecker.position, 0.1f, groundLayer);
+        if(isOnGround)
+        {
+            if(!isFlying)
+            {
+                RefillJump();
+            } 
+        }
+
+        isFlying = isOnGround;
+    }
+
+    void RefillJump()
+    {
+        jumpCount = maxJumpCount;
+    }
+
     public void Jump()
     {
-        rb.AddForce(Vector3.up * 7f, ForceMode.Impulse);
+        isFlying = true;
+        if(jumpCount > 0)
+        {
+            rb.AddForce(Vector3.up * 7f, ForceMode.Impulse);
+            jumpCount--;
+        }
     }
 
     public void IncreaseSpeed(float addition, float duration)

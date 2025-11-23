@@ -99,25 +99,8 @@ public class Player : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            if(isActionable)
-            {
-                Jump();
-                return;
-            }
-
-            if(!isItemWorking)
-            {
-                if(grabbableItem == null) return;
-                
-                grabbableItem.GetItem(this);
-                
-                // TODO : no destroy. item pooling
-                Destroy(grabbableItem.gameObject);
-                onItemGet.Invoke(gainedItemDuration);
-                gainedItemDuration = 0f;
-                
-                return;
-            }
+            if(grabbableItem != null) ItemGrabCheck();
+            else Jump();
         }
     }
 
@@ -149,6 +132,21 @@ public class Player : MonoBehaviour
         StartCoroutine(GetRocketBoostCoroutine(duration));
         playerMovement.RocketBoost(speedAddition, duration);
         gainedItemDuration = duration;
+    }
+
+    void ItemGrabCheck()
+    {
+        if(!isItemWorking)
+        {
+            if(grabbableItem == null) return;
+            
+            grabbableItem.GetItem(this);
+            
+            // TODO : no destroy. item pooling
+            Destroy(grabbableItem.gameObject);
+            onItemGet.Invoke(gainedItemDuration);
+            gainedItemDuration = 0f;
+        }
     }
 
     void ItemWorkingDone()
