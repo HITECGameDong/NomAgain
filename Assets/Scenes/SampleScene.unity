@@ -803,17 +803,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 34409470394174022, guid: 9b12934a174552d459bc07222e8220e0, type: 3}
   m_PrefabInstance: {fileID: 887455834}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &922174308 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7476782402284547059, guid: e228262bb25d1a241b2cbe967b7b95dc, type: 3}
-  m_PrefabInstance: {fileID: 6992327830275863337}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b852eeaa3c82453418f6b2b7654d4f10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
 --- !u!114 &954462415 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
@@ -877,7 +866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
   score: 0
-  playerMovement: {fileID: 922174308}
+  player: {fileID: 379062534}
 --- !u!114 &958406591
 MonoBehaviour:
   m_ObjectHideFlags: 0

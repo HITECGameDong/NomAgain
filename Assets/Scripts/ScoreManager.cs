@@ -4,13 +4,14 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] float score;
-    [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] Player player;
     TextMeshPro scoreText;
     bool isScoreCalculatable = true;
 
-    void Awake()
+    void Start()
     {
         scoreText = GetComponent<TextMeshPro>();
+        player.equippedWeapon.onObstacleBroken.AddListener(GetScore);
     }
 
     void Update()
@@ -23,12 +24,17 @@ public class ScoreManager : MonoBehaviour
 
     void ScoreUpdate()
     {
-        score += playerMovement.GetCurrentSpeed() * Time.deltaTime;
+        score += player.GetCurrentSpeed() * Time.deltaTime;
         scoreText.text = Mathf.Floor(score).ToString();
     }
 
     public void StopScoring()
     {
         isScoreCalculatable = false;
+    }
+
+    void GetScore()
+    {
+        score += 40f;
     }
 }
