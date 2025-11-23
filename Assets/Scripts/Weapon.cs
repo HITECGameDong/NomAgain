@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] float damage;
     [SerializeField] BoxCollider range;
     protected GameObject currentTarget = null;
+
+    public UnityEvent onObstacleBroken;
 
     void Awake()
     {

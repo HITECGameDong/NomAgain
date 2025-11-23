@@ -6,5 +6,6 @@ public class Fist : Weapon
     {
         if(!currentTarget) return;
         currentTarget.SetActive(false);
+        onObstacleBroken.Invoke();
     }
 }

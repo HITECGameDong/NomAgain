@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerMovement.onItemWorkingDone.AddListener(ItemWorkingDone);
+        equippedWeapon.onObstacleBroken.AddListener(OnBreakingBlock);
     }
 
 
@@ -102,7 +103,7 @@ public class Player : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            if(isBlockBreakable) BreakBlock();
+            if(isBlockBreakable) HitBlock();
             else if(grabbableItem != null) ItemGrabCheck();
             else Jump();
         }
@@ -218,9 +219,14 @@ public class Player : MonoBehaviour
         health = Mathf.Max(health - amount, 0f);
     }
 
-    void BreakBlock()
+    void HitBlock()
     {
         equippedWeapon.Attack();
+    }
+
+    void OnBreakingBlock()
+    {
+        AddHealth(7f);
         isBlockBreakable = false;
     }
 
