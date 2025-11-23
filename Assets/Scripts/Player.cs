@@ -120,7 +120,6 @@ public class Player : MonoBehaviour
     void Jump()
     {
         playerMovement.Jump();
-        isBlockBreakable = false;
     }
 
     public void GetEnergyBoost(float speedAddition, float duration, float healthAddition)
