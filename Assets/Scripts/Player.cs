@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] GameManager gameManager;
 
-    bool isActionable = false;
+    bool isBlockBreakable = false;
 
     // STAMINA , HEALTH VALUE
     public float health {get; private set;}
@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     bool isItemWorking = false;
     float gainedItemDuration = 0f;
     Item grabbableItem = null;
+
+    [SerializeField] Weapon equippedWeapon;
 
 
     private void Awake()
@@ -62,7 +64,8 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("HitLine"))
         {
-            isActionable = true;
+            isBlockBreakable = true;
+            Debug.Log("HITLINEHITLINE");
         }
 
         if(other.gameObject.CompareTag("PassLine"))
@@ -86,11 +89,12 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("HitLine"))
         {
-            isActionable = false;
+            isBlockBreakable = false;
         }
 
         if (other.gameObject.CompareTag("Item"))
         {
+            // WARN : 이거괜찮은거야??? 변수를 비우는거야?Item을 날리는거야? 
             grabbableItem = null;
         }
     } 
@@ -99,7 +103,8 @@ public class Player : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            if(grabbableItem != null) ItemGrabCheck();
+            if(isBlockBreakable) BreakBlock();
+            else if(grabbableItem != null) ItemGrabCheck();
             else Jump();
         }
     }
@@ -115,7 +120,7 @@ public class Player : MonoBehaviour
     void Jump()
     {
         playerMovement.Jump();
-        isActionable = false;
+        isBlockBreakable = false;
     }
 
     public void GetEnergyBoost(float speedAddition, float duration, float healthAddition)
@@ -215,5 +220,10 @@ public class Player : MonoBehaviour
         health = Mathf.Max(health - amount, 0f);
     }
 
+    void BreakBlock()
+    {
+        equippedWeapon.Attack();
+        isBlockBreakable = false;
+    }
 
 }

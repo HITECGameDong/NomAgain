@@ -39,13 +39,22 @@ public class ObjectSpawner : MonoBehaviour
         }
 
         objToActive.transform.position = nextLocation.position;
-        objToActive.SetActive(true);
+
+        SetActiveRecursive(objToActive);
 
         pool.Enqueue(objToActive);
 
         nextLocation.position += new Vector3(offsetX, 0f, 0f);
     }
 
+    void SetActiveRecursive(GameObject other)
+    {
+        other.SetActive(true);
+        foreach(Transform child in other.transform)
+        {
+            SetActiveRecursive(child.gameObject);
+        }
+    }
 
     void SpawnAndPoolingObject()
     {

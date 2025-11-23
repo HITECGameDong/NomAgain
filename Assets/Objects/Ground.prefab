@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 6939548086481504371}
   - component: {fileID: 7050625554860950903}
   - component: {fileID: 597109556682699216}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: PassLine
   m_Icon: {fileID: 0}

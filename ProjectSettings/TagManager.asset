@@ -16,10 +16,10 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Weapon
+  - EventLine
+  - Obstacle
   - 
   - 
   - 
