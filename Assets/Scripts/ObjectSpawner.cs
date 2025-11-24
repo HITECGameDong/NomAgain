@@ -14,10 +14,9 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] float offsetX = 0f;
 
     // POOLER
-    [SerializeField] Transform obstacleParent;
-
-    Queue<GameObject> pool = new Queue<GameObject>();
-    const int poolSize = 10;
+    [SerializeField] Transform objectParent;
+    Queue<GameObject> objectPool = new Queue<GameObject>();
+    readonly int objectPoolSize = 10;
 
     [SerializeField] GameManager gameManager;   
 
@@ -37,6 +36,7 @@ public class ObjectSpawner : MonoBehaviour
     void SpawnGround()
     {
         SpawnObject(ObjectType.GROUND);
+        SpawnObject(ObjectType.OBSTACLE);
     }
 
     void SpawnObject(ObjectType objType)
@@ -55,31 +55,18 @@ public class ObjectSpawner : MonoBehaviour
             nextLocForGround.position += new Vector3(offsetX, 0f, 0f);    
         }
 
+        // TODO : separate obs / item spawn
+        // TODO : idiot random system. U already made it for SO.
         else if(objType == ObjectType.OBSTACLE || objType == ObjectType.ITEM)
         {
-            
+
+            GameObject objToActive = objectPool.Dequeue();
+            objToActive.SetActive(false);
+
+            objToActive.transform.position = new Vector3 (player.transform.position.x + Random.Range(25f, 35f), 0f, 0f);
+            SetActiveRecursive(objToActive);
+            objectPool.Enqueue(objToActive);
         }
-
-        // OBJECTS SPAWN
-
-        // int randomIndex = Random.Range(0, obstacleParent.childCount);
-
-        // GameObject objToActive = obstacleParent.GetChild(randomIndex).gameObject;
-
-        // while(objToActive.activeSelf)
-        // {
-        //     // TODO : Fix Lagging. add more blocks in pool
-        //     randomIndex = Random.Range(0, obstacleParent.childCount);
-        //     objToActive = obstacleParent.GetChild(randomIndex).gameObject;
-        // }
-
-        // objToActive.transform.position = nextLocation.position;
-
-        // SetActiveRecursive(objToActive);
-
-        // pool.Enqueue(objToActive);
-
-        // nextLocation.position += new Vector3(offsetX, 0f, 0f);
     }
 
     void SetActiveRecursive(GameObject other)
@@ -93,27 +80,23 @@ public class ObjectSpawner : MonoBehaviour
 
     public void ResetAndInitializeObjects()
     {
-        nextLocForGround.position = new Vector3(nextLocForGround.position.x - offsetX*poolSize - gameManager.GetResetLoc(), 0f, 0f);
-        //nextLocForObj.position = new Vector3(nextLocForObj.position.x - offsetX*poolSize - gameManager.GetResetLoc(), 0f, 0f);
+        // nextLocForGround.position = new Vector3(nextLocForGround.position.x - offsetX*groundPoolSize - gameManager.GetResetLoc(), 0f, 0f);
+        // nextLocForObj.position = new Vector3(nextLocForObj.position.x - offsetX*groundPoolSize - gameManager.GetResetLoc(), 0f, 0f);
 
-        Vector3 nextLocCpyForGround = nextLocForGround.position;
-        //Vector3 nextLocCpyForObj = nextLocForObj.position;
-
-        for(int i = 0; i < groundPoolSize; i++)
-        {
-            GameObject passedObj= groundPool.Dequeue();
-            passedObj.transform.position = nextLocCpyForGround;
-            groundPool.Enqueue(passedObj);
-
-            nextLocCpyForGround += new Vector3(offsetX, 0f, 0f);
-            nextLocForGround.position += new Vector3(offsetX, 0f, 0f);
-        }
-
-        // for(int i = 0; i < poolSize; i++)
+        // for(int i = 0; i < groundPoolSize; i++)
         // {
-        //     GameObject passedObj= pool.Dequeue();
-        //     passedObj.transform.position = nextLocCpyForObj;
-        //     pool.Enqueue(passedObj);
+        //     GameObject passedObj= groundPool.Dequeue();
+        //     passedObj.transform.position = nextLocForGround;
+        //     groundPool.Enqueue(passedObj);
+
+        //     nextLocForGround.position += new Vector3(offsetX, 0f, 0f);
+        // }
+
+        // for(int i = 0; i < objectPoolSize; i++)
+        // {
+        //     GameObject passedObj= objectPool.Dequeue();
+        //     passedObj.transform.position = nextLocForObj;
+        //     objectPool.Enqueue(passedObj);
 
         //     nextLocCpyForObj += new Vector3(offsetX, 0f, 0f);
         //     nextLocOfObj.position += new Vector3(offsetX, 0f, 0f);
@@ -122,10 +105,6 @@ public class ObjectSpawner : MonoBehaviour
 
     public void BlockPoolInitialize()
     {
-        //POOLER, create objects first
-        // SpawnAndPoolingObject();
-        // SpawnAndPoolingObject();
-        
         // Instantiate Ground to Pool
         for(int i = 0; i < groundPoolSize ; i++)
         {
@@ -143,12 +122,13 @@ public class ObjectSpawner : MonoBehaviour
                 groundPool.Enqueue(spawnedGround);
         }
 
-        // // Instaitiate Spwanable Object to Pool
-        // for(int i = 0 ; i < poolSize ; i++)
-        // {
-        //     GameObject spawnedObject = Instantiate(GetRandomObjectSO().itemPrefab, obstacleParent);
-        //     spawnedObject.SetActive(false);
-        // }
+        // Instaitiate Spawnable Object to Pool
+        for(int i = 0 ; i < objectPoolSize ; i++)
+        {
+            GameObject spawnedObject = Instantiate(GetRandomObjectSO().itemPrefab, objectParent);
+            spawnedObject.SetActive(false);
+            objectPool.Enqueue(spawnedObject);
+        }
     }
 
     SpawnableObjectSO GetRandomObjectSO()

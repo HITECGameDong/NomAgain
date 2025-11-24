@@ -141,9 +141,6 @@ public class Player : MonoBehaviour
             if(grabbableItem == null) return;
             
             grabbableItem.GetItem(this);
-            
-            // TODO : no destroy. item pooling
-            Destroy(grabbableItem.gameObject);
             onItemGet.Invoke(gainedItemDuration);
             gainedItemDuration = 0f;
         }

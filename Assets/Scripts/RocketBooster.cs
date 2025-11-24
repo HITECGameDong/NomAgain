@@ -13,5 +13,6 @@ public class RocketBooster : Item
     public override void GetItem(Player player)
     {
        player.GetRocketBoost(speedAddition, duration);
+       gameObject.SetActive(false);
     }
 }

@@ -14,5 +14,6 @@ public class EnergyBooster : Item
     public override void GetItem(Player player)
     {
        player.GetEnergyBoost(speedAddition, duration, healthAddition);
+       gameObject.SetActive(false);
     }
 }
