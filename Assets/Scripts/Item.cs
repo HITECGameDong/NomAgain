@@ -1,11 +1,5 @@
 using UnityEngine;
 
-public enum ItemType
-{
-    NONE,
-    ENERGY,
-    ROCKET,
-}
 public abstract class Item : MonoBehaviour
 {
     protected ItemType itemType;

@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
 
         player.onArrivingCheckpoint.AddListener(ResetAllPosition);
         player.onPlayerDead.AddListener(GameOver);
+
+        spawner.BlockPoolInitialize();
     }
 
     void ResetAllPosition()

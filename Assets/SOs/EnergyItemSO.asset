@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05894fdd4cfb96409df4a8ce4be9780, type: 3}
+  m_Name: EnergyItemSO
+  m_EditorClassIdentifier: Assembly-CSharp::BasicItemSO
+  itemPrefab: {fileID: 2500205578143049717, guid: 3dbb50a02f98b844eabfadb63c9f4f89, type: 3}
+  objectType: 2
+  spawnWeight: 0
