@@ -59,7 +59,6 @@ public class ObjectSpawner : MonoBehaviour
         // TODO : idiot random system. U already made it for SO.
         else if(objType == ObjectType.OBSTACLE || objType == ObjectType.ITEM)
         {
-
             GameObject objToActive = objectPool.Dequeue();
             objToActive.SetActive(false);
 
@@ -80,27 +79,23 @@ public class ObjectSpawner : MonoBehaviour
 
     public void ResetAndInitializeObjects()
     {
-        // nextLocForGround.position = new Vector3(nextLocForGround.position.x - offsetX*groundPoolSize - gameManager.GetResetLoc(), 0f, 0f);
-        // nextLocForObj.position = new Vector3(nextLocForObj.position.x - offsetX*groundPoolSize - gameManager.GetResetLoc(), 0f, 0f);
+        nextLocForGround.position = new Vector3(nextLocForGround.position.x - offsetX*groundPoolSize - gameManager.GetResetLoc(), 0f, 0f);
 
-        // for(int i = 0; i < groundPoolSize; i++)
-        // {
-        //     GameObject passedObj= groundPool.Dequeue();
-        //     passedObj.transform.position = nextLocForGround;
-        //     groundPool.Enqueue(passedObj);
+        for(int i = 0; i < groundPoolSize; i++)
+        {
+            GameObject passedObj= groundPool.Dequeue();
+            passedObj.transform.position = nextLocForGround.position;
+            groundPool.Enqueue(passedObj);
 
-        //     nextLocForGround.position += new Vector3(offsetX, 0f, 0f);
-        // }
+            nextLocForGround.position += new Vector3(offsetX, 0f, 0f);
+        }
 
-        // for(int i = 0; i < objectPoolSize; i++)
-        // {
-        //     GameObject passedObj= objectPool.Dequeue();
-        //     passedObj.transform.position = nextLocForObj;
-        //     objectPool.Enqueue(passedObj);
-
-        //     nextLocCpyForObj += new Vector3(offsetX, 0f, 0f);
-        //     nextLocOfObj.position += new Vector3(offsetX, 0f, 0f);
-        // }
+        for(int i = 0; i < objectPoolSize; i++)
+        {
+            GameObject tempDequeueObj = objectPool.Dequeue();
+            nextLocForObj.position = new Vector3(tempDequeueObj.transform.position.x - gameManager.GetResetLoc(), 0f, 0f);
+            objectPool.Enqueue(tempDequeueObj);
+        }
     }
 
     public void BlockPoolInitialize()
