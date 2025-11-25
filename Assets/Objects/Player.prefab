@@ -215,16 +215,16 @@ MonoBehaviour:
   onArrivingCheckpoint:
     m_PersistentCalls:
       m_Calls: []
-  initLocX: -14
-  gameManager: {fileID: 0}
   onPlayerDead:
     m_PersistentCalls:
       m_Calls: []
-  fatigueRate: 2
   onItemGet:
     m_PersistentCalls:
       m_Calls: []
+  gameManager: {fileID: 0}
   equippedWeapon: {fileID: 3185393012549965420}
+  initLocX: -14
+  fatigueRate: 2
 --- !u!114 &7476782402284547059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,15 +237,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b852eeaa3c82453418f6b2b7654d4f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 7
   onItemWorkingDone:
     m_PersistentCalls:
       m_Calls: []
-  groundChecker: {fileID: 3805134406643259832}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  groundChecker: {fileID: 3805134406643259832}
   maxJumpCount: 1
+  baseSpeed: 6
 --- !u!1 &2806681549615336650
 GameObject:
   m_ObjectHideFlags: 0

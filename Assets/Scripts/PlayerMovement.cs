@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     // CONSTANTS
     [SerializeField] int maxJumpCount = 1;
     // VARIABLES
-    [SerializeField] float moveSpeed = 4f;
+    [SerializeField] float baseSpeed = 4f;
     float speedAddition = 0f;
     int jumpCount;
     bool isFlying = true;
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        playerTransform.Translate(Vector3.right * (moveSpeed + speedAddition) * Time.deltaTime);    
+        playerTransform.Translate(Vector3.right * (baseSpeed + speedAddition) * Time.deltaTime);    
     }
 
     void FixedUpdate()
@@ -55,7 +55,6 @@ public class PlayerMovement : MonoBehaviour
     void RefillJump()
     {
         jumpCount = maxJumpCount;
-        Debug.Log("refill");
     }
 
     public void Jump()
@@ -66,6 +65,11 @@ public class PlayerMovement : MonoBehaviour
         isFlying = true;
         rb.AddForce(Vector3.up * 7f, ForceMode.Impulse);
         jumpCount--;
+    }
+
+    public void IncreaseSpeed(float addition)
+    {
+        speedAddition += addition;
     }
 
     public void IncreaseSpeed(float addition, float duration)
@@ -84,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float GetCurrentSpeed()
     {
-        return moveSpeed + speedAddition;
+        return baseSpeed + speedAddition;
     }
 
     public void RocketBoost(float rocketSpeed, float duration)
@@ -94,15 +98,15 @@ public class PlayerMovement : MonoBehaviour
 
     System.Collections.IEnumerator RocketBoostCoroutine(float rocketSpeed, float duration)
     {
-        float lastMoveSpeed = moveSpeed;
+        float lastMoveSpeed = baseSpeed;
 
-        moveSpeed = rocketSpeed;
+        baseSpeed = rocketSpeed;
         rb.useGravity = false;
         isFlying = true;
         isOnRocket = true;
         playerTransform.position = new Vector3(playerTransform.position.x, 10f, playerTransform.position.z);
         yield return new WaitForSeconds(duration);
-        moveSpeed = lastMoveSpeed;
+        baseSpeed = lastMoveSpeed;
         rb.useGravity = true;
         isOnRocket = false;
 

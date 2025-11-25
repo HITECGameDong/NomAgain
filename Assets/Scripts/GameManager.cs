@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,9 +8,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] Player player;
     [SerializeField] ObjectSpawner spawner;
     [SerializeField] ScoreManager scoreManager;
-    
 
+    [SerializeField] float spdAddForEachDifficulty = 2f;
+    
     readonly float checkPointX = 200000f;
+
+    int tilePassCount = 0;
 
 
     void Start()
@@ -18,6 +22,7 @@ public class GameManager : MonoBehaviour
 
         player.onArrivingCheckpoint.AddListener(ResetAllPosition);
         player.onPlayerDead.AddListener(GameOver);
+        player.onTilePassing.AddListener(CheckTilePass);
 
         spawner.BlockPoolInitialize();
     }
@@ -39,5 +44,17 @@ public class GameManager : MonoBehaviour
     {
         player.Kill();
         scoreManager.StopScoring();
+    }
+
+    void CheckTilePass()
+    {
+        tilePassCount++;
+
+        if((tilePassCount > 0) && ((tilePassCount % 5) == 0))
+        {
+            scoreManager.GetTilePassBonus();
+            player.IncreaseDefaultSpeed(spdAddForEachDifficulty);
+            Debug.Log("Gain Diff");
+        }
     }
 }   

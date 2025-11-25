@@ -37,4 +37,9 @@ public class ScoreManager : MonoBehaviour
     {
         score += 40f;
     }
+
+    public void GetTilePassBonus()
+    {
+        score += 200;
+    }
 }

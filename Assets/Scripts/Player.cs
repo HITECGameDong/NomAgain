@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     // VARIABLES FROM EDITOR / COMPONENTS
     PlayerMovement playerMovement;
     [SerializeField] GameManager gameManager;
+    // TODO : this is terrible idea to set it as public. did it for scoremanager , also remove SerializeField
+    [SerializeField] public Weapon equippedWeapon;
     
     // CONSTANTS..
     [SerializeField] float initLocX = -14f;
@@ -26,8 +28,6 @@ public class Player : MonoBehaviour
     bool isItemWorking = false;
     float gainedItemDuration = 0f;
     Item grabbableItem = null;
-    // TODO : this is terrible idea to set it as public. did it for scoremanager , also remove SerializeField
-    [SerializeField] public Weapon equippedWeapon;
 
 
     private void Awake()
@@ -241,4 +241,8 @@ public class Player : MonoBehaviour
         return playerMovement.GetCurrentSpeed();
     }
 
+    public void IncreaseDefaultSpeed(float addition)
+    {
+        playerMovement.IncreaseSpeed(addition);
+    }
 }
