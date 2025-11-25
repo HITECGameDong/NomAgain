@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     float speedAddition = 0f;
     int jumpCount;
     bool isFlying = true;
+    bool isOnRocket = false;
 
     
 
@@ -47,20 +48,20 @@ public class PlayerMovement : MonoBehaviour
             {
                 RefillJump();
             } 
+            isFlying = false;
         }
-
-        isFlying = isOnGround;
     }
 
     void RefillJump()
     {
         jumpCount = maxJumpCount;
+        Debug.Log("refill");
     }
 
     public void Jump()
     {
         isFlying = true;
-        if(jumpCount > 0)
+        if(jumpCount > 0 && !isOnRocket)
         {
             rb.AddForce(Vector3.up * 7f, ForceMode.Impulse);
             jumpCount--;
@@ -97,10 +98,13 @@ public class PlayerMovement : MonoBehaviour
 
         moveSpeed = rocketSpeed;
         rb.useGravity = false;
+        isFlying = true;
+        isOnRocket = true;
         playerTransform.position = new Vector3(playerTransform.position.x, 10f, playerTransform.position.z);
         yield return new WaitForSeconds(duration);
         moveSpeed = lastMoveSpeed;
         rb.useGravity = true;
+        isOnRocket = false;
 
         onItemWorkingDone.Invoke();
     }
