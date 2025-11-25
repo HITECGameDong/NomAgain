@@ -99,9 +99,20 @@ public class Player : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            if(isBlockBreakable) HitBlock();
-            else if(grabbableItem != null) ItemGrabCheck();
+            if(isBlockBreakable)
+            {
+                HitBlock();
+            }
+            else if(grabbableItem != null)
+            {
+                ItemGrabCheck();
+            }
             else Jump();
+        }
+        
+        else if (Mouse.current.leftButton.isPressed)
+        {
+            Jump();
         }
     }
 
