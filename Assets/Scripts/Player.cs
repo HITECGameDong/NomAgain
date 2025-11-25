@@ -143,6 +143,7 @@ public class Player : MonoBehaviour
             grabbableItem.GetItem(this);
             onItemGet.Invoke(gainedItemDuration);
             gainedItemDuration = 0f;
+            grabbableItem = null;
         }
     }
 
@@ -215,6 +216,7 @@ public class Player : MonoBehaviour
     void HitBlock()
     {
         equippedWeapon.Attack();
+        isBlockBreakable = false;
     }
 
     void OnBreakingBlock()
