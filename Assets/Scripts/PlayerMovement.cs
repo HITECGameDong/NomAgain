@@ -60,12 +60,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
+        if(jumpCount <= 0) return;
+        if(isOnRocket) return;
+
         isFlying = true;
-        if(jumpCount > 0 && !isOnRocket)
-        {
-            rb.AddForce(Vector3.up * 7f, ForceMode.Impulse);
-            jumpCount--;
-        }
+        rb.AddForce(Vector3.up * 7f, ForceMode.Impulse);
+        jumpCount--;
     }
 
     public void IncreaseSpeed(float addition, float duration)
