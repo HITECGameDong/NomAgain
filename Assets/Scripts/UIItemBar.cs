@@ -22,6 +22,7 @@ public class UIItemBar : UIBasic
         float curTime = 1f;
         while(curTime > 0)
         {
+            CamLookingUI();
             curTime -= Time.deltaTime / duration;
             UIBar.fillAmount = curTime;
             yield return null;

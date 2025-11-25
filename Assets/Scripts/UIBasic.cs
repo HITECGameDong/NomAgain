@@ -15,4 +15,10 @@ public class UIBasic : MonoBehaviour
         UIBar.enabled = false;
         UIBarBG.enabled = false;
     }
+
+    protected void CamLookingUI()
+    {
+        Vector3 dirFromCam = transform.position - Camera.main.transform.position;
+        transform.LookAt(Camera.main.transform.position + dirFromCam);
+    }
 }

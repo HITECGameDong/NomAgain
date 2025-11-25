@@ -19,4 +19,9 @@ public class CamMovement : MonoBehaviour
     {
         camTransform.position = player.transform.position + camPosOffset;
     }
+
+    public Transform GetCamTransform()
+    {
+        return camTransform;
+    }
 }
