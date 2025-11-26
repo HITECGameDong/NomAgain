@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnableObjectSO
   itemPrefab: {fileID: 475648854041163296, guid: 7db2e73dbe62b414aa15e23beb3729f5, type: 3}
   objectType: 3
+  objectName: 2
   spawnWeight: 40

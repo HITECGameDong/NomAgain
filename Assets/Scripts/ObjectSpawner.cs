@@ -15,8 +15,10 @@ public class ObjectSpawner : MonoBehaviour
 
     // POOLER
     [SerializeField] Transform objectParent;
-    Queue<GameObject> objectPool = new Queue<GameObject>();
-    readonly int objectPoolSize = 10;
+    Queue<GameObject> spawnedObjPool = new Queue<GameObject>();
+    Dictionary<ObjectName, Queue<GameObject>> baseObjPool = new Dictionary<ObjectName, Queue<GameObject>>();
+    readonly int spawnedObjPoolSize = 10;
+    readonly int baseObjPoolSize = 3;
 
     [SerializeField] GameManager gameManager;   
 
@@ -56,15 +58,26 @@ public class ObjectSpawner : MonoBehaviour
         }
 
         // TODO : separate obs / item spawn
-        // TODO : idiot random system. U already made it for SO.
         else if(objType == ObjectType.OBSTACLE || objType == ObjectType.ITEM)
         {
-            GameObject objToActive = objectPool.Dequeue();
-            objToActive.SetActive(false);
+            if(spawnedObjPool.Count > 0)
+            {
+                spawnedObjPool.Dequeue().SetActive(false);
+            }
 
-            objToActive.transform.position = new Vector3 (player.transform.position.x + Random.Range(25f, 35f), 0f, 0f);
-            SetActiveRecursive(objToActive);
-            objectPool.Enqueue(objToActive);
+            SpawnableObjectSO toSpawnSO = GetRandomObjectSO();
+            
+            GameObject objToSpawn;
+            do
+            {
+                objToSpawn = baseObjPool[toSpawnSO.objectName].Dequeue();
+                baseObjPool[toSpawnSO.objectName].Enqueue(objToSpawn);
+            }
+            while(objToSpawn.activeSelf);
+
+            spawnedObjPool.Enqueue(objToSpawn);
+            objToSpawn.transform.position = new Vector3 (player.transform.position.x + Random.Range(25f, 35f), 0f, 0f);
+            objToSpawn.SetActive(true);
         }
     }
 
@@ -90,11 +103,11 @@ public class ObjectSpawner : MonoBehaviour
             nextLocForGround.position += new Vector3(offsetX, 0f, 0f);
         }
 
-        for(int i = 0; i < objectPoolSize; i++)
+        for(int i = 0; i < spawnedObjPoolSize; i++)
         {
-            GameObject tempDequeueObj = objectPool.Dequeue();
+            GameObject tempDequeueObj = spawnedObjPool.Dequeue();
             nextLocForObj.position = new Vector3(tempDequeueObj.transform.position.x - gameManager.GetResetLoc(), 0f, 0f);
-            objectPool.Enqueue(tempDequeueObj);
+            spawnedObjPool.Enqueue(tempDequeueObj);
         }
     }
 
@@ -118,11 +131,15 @@ public class ObjectSpawner : MonoBehaviour
         }
 
         // Instaitiate Spawnable Object to Pool
-        for(int i = 0 ; i < objectPoolSize ; i++)
+        foreach (SpawnableObjectSO toSpawnSO in spawnableList)
         {
-            GameObject spawnedObject = Instantiate(GetRandomObjectSO().itemPrefab, objectParent);
-            spawnedObject.SetActive(false);
-            objectPool.Enqueue(spawnedObject);
+            baseObjPool[toSpawnSO.objectName] = new Queue<GameObject>();
+            for(int i = 0 ; i < baseObjPoolSize; i++)
+            {
+                GameObject spawnedObject = Instantiate(toSpawnSO.itemPrefab, objectParent);
+                spawnedObject.SetActive(false);
+                baseObjPool[toSpawnSO.objectName].Enqueue(spawnedObject);
+            }
         }
     }
 
