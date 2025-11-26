@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] Player player;
     TextMeshPro scoreText;
     bool isScoreCalculatable = true;
+    bool isScoreDisplayable = true;
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        if(isScoreCalculatable)
+        if(isScoreCalculatable && isScoreDisplayable)
         {
             ScoreUpdate();
         }
@@ -47,5 +48,18 @@ public class ScoreManager : MonoBehaviour
     public float GetScore()
     {
         return score;
+    }
+
+    public void DisplayDifficultyUp()
+    {
+        StartCoroutine(DisplayDiffucultyUpCoroutine());
+    }
+
+    System.Collections.IEnumerator DisplayDiffucultyUpCoroutine()
+    {
+        isScoreCalculatable = false;
+        scoreText.text = "Difficulty Up!";
+        yield return new WaitForSeconds(1f);
+        isScoreCalculatable = true;
     }
 }

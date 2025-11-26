@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
 
     int tilePassCount = 0;
 
-    [SerializeField] float spawnThreshold = 50f;
+    [SerializeField] float spawnTimeSec = 5f;
+    [SerializeField] float spawnTimeReduceSec = 0.5f;
     float spawnTimer = 0f;
 
 
@@ -60,19 +61,32 @@ public class GameManager : MonoBehaviour
 
         if((tilePassCount > 0) && ((tilePassCount % 5) == 0))
         {
-            scoreManager.GetTilePassBonus();
-            player.IncreaseDefaultSpeed(spdAddForEachDifficulty);
-            Debug.Log("Gain Diff");
+            IncreaseDifficulty();
         }
     }
 
     void SpawnTimerRun()
     {
         spawnTimer += Time.fixedDeltaTime;
-        if(spawnTimer >= spawnThreshold)
+        if(spawnTimer >= spawnTimeSec)
         {
             spawner.SpawnObject();
             spawnTimer = 0f;
         }
+    }
+
+    void ReduceSpawnTime(float reduceTime)
+    {
+        spawnTimeSec = Mathf.Max(0f, spawnTimeSec - reduceTime);
+    }
+
+    void IncreaseDifficulty()
+    {
+        // TODO : change Theme
+        scoreManager.GetTilePassBonus();
+        scoreManager.DisplayDifficultyUp();
+        player.IncreaseDefaultSpeed(spdAddForEachDifficulty);
+        ReduceSpawnTime(spawnTimeReduceSec);
+        Debug.Log("Gain Diff");
     }
 }   
