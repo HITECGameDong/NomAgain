@@ -9,7 +9,6 @@ public class ObjectSpawner : MonoBehaviour
 {
     [SerializeField] Player player;
     [SerializeField] Transform nextLocForGround;
-    [SerializeField] Transform nextLocForObj;
     // TODO : seperate offset for ground / object
     [SerializeField] float offsetX = 0f;
 
@@ -19,7 +18,10 @@ public class ObjectSpawner : MonoBehaviour
     Dictionary<ObjectName, Queue<GameObject>> baseObjPool = new Dictionary<ObjectName, Queue<GameObject>>();
     // TODO : 동전이 한 화면에 몇개까지 있을까, 그거 기반으로 Pool Size 결정할 것.
     readonly int spawnedObjPoolSize = 20;
-    readonly int baseObjPoolSize = 3;
+    readonly int baseObjPoolSize = 7;
+    readonly float initObjStartXPos = 20f;
+    float objSpawnerCurXPos;
+
 
     [SerializeField] GameManager gameManager;   
 
@@ -72,7 +74,6 @@ public class ObjectSpawner : MonoBehaviour
             }
 
             SpawnableObjectSO toSpawnSO = GetRandomObjectSO();
-            
             GameObject objToSpawn;
             do
             {
@@ -82,7 +83,8 @@ public class ObjectSpawner : MonoBehaviour
             while(objToSpawn.activeSelf);
 
             spawnedObjPool.Enqueue(objToSpawn);
-            objToSpawn.transform.position = new Vector3 (player.transform.position.x + Random.Range(25f, 35f), 0f, 0f);
+            objToSpawn.transform.position = new Vector3(objSpawnerCurXPos, 0f, 0f);
+            objSpawnerCurXPos += Random.Range(25f, 30f);
             objToSpawn.SetActive(true);
         }
     }
@@ -96,6 +98,7 @@ public class ObjectSpawner : MonoBehaviour
         }
     }
 
+    // TODO : 25-11-26 jin - object spawn logic 변경, 수정예정
     public void ResetAndInitializeObjects()
     {
         nextLocForGround.position = new Vector3(nextLocForGround.position.x - offsetX*groundPoolSize - gameManager.GetResetLoc(), 0f, 0f);
@@ -109,12 +112,12 @@ public class ObjectSpawner : MonoBehaviour
             nextLocForGround.position += new Vector3(offsetX, 0f, 0f);
         }
 
-        for(int i = 0; i < spawnedObjPoolSize; i++)
-        {
-            GameObject tempDequeueObj = spawnedObjPool.Dequeue();
-            nextLocForObj.position = new Vector3(tempDequeueObj.transform.position.x - gameManager.GetResetLoc(), 0f, 0f);
-            spawnedObjPool.Enqueue(tempDequeueObj);
-        }
+        // for(int i = 0; i < spawnedObjPoolSize; i++)
+        // {
+        //     GameObject tempDequeueObj = spawnedObjPool.Dequeue();
+        //     nextLocForObj.position = new Vector3(tempDequeueObj.transform.position.x - gameManager.GetResetLoc(), 0f, 0f);
+        //     spawnedObjPool.Enqueue(tempDequeueObj);
+        // }
     }
 
     public void BlockPoolInitialize()
@@ -146,6 +149,12 @@ public class ObjectSpawner : MonoBehaviour
                 spawnedObject.SetActive(false);
                 baseObjPool[toSpawnSO.objectName].Enqueue(spawnedObject);
             }
+        }
+
+        objSpawnerCurXPos = initObjStartXPos;
+        for(int i = 0 ; i < 3 ; i++)
+        {
+            SpawnObject(ObjectType.ITEM);
         }
     }
 

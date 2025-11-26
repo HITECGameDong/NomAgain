@@ -124,7 +124,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5875338866943982379}
-  - {fileID: 7046472197451362944}
   - {fileID: 7881456204692116621}
   - {fileID: 620706635979530757}
   m_Father: {fileID: 0}
@@ -143,7 +142,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   player: {fileID: 0}
   nextLocForGround: {fileID: 5875338866943982379}
-  nextLocForObj: {fileID: 7046472197451362944}
   offsetX: 35
   objectParent: {fileID: 620706635979530757}
   gameManager: {fileID: 0}
@@ -155,34 +153,3 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0d3554b21ca6c6b418faae1f3ff127ad, type: 2}
   GroundSO: {fileID: 11400000, guid: a779e630f8596ff40b5927d5d303c0a8, type: 2}
   groundPoolParentTransform: {fileID: 7881456204692116621}
---- !u!1 &9065173191611417372
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7046472197451362944}
-  m_Layer: 0
-  m_Name: nextLocForObj
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7046472197451362944
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9065173191611417372}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7720065859920678118}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
