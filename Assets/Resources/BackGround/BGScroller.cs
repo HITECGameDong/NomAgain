@@ -15,9 +15,12 @@ public class Background : MonoBehaviour
     void Start()
     {
         render = GetComponent <MeshRenderer>();
-        if (speedoffset = 0f)
+
+        // speed offset 0인지 확인, Div by 0 방지.
+        if (Mathf.Approximately(speedoffset, 0f))
         {
-            speed = 0;
+            Debug.LogWarning("Background Scroller의 Speed Offset이 0입니다, 기본 설정 적용");
+            speed = 1/100f;
         }
         else
         {
