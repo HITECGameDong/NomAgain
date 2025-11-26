@@ -17,7 +17,8 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] Transform objectParent;
     Queue<GameObject> spawnedObjPool = new Queue<GameObject>();
     Dictionary<ObjectName, Queue<GameObject>> baseObjPool = new Dictionary<ObjectName, Queue<GameObject>>();
-    readonly int spawnedObjPoolSize = 10;
+    // TODO : 동전이 한 화면에 몇개까지 있을까, 그거 기반으로 Pool Size 결정할 것.
+    readonly int spawnedObjPoolSize = 20;
     readonly int baseObjPoolSize = 3;
 
     [SerializeField] GameManager gameManager;   
@@ -38,6 +39,10 @@ public class ObjectSpawner : MonoBehaviour
     void SpawnGround()
     {
         SpawnObject(ObjectType.GROUND);
+    }
+
+    public void SpawnObject()
+    {
         SpawnObject(ObjectType.OBSTACLE);
     }
 
@@ -60,8 +65,9 @@ public class ObjectSpawner : MonoBehaviour
         // TODO : separate obs / item spawn
         else if(objType == ObjectType.OBSTACLE || objType == ObjectType.ITEM)
         {
-            if(spawnedObjPool.Count > 0)
+            if(spawnedObjPool.Count >= baseObjPoolSize || spawnedObjPool.Count >= spawnedObjPoolSize)
             {
+                // if : spawnPoolSize > baseObjPoolSize, then : for(spPSize-bPSize) spawnedPool -> dequeue(). => disappear infront of player?
                 spawnedObjPool.Dequeue().SetActive(false);
             }
 
