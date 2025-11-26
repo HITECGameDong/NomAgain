@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
 
     int tilePassCount = 0;
 
+    [SerializeField] float spawnThreshold = 50f;
+    float spawnTimer = 0f;
+
 
     void Start()
     {
@@ -25,6 +28,11 @@ public class GameManager : MonoBehaviour
         player.onTilePassing.AddListener(CheckTilePass);
 
         spawner.BlockPoolInitialize();
+    }
+
+    void FixedUpdate()
+    {
+        SpawnTimerRun();
     }
 
     void ResetAllPosition()
@@ -55,6 +63,16 @@ public class GameManager : MonoBehaviour
             scoreManager.GetTilePassBonus();
             player.IncreaseDefaultSpeed(spdAddForEachDifficulty);
             Debug.Log("Gain Diff");
+        }
+    }
+
+    void SpawnTimerRun()
+    {
+        spawnTimer += Time.fixedDeltaTime;
+        if(spawnTimer >= spawnThreshold)
+        {
+            spawner.SpawnObject();
+            spawnTimer = 0f;
         }
     }
 }   

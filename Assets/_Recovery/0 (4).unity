@@ -955,7 +955,7 @@ PrefabInstance:
       objectReference: {fileID: 161331550}
     - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
       propertyPath: spawnableList.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
       propertyPath: groundPoolParentTransform
@@ -972,11 +972,7 @@ PrefabInstance:
     - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
       propertyPath: 'spawnableList.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: 52f975ea3ddce694b882b14b6da7a0a9, type: 2}
-    - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: 'spawnableList.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c03ff0374777ee04c8e6d726ffd65961, type: 2}
+      objectReference: {fileID: 11400000, guid: b9e9665470739224880c820c4eb84eb6, type: 2}
     - target: {fileID: 2140506794431624702, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 35

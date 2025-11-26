@@ -1,9 +1,10 @@
 using UnityEngine;
 using TMPro;
+using UnityEditor.Rendering;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField] float score;
+    float score;
     [SerializeField] Player player;
     TextMeshPro scoreText;
     bool isScoreCalculatable = true;
@@ -11,7 +12,7 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         scoreText = GetComponent<TextMeshPro>();
-        player.equippedWeapon.onObstacleBroken.AddListener(GetScore);
+        player.equippedWeapon.onObstacleBroken.AddListener(AddScore);
     }
 
     void Update()
@@ -33,7 +34,7 @@ public class ScoreManager : MonoBehaviour
         isScoreCalculatable = false;
     }
 
-    void GetScore()
+    void AddScore()
     {
         score += 40f;
     }
@@ -41,5 +42,10 @@ public class ScoreManager : MonoBehaviour
     public void GetTilePassBonus()
     {
         score += 200;
+    }
+
+    public float GetScore()
+    {
+        return score;
     }
 }
