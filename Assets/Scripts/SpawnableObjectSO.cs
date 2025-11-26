@@ -22,6 +22,7 @@ public enum ObjectName
     GROUND,
     SINGLE_BLOCK,
     DOUBLE_BLOCK,
+    PATTERN_1,
     ENERGY_ITEM,
     ROCKET_ITEM,
 }

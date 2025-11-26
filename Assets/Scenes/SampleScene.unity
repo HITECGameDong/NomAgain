@@ -193,16 +193,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &161331550 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5875338866943982379, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-  m_PrefabInstance: {fileID: 342485716661490124}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,11 +801,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1565889641 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7881456204692116621, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-  m_PrefabInstance: {fileID: 342485716661490124}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1798922716
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,86 +911,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1707763809472462901, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: m_Name
-      value: GroundPool
-      objectReference: {fileID: 0}
     - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 379062534}
     - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: offsetX
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: GroundSO
-      value: 
-      objectReference: {fileID: 11400000, guid: a779e630f8596ff40b5927d5d303c0a8, type: 2}
-    - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1068452482}
-    - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: objectPooler
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: obstacleParent
-      value: 
-      objectReference: {fileID: 1565889641}
-    - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: nextLocForGround
-      value: 
-      objectReference: {fileID: 161331550}
-    - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: spawnableList.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: groundPoolParentTransform
-      value: 
-      objectReference: {fileID: 1565889641}
-    - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: 'spawnableList.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: a8d85e146a08b924ea3046f13ec079a6, type: 2}
-    - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: 'spawnableList.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: b9e9665470739224880c820c4eb84eb6, type: 2}
-    - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: 'spawnableList.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 52f975ea3ddce694b882b14b6da7a0a9, type: 2}
-    - target: {fileID: 1709196371445232362, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: 'spawnableList.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c03ff0374777ee04c8e6d726ffd65961, type: 2}
-    - target: {fileID: 2140506794431624702, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 2140506794431624702, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4163500541867754509, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: m_Name
-      value: nextLocForGround
-      objectReference: {fileID: 0}
-    - target: {fileID: 5126578776111455522, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5126578776111455522, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5875338866943982379, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7005386749428284538, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
       propertyPath: m_Name
       value: ObjectSpawner
@@ -1046,14 +964,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: -4324771972551152542, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-    - {fileID: 6770064913067001533, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-    - {fileID: 3531535186547322919, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-    - {fileID: 1771550898187513414, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-    - {fileID: 5692274625154163100, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-    - {fileID: 1218553427859568577, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
-    - {fileID: 8089002837614761903, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12feb43bc4b6036488abdd142c3405d7, type: 3}
