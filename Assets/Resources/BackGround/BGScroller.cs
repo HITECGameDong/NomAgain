@@ -15,7 +15,14 @@ public class Background : MonoBehaviour
     void Start()
     {
         render = GetComponent <MeshRenderer>();
-        speed = 1 / speedoffset;
+        if (speedoffset = 0f)
+        {
+            speed = 0;
+        }
+        else
+        {
+            speed = 1 / speedoffset;
+        }
         BGTransform = GetComponent<Transform>();
         BGPosOffset = new Vector3(offsetX, 1f, 4f);
     }
