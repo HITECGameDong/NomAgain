@@ -14,10 +14,8 @@ public class ObjectSpawner : MonoBehaviour
 
     // POOLER
     [SerializeField] Transform objectParent;
-    Queue<GameObject> spawnedObjPool = new Queue<GameObject>();
     Dictionary<SpawnableObjectSO, Queue<GameObject>> baseObjPool = new Dictionary<SpawnableObjectSO, Queue<GameObject>>();
     // TODO : 동전이 한 화면에 몇개까지 있을까, 그거 기반으로 Pool Size 결정할 것.
-    readonly int spawnedObjPoolSize = 20;
     readonly int baseObjPoolSize = 10;
     readonly float initObjStartXPos = 20f;
     float objSpawnerCurXPos;
@@ -70,12 +68,6 @@ public class ObjectSpawner : MonoBehaviour
         // ? TODO-jin : separate obs / item spawn
         else if(objType == ObjectType.OBSTACLE || objType == ObjectType.ITEM)
         {
-            if(spawnedObjPool.Count >= spawnedObjPoolSize)
-            {
-                // 25-11-27 TODO-jin : 뒤에 몇개 있는지만 알면.. Dequeue 여러번해서 basepool 채울수있음.
-                spawnedObjPool.Dequeue().SetActive(false);
-            }
-
             SpawnableObjectSO toSpawnSO = GetRandomObjectSO();
             GameObject objToSpawn;
             GameObject firstQueueObject = baseObjPool[toSpawnSO].Dequeue();
@@ -93,7 +85,6 @@ public class ObjectSpawner : MonoBehaviour
                 }
             }
 
-            spawnedObjPool.Enqueue(objToSpawn);
             objToSpawn.transform.position = new Vector3(objSpawnerCurXPos, 0f, 0f);
             objSpawnerCurXPos += Random.Range(25f, 30f);
             objToSpawn.SetActive(true);
