@@ -145,11 +145,11 @@ MonoBehaviour:
   offsetX: 35
   objectParent: {fileID: 620706635979530757}
   gameManager: {fileID: 0}
-  spawnableList:
-  - {fileID: 11400000, guid: 52f975ea3ddce694b882b14b6da7a0a9, type: 2}
-  - {fileID: 11400000, guid: c03ff0374777ee04c8e6d726ffd65961, type: 2}
+  spawnableObjList:
   - {fileID: 11400000, guid: a8d85e146a08b924ea3046f13ec079a6, type: 2}
   - {fileID: 11400000, guid: b9e9665470739224880c820c4eb84eb6, type: 2}
   - {fileID: 11400000, guid: 0d3554b21ca6c6b418faae1f3ff127ad, type: 2}
+  - {fileID: 11400000, guid: c03ff0374777ee04c8e6d726ffd65961, type: 2}
+  - {fileID: 11400000, guid: 52f975ea3ddce694b882b14b6da7a0a9, type: 2}
   GroundSO: {fileID: 11400000, guid: a779e630f8596ff40b5927d5d303c0a8, type: 2}
   groundPoolParentTransform: {fileID: 7881456204692116621}
