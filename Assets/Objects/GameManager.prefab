@@ -47,6 +47,8 @@ MonoBehaviour:
   player: {fileID: 0}
   spawner: {fileID: 0}
   scoreManager: {fileID: 0}
-  spdAddForEachDifficulty: 2
-  spawnTimeSec: 5
-  spawnTimeReduceSec: 0.5
+  difficultyMultiply: 1.1
+  defaultSpawnTimeSec: 4
+  minSpawnTimeSec: 0.5
+  curSpawnTimeSec: 0
+  spawnTimer: 0

@@ -5,21 +5,25 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
+    // COMPOENENTS FROM EDITOR
     [SerializeField] Player player;
     [SerializeField] ObjectSpawner spawner;
     [SerializeField] ScoreManager scoreManager;
 
-    [SerializeField] float spdAddForEachDifficulty = 2f;
-    
+    // CONSTANTS
     readonly float checkPointX = 200000f;
-
+    
+    // VARS
+    [Range(1f, 2f)] [SerializeField] float difficultyMultiply = 1.1f;
+    [Range(4f, 10f)][SerializeField] float defaultSpawnTimeSec;
+    [Range(0.5f, 2f)][SerializeField] float minSpawnTimeSec = 1f;
+    float curSpawnTimeSec;
     int tilePassCount = 0;
-
-    [SerializeField] float spawnTimeSec = 5f;
-    [SerializeField] float spawnTimeReduceSec = 0.5f;
     float spawnTimer = 0f;
+    float curTimeScale = 1f;
 
 
+    // 25-11-27 TODO-jin : Player, Spawner, ScoreManager 등록되었는지 캐치하기
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -29,10 +33,14 @@ public class GameManager : MonoBehaviour
         player.onTilePassing.AddListener(CheckTilePass);
 
         spawner.BlockPoolInitialize();
+
+        SpawnTimerSet(defaultSpawnTimeSec);
+        curTimeScale = Time.timeScale;
     }
 
     void FixedUpdate()
     {
+        SpawnTimeSetBySpeed();
         SpawnTimerRun();
     }
 
@@ -41,7 +49,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         player.ResetPosition();
         spawner.ResetAndInitializeObjects();
-        Time.timeScale = 1f;
+        Time.timeScale = curTimeScale;
     }
 
     public float GetResetLoc()
@@ -65,19 +73,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void SpawnTimerSet(float spawnTime)
+    {
+        curSpawnTimeSec = spawnTime;
+    }
+
+    void SpawnTimeSetBySpeed()
+    {
+        float speedMult = player.GetCurrentSpeed() / Mathf.Max(0.01f, player.GetBaseSpeed());
+        
+        // DIV BY 0 방지
+        if(speedMult <= 0.01f) return;
+        
+        float nextSpawnTime = Mathf.Max(defaultSpawnTimeSec / curTimeScale / speedMult,  minSpawnTimeSec);
+        SpawnTimerSet(nextSpawnTime);
+    }
+
     void SpawnTimerRun()
     {
         spawnTimer += Time.fixedDeltaTime;
-        if(spawnTimer >= spawnTimeSec)
+        if(spawnTimer >= curSpawnTimeSec)
         {
             spawner.SpawnObject();
             spawnTimer = 0f;
         }
-    }
-
-    void ReduceSpawnTime(float reduceTime)
-    {
-        spawnTimeSec = Mathf.Max(0f, spawnTimeSec - reduceTime);
     }
 
     void IncreaseDifficulty()
@@ -85,8 +104,8 @@ public class GameManager : MonoBehaviour
         // TODO : change Theme
         scoreManager.GetTilePassBonus();
         scoreManager.DisplayDifficultyUp();
-        player.IncreaseDefaultSpeed(spdAddForEachDifficulty);
-        ReduceSpawnTime(spawnTimeReduceSec);
-        Debug.Log("Gain Diff");
+
+        curTimeScale *= difficultyMultiply;
+        Time.timeScale = curTimeScale;
     }
 }   

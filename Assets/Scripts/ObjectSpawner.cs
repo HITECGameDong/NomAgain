@@ -18,7 +18,7 @@ public class ObjectSpawner : MonoBehaviour
     Dictionary<SpawnableObjectSO, Queue<GameObject>> baseObjPool = new Dictionary<SpawnableObjectSO, Queue<GameObject>>();
     // TODO : 동전이 한 화면에 몇개까지 있을까, 그거 기반으로 Pool Size 결정할 것.
     readonly int spawnedObjPoolSize = 20;
-    readonly int baseObjPoolSize = 7;
+    readonly int baseObjPoolSize = 10;
     readonly float initObjStartXPos = 20f;
     float objSpawnerCurXPos;
 
@@ -51,6 +51,8 @@ public class ObjectSpawner : MonoBehaviour
 
     void SpawnObject(ObjectType objType)
     {
+        ChangeSpawnLocByPlayerLoc();
+
         if(objType == ObjectType.NONE) return;
 
         if(objType == ObjectType.GROUND)
@@ -66,30 +68,46 @@ public class ObjectSpawner : MonoBehaviour
         }
 
         // ? TODO-jin : separate obs / item spawn
-        // WARN-jin : 스폰하려는 obj 종류의 basepool속 모든 obj가 active상태이면 무한 loop갇힘. 
-        //              임시로 spawnedPool이 base Pool Size를 못넘게 설정
         else if(objType == ObjectType.OBSTACLE || objType == ObjectType.ITEM)
         {
-            if(spawnedObjPool.Count >= baseObjPoolSize || spawnedObjPool.Count >= spawnedObjPoolSize)
+            if(spawnedObjPool.Count >= spawnedObjPoolSize)
             {
-                // test-jin : if spawnPoolSize > baseObjPoolSize, then : for(spPSize-bPSize) spawnedPool -> dequeue(). => disappear infront of player?
+                // 25-11-27 TODO-jin : 뒤에 몇개 있는지만 알면.. Dequeue 여러번해서 basepool 채울수있음.
                 spawnedObjPool.Dequeue().SetActive(false);
             }
 
             SpawnableObjectSO toSpawnSO = GetRandomObjectSO();
             GameObject objToSpawn;
-            do
+            GameObject firstQueueObject = baseObjPool[toSpawnSO].Dequeue();
+            baseObjPool[toSpawnSO].Enqueue(firstQueueObject);
+            objToSpawn = firstQueueObject;
+
+            while(objToSpawn.activeSelf)
             {
                 objToSpawn = baseObjPool[toSpawnSO].Dequeue();
                 baseObjPool[toSpawnSO].Enqueue(objToSpawn);
+
+                if(firstQueueObject == objToSpawn)
+                {
+                    toSpawnSO = GetRandomObjectSO();
+                }
             }
-            while(objToSpawn.activeSelf);
 
             spawnedObjPool.Enqueue(objToSpawn);
             objToSpawn.transform.position = new Vector3(objSpawnerCurXPos, 0f, 0f);
             objSpawnerCurXPos += Random.Range(25f, 30f);
             objToSpawn.SetActive(true);
         }
+    }
+
+    // 기능: Object Spawner 위치가 플레이어 근처나 뒤에 있으면 앞으로 옮김.
+    void ChangeSpawnLocByPlayerLoc()
+    {
+        float curPlayerPosX = player.transform.position.x;
+        if(curPlayerPosX + 25f >= objSpawnerCurXPos)
+        {
+            objSpawnerCurXPos = curPlayerPosX + Random.Range(25f, 30f);            
+        }   
     }
 
     void SetActiveRecursive(GameObject other)
@@ -124,6 +142,7 @@ public class ObjectSpawner : MonoBehaviour
     }
 
     // 25-11-27 TODO-jin : difficulty 당 다르게 스폰하도록하기.
+    // 25-11-27 TODO-jin : spawnableObjList 중복값 있으면 Debug.LogWarn하기(basePool Dict므로 문제는없음)
     public void BlockPoolInitialize()
     {
         // Instantiate Ground to Pool
