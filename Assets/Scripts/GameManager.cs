@@ -5,21 +5,23 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
+    // COMPOENENTS FROM EDITOR
     [SerializeField] Player player;
     [SerializeField] ObjectSpawner spawner;
     [SerializeField] ScoreManager scoreManager;
 
-    [SerializeField] float spdAddForEachDifficulty = 2f;
-    
+    // CONSTANTS
     readonly float checkPointX = 200000f;
-
+    
+    // VARS
+    [Range(1f, 2f)] [SerializeField] float difficultyMultiply = 1.1f;
+    [Range(1f, 10f)][SerializeField] float spawnTimeSec = 5f;
     int tilePassCount = 0;
-
-    [SerializeField] float spawnTimeSec = 5f;
-    [SerializeField] float spawnTimeReduceSec = 0.5f;
     float spawnTimer = 0f;
+    float curTimeScale = 1f;
 
 
+    // 25-11-27 TODO-jin : Player, Spawner, ScoreManager 등록되었는지 캐치하기
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         player.ResetPosition();
         spawner.ResetAndInitializeObjects();
-        Time.timeScale = 1f;
+        Time.timeScale = curTimeScale;
     }
 
     public float GetResetLoc()
@@ -75,18 +77,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void ReduceSpawnTime(float reduceTime)
-    {
-        spawnTimeSec = Mathf.Max(0f, spawnTimeSec - reduceTime);
-    }
-
     void IncreaseDifficulty()
     {
         // TODO : change Theme
         scoreManager.GetTilePassBonus();
         scoreManager.DisplayDifficultyUp();
-        player.IncreaseDefaultSpeed(spdAddForEachDifficulty);
-        ReduceSpawnTime(spawnTimeReduceSec);
-        Debug.Log("Gain Diff");
+
+        curTimeScale *= difficultyMultiply;
+        Time.timeScale = curTimeScale;
     }
 }   
