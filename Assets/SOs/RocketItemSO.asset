@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05894fdd4cfb96409df4a8ce4be9780, type: 3}
   m_Name: RocketItemSO
   m_EditorClassIdentifier: Assembly-CSharp::BasicItemSO
-  itemPrefab: {fileID: 902330265884115229, guid: 19b52fcbf0b793b4e9a13addfee7b835, type: 3}
+  itemPrefabList:
+  - {fileID: 902330265884115229, guid: 19b52fcbf0b793b4e9a13addfee7b835, type: 3}
   objectType: 2
-  objectName: 6
   spawnWeight: 10

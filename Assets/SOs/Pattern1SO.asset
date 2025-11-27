@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05894fdd4cfb96409df4a8ce4be9780, type: 3}
   m_Name: Pattern1SO
   m_EditorClassIdentifier: Assembly-CSharp::SpawnableObjectSO
-  itemPrefab: {fileID: 1994867180839900513, guid: d3bcd956e2e705143bdcddc8a867bc69, type: 3}
+  itemPrefabList:
+  - {fileID: 1994867180839900513, guid: d3bcd956e2e705143bdcddc8a867bc69, type: 3}
   objectType: 3
-  objectName: 4
   spawnWeight: 70

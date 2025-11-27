@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05894fdd4cfb96409df4a8ce4be9780, type: 3}
   m_Name: DoubleBlockSO
   m_EditorClassIdentifier: Assembly-CSharp::SpawnableObjectSO
-  itemPrefab: {fileID: 2003619014509062226, guid: e68c3f729d6ea5947a76aba092f92ee9, type: 3}
+  itemPrefabList:
+  - {fileID: 2003619014509062226, guid: e68c3f729d6ea5947a76aba092f92ee9, type: 3}
   objectType: 3
-  objectName: 3
   spawnWeight: 30

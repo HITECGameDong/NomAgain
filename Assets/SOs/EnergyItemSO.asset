@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05894fdd4cfb96409df4a8ce4be9780, type: 3}
   m_Name: EnergyItemSO
   m_EditorClassIdentifier: Assembly-CSharp::BasicItemSO
-  itemPrefab: {fileID: 2500205578143049717, guid: 3dbb50a02f98b844eabfadb63c9f4f89, type: 3}
+  itemPrefabList:
+  - {fileID: 2500205578143049717, guid: 3dbb50a02f98b844eabfadb63c9f4f89, type: 3}
   objectType: 2
-  objectName: 5
   spawnWeight: 30
