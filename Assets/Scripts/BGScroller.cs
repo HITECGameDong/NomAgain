@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class Background : MonoBehaviour
 {
-    Vector3 BGPosOffset;
-    Transform BGTransform;
+    [SerializeField] Vector3 BGPosOffset;
     private MeshRenderer render;
-    private float offset;
+    private float offset = 0f;
     [SerializeField] Player player;
     [SerializeField] float speedoffset;
-    [SerializeField] float offsetX = 8f;    
     private float speed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,20 +17,18 @@ public class Background : MonoBehaviour
         // speed offset 0인지 확인, Div by 0 방지.
         if (Mathf.Approximately(speedoffset, 0f))
         {
-            Debug.LogWarning("Background Scroller의 Speed Offset이 0입니다, 기본 설정 적용");
+            Debug.LogWarning("Background Scroller의 Speed Offset이 0입니다, 기본 설정 100으로 적용");
             speed = 1/100f;
         }
         else
         {
             speed = 1 / speedoffset;
         }
-        BGTransform = GetComponent<Transform>();
-        BGPosOffset = new Vector3(offsetX, 1f, 4f);
     }
 
     void LateUpdate()
     {
-        BGTransform.position = player.transform.position + BGPosOffset;
+        transform.position = new Vector3(player.transform.position.x + BGPosOffset.x, BGPosOffset.y, BGPosOffset.z);
     }
 
     // Update is called once per frame
@@ -40,10 +36,5 @@ public class Background : MonoBehaviour
     {
         offset += player.GetCurrentSpeed() * Time.deltaTime * speed;
         render.material.mainTextureOffset = new Vector2( offset , 0);
-    }
-
-    public Transform GetBGTransform()
-    {
-        return BGTransform;
     }
 }

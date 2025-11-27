@@ -10,6 +10,7 @@ public class ScoreManager : MonoBehaviour
     bool isScoreCalculatable = true;
     bool isScoreDisplayable = true;
 
+    // 25-11-27 TODO-jin : Player 가지고 온거 맞는지 에러 캐치
     void Start()
     {
         scoreText = GetComponent<TextMeshPro>();
