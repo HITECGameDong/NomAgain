@@ -241,6 +241,11 @@ public class Player : MonoBehaviour
         return playerMovement.GetCurrentSpeed();
     }
 
+    public float GetBaseSpeed()
+    {
+        return playerMovement.GetBaseSpeed();
+    }
+
     public void IncreaseDefaultSpeed(float addition)
     {
         playerMovement.IncreaseSpeed(addition);

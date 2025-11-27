@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
     
     // VARS
     [Range(1f, 2f)] [SerializeField] float difficultyMultiply = 1.1f;
-    [Range(1f, 10f)][SerializeField] float spawnTimeSec = 5f;
+    [Range(4f, 10f)][SerializeField] float defaultSpawnTimeSec;
+    [Range(0.5f, 2f)][SerializeField] float minSpawnTimeSec = 1f;
+    float curSpawnTimeSec;
     int tilePassCount = 0;
     float spawnTimer = 0f;
     float curTimeScale = 1f;
@@ -31,10 +33,14 @@ public class GameManager : MonoBehaviour
         player.onTilePassing.AddListener(CheckTilePass);
 
         spawner.BlockPoolInitialize();
+
+        SpawnTimerSet(defaultSpawnTimeSec);
+        curTimeScale = Time.timeScale;
     }
 
     void FixedUpdate()
     {
+        SpawnTimeSetBySpeed();
         SpawnTimerRun();
     }
 
@@ -67,10 +73,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void SpawnTimerSet(float spawnTime)
+    {
+        curSpawnTimeSec = spawnTime;
+    }
+
+    void SpawnTimeSetBySpeed()
+    {
+        float speedMult = player.GetCurrentSpeed() / Mathf.Max(0.01f, player.GetBaseSpeed());
+        
+        // DIV BY 0 방지
+        if(speedMult <= 0.01f) return;
+        
+        float nextSpawnTime = Mathf.Max(defaultSpawnTimeSec / curTimeScale / speedMult,  minSpawnTimeSec);
+        SpawnTimerSet(nextSpawnTime);
+    }
+
     void SpawnTimerRun()
     {
         spawnTimer += Time.fixedDeltaTime;
-        if(spawnTimer >= spawnTimeSec)
+        if(spawnTimer >= curSpawnTimeSec)
         {
             spawner.SpawnObject();
             spawnTimer = 0f;

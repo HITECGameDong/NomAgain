@@ -91,6 +91,11 @@ public class PlayerMovement : MonoBehaviour
         return baseSpeed + speedAddition;
     }
 
+    public float GetBaseSpeed()
+    {
+        return baseSpeed;
+    }
+
     public void RocketBoost(float rocketSpeed, float duration)
     {
         StartCoroutine(RocketBoostCoroutine(rocketSpeed, duration));
@@ -98,15 +103,15 @@ public class PlayerMovement : MonoBehaviour
 
     System.Collections.IEnumerator RocketBoostCoroutine(float rocketSpeed, float duration)
     {
-        float lastMoveSpeed = baseSpeed;
+        float lastMoveSpeed = speedAddition;
 
-        baseSpeed = rocketSpeed;
+        speedAddition = rocketSpeed;
         rb.useGravity = false;
         isFlying = true;
         isOnRocket = true;
         playerTransform.position = new Vector3(playerTransform.position.x, 10f, playerTransform.position.z);
         yield return new WaitForSeconds(duration);
-        baseSpeed = lastMoveSpeed;
+        speedAddition = lastMoveSpeed;
         rb.useGravity = true;
         isOnRocket = false;
 
