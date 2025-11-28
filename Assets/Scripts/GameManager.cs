@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         player.Kill();
+        // 25/11/28 TODO-jin : GAME OVER DISPLAY로 바꾸기
         scoreManager.StopScoring();
     }
 
