@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public UnityEvent onArrivingCheckpoint;
     public UnityEvent onPlayerDead;
     public UnityEvent<float> onItemGet;
+    public UnityEvent onObstacleBroken;
     // VARIABLES FROM EDITOR / COMPONENTS
     PlayerMovement playerMovement;
     [SerializeField] GameManager gameManager;
@@ -45,7 +46,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerMovement.onItemWorkingDone.AddListener(ItemWorkingDone);
-        equippedWeapon.onObstacleBroken.AddListener(OnBreakingBlock);
+        onObstacleBroken.AddListener(OnBreakingBlock);
     }
 
 

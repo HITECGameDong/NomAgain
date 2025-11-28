@@ -8,10 +8,8 @@ public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] protected BoxCollider range;
     protected Queue<GameObject> currentTargetQueue = new Queue<GameObject>();
-    public UnityEvent onObstacleBroken;
     [SerializeField] protected LayerMask targetLayer;
-
-    Player weaponUser;
+    protected Player weaponUser;
 
     void Awake()
     {
@@ -29,6 +27,7 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
+    // WARN-jin : 꼭 오브젝트 부술때 player.onObstacleBroken Invoke할것.
     public abstract void Attack();
 
     // WARN-jin : 꼭 무기 습득시 Player가 호출할 것
