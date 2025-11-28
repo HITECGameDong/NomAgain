@@ -116,8 +116,16 @@ public class GameManager : MonoBehaviour
         Time.timeScale = curTimeScale;
     }
 
+    //25-11-28 TODO-jin : UI Manager가 Scene Control한다. DontDestroy에 넣어야함
     // jin : public인이유는 GameOverUI의 버튼 함수할당을 에디터에서 했기때문. private로 죽어도해야겠다 -> 버튼함수할당 코드로 AddLister
     public void RestartGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    //25-11-28 TODO-jin : UI Manager가 Scene Control한다. DontDestroy에 넣어야함
+    // jin : public인이유는 GameOverUI의 버튼 함수할당을 에디터에서 했기때문. private로 죽어도해야겠다 -> 버튼함수할당 코드로 AddLister
+    public void ReturnHome()
     {
         SceneManager.LoadScene(0);
     }
