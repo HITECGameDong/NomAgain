@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Player player;
     [SerializeField] ObjectSpawner spawner;
     [SerializeField] ScoreManager scoreManager;
+    [SerializeField] GameOverUI gameOverUI;
 
     // CONSTANTS
     readonly float checkPointX = 200000f;
@@ -36,6 +38,8 @@ public class GameManager : MonoBehaviour
 
         SpawnTimerSet(defaultSpawnTimeSec);
         curTimeScale = Time.timeScale;
+
+        gameOverUI.HideUI();
     }
 
     void FixedUpdate()
@@ -62,6 +66,8 @@ public class GameManager : MonoBehaviour
         player.Kill();
         // 25/11/28 TODO-jin : GAME OVER DISPLAY로 바꾸기
         scoreManager.StopScoring();
+
+        gameOverUI.ShowUI(scoreManager.GetScore());
     }
 
     void CheckTilePass()
@@ -108,5 +114,11 @@ public class GameManager : MonoBehaviour
 
         curTimeScale *= difficultyMultiply;
         Time.timeScale = curTimeScale;
+    }
+
+    // jin : public인이유는 GameOverUI의 버튼 함수할당을 에디터에서 했기때문. private로 죽어도해야겠다 -> 버튼함수할당 코드로 AddLister
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
     }
 }   
