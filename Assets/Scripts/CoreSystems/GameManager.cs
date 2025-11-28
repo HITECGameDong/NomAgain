@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
@@ -113,5 +114,11 @@ public class GameManager : MonoBehaviour
 
         curTimeScale *= difficultyMultiply;
         Time.timeScale = curTimeScale;
+    }
+
+    // jin : public인이유는 GameOverUI의 버튼 함수할당을 에디터에서 했기때문. private로 죽어도해야겠다 -> 버튼함수할당 코드로 AddLister
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
     }
 }   
