@@ -15,4 +15,4 @@ MonoBehaviour:
   itemPrefabList:
   - {fileID: 902330265884115229, guid: 9341b52d6c1511b42b88adcbf89f93a3, type: 3}
   objectType: 2
-  spawnWeight: 61.1
+  spawnWeight: 10
