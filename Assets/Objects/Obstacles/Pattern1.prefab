@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7124284571070166526}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Pattern1
   m_TagString: Obstacles
   m_Icon: {fileID: 0}
