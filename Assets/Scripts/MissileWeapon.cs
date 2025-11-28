@@ -25,7 +25,7 @@ public class MissileWeapon : Weapon
         
         if(everyColliders.Length == 0)
         {
-            player.UnequipWeapon();
+            weaponUser.UnequipWeapon();
             return;
         }
 
@@ -37,10 +37,10 @@ public class MissileWeapon : Weapon
             
             index++;
             breakAmount--;
-            onObstacleBroken.Invoke();
+            weaponUser.onObstacleBroken.Invoke();
         }
 
         // 다쐈으면 무기파괴
-        player.UnequipWeapon();
+        weaponUser.UnequipWeapon();
     }
 }

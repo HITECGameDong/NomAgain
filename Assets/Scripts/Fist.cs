@@ -8,7 +8,7 @@ public class Fist : Weapon
         if(currentTargetQueue.Count <= 0) return;
 
         currentTargetQueue.Dequeue().gameObject.SetActive(false);
-        onObstacleBroken.Invoke();
+        weaponUser.onObstacleBroken.Invoke();
     }
 
     public override void WeaponInit(Player player)
