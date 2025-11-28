@@ -418,6 +418,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89bc34910d0508a45aa9f73fd677b452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &1514532172 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5084402120628850527, guid: b73776d14e5fa334296c2d30ae18937f, type: 3}
+  m_PrefabInstance: {fileID: 2662057363965267989}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b787445f0d634a48be3631a9eb93291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameOverUI
 --- !u!1001 &342485716661490124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -499,6 +510,10 @@ PrefabInstance:
       propertyPath: spawner
       value: 
       objectReference: {fileID: 954462415}
+    - target: {fileID: 1427122905270004116, guid: 8d1854bbb9c2c714c93bb65f88defc54, type: 3}
+      propertyPath: gameOverUI
+      value: 
+      objectReference: {fileID: 1514532172}
     - target: {fileID: 1427122905270004116, guid: 8d1854bbb9c2c714c93bb65f88defc54, type: 3}
       propertyPath: scoreManager
       value: 
