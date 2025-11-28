@@ -15,6 +15,15 @@ public class UIHome : MonoBehaviour
         {
            SceneManager.LoadScene(1); 
         });
+
+        ExitButton.onClick.AddListener(() =>
+        {
+            Application.Quit();
+
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        });
     }
 }
 
