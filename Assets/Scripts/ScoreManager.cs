@@ -14,6 +14,7 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         scoreText = GetComponent<TextMeshPro>();
+        // 25-11-28 TODO-jin : player가 직접 event 호출하도록한다. weapon은 Destroy됨
         player.equippedWeapon.onObstacleBroken.AddListener(AddScore);
     }
 
