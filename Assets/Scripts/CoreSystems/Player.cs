@@ -29,7 +29,6 @@ public class Player : MonoBehaviour
     //GameObject currentSteppingBlock = null;
     Dictionary<Type, Weapon> equippedWeapons = new Dictionary<Type, Weapon>();
     GameObject equippedWeaponGO;
-    bool isBlockBreakable = false;
     bool isVulnerable = true;
     public float health {get; private set;}
     bool isItemWorking = false;
@@ -68,11 +67,6 @@ public class Player : MonoBehaviour
             GetDamage(30f);
         }
 
-        if (other.gameObject.CompareTag("HitLine"))
-        {
-            isBlockBreakable = true;
-        }
-
         if(other.gameObject.CompareTag("PassLine"))
         {
             onTilePassing.Invoke();
@@ -92,11 +86,6 @@ public class Player : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("HitLine"))
-        {
-            isBlockBreakable = false;
-        }
-
         if (other.gameObject.CompareTag("Item"))
         {
             grabbableItem = null;
@@ -107,9 +96,9 @@ public class Player : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            if(isBlockBreakable)
+            if(equippedWeapons[typeof(Fist)].IsAttackable())
             {
-                HitBlock();
+                PunchBlock();
             }
             else if(grabbableItem != null)
             {
@@ -232,16 +221,14 @@ public class Player : MonoBehaviour
         health = Mathf.Max(health - amount, 0f);
     }
 
-    void HitBlock()
+    void PunchBlock()
     {
         equippedWeapons[typeof(Fist)].Attack();
-        isBlockBreakable = false;
     }
 
     void OnBreakingBlock()
     {
         GetHealth(7f);
-        isBlockBreakable = false;
     }
 
     public float GetCurrentSpeed()

@@ -44,4 +44,9 @@ public abstract class Weapon : MonoBehaviour
 
     // 25-11-29 jin : Player가 획득 후 호출하므로 public 
     public abstract void WeaponLevelUp();
+
+    public bool IsAttackable()
+    {
+        return currentTargetQueue.Count > 0;
+    }
 }
