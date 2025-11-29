@@ -55,5 +55,6 @@ public class MissileWeapon : Weapon
         Debug.Log("MISSILE LEVEL UP");
         Attack();
         weaponLevel++;
+        breakAmount += 2;
     }
 }
