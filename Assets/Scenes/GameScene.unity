@@ -1357,9 +1357,21 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7476782402284547059, guid: e228262bb25d1a241b2cbe967b7b95dc, type: 3}
+      propertyPath: jumpForce
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7476782402284547059, guid: e228262bb25d1a241b2cbe967b7b95dc, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1068452482}
+    - target: {fileID: 7476782402284547059, guid: e228262bb25d1a241b2cbe967b7b95dc, type: 3}
+      propertyPath: gravityMult
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7476782402284547059, guid: e228262bb25d1a241b2cbe967b7b95dc, type: 3}
+      propertyPath: halfGravThresSpeed
+      value: -16
+      objectReference: {fileID: 0}
     - target: {fileID: 7608818241357782658, guid: e228262bb25d1a241b2cbe967b7b95dc, type: 3}
       propertyPath: gameManager
       value: 
