@@ -47,7 +47,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerMovement.onItemWorkingDone.AddListener(ItemWorkingDone);
-        onObstacleBroken.AddListener(OnBreakingBlock);
     }
 
 
@@ -211,7 +210,7 @@ public class Player : MonoBehaviour
         playerMovement.enabled = false;
     }
 
-    void GetHealth(float amount)
+    public void GetHealth(float amount)
     {
         health = Mathf.Min(amount + health, maxHealth);
     }
@@ -224,11 +223,6 @@ public class Player : MonoBehaviour
     void PunchBlock()
     {
         equippedWeapons[typeof(Fist)].Attack();
-    }
-
-    void OnBreakingBlock()
-    {
-        GetHealth(7f);
     }
 
     public float GetCurrentSpeed()

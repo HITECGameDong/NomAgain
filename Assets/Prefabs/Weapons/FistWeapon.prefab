@@ -98,3 +98,5 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
+  healthAddition: 5
+  expToLevelup: 5
