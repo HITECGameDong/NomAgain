@@ -11,11 +11,17 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Transform groundChecker;
+    
     // CONSTANTS
     [SerializeField] int maxJumpCount = 1;
+    [SerializeField] float jumpForce = 18f;
+    [SerializeField] float gravityMult = 4.5f;
+    [SerializeField] float halfGravThresSpeed= -16f;
+
     // VARIABLES
     [SerializeField] float baseSpeed = 4f;
     float speedAddition = 0f;
+    float halfGravOrFullGrav = 1f;
     int jumpCount;
     bool isFlying = true;
     bool isOnRocket = false;
@@ -37,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         OnGroundAction();
+        GravityWorking();
     }
 
     void OnGroundAction()
@@ -52,6 +59,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void GravityWorking()
+    {
+        halfGravOrFullGrav = (rb.linearVelocity.y >= halfGravThresSpeed) ? 0.5f : 1f; 
+        rb.linearVelocity += Vector3.up * Physics.gravity.y * gravityMult * halfGravOrFullGrav * Time.fixedDeltaTime;
+    }
+
     void RefillJump()
     {
         jumpCount = maxJumpCount;
@@ -63,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
         if(isOnRocket) return;
 
         isFlying = true;
-        rb.AddForce(Vector3.up * 7f, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
         jumpCount--;
     }
 

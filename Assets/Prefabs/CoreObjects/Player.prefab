@@ -220,9 +220,14 @@ MonoBehaviour:
   onItemGet:
     m_PersistentCalls:
       m_Calls: []
+  onObstacleBroken:
+    m_PersistentCalls:
+      m_Calls: []
+  onWeaponGet:
+    m_PersistentCalls:
+      m_Calls: []
   gameManager: {fileID: 0}
   baseWeaponSO: {fileID: 11400000, guid: 17df334057b9ab3409a3145291917066, type: 2}
-  equippedWeapon: {fileID: 0}
   initLocX: -14
   fatigueRate: 2
 --- !u!114 &7476782402284547059
@@ -245,6 +250,9 @@ MonoBehaviour:
     m_Bits: 8
   groundChecker: {fileID: 3805134406643259832}
   maxJumpCount: 1
+  jumpForce: 18
+  gravityMult: 4.5
+  halfGravThresSpeed: -16
   baseSpeed: 6
 --- !u!1 &2806681549615336650
 GameObject:
