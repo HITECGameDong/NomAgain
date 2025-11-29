@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using Unity.Mathematics;
 using System.Collections.Generic;
 using System;
+using Unity.VisualScripting;
 
 public class Player : MonoBehaviour
 {
@@ -14,12 +15,13 @@ public class Player : MonoBehaviour
     public UnityEvent onPlayerDead;
     public UnityEvent<float> onItemGet;
     public UnityEvent onObstacleBroken;
+    public UnityEvent<Weapon> onWeaponGet;
 
     // VARIABLES FROM EDITOR / COMPONENTS
     PlayerMovement playerMovement;
     [SerializeField] GameManager gameManager;
     [SerializeField] WeaponSO baseWeaponSO;
-    
+
     // CONSTANTS..
     [SerializeField] float initLocX = -14f;
     [SerializeField] float fatigueRate = 2f;
@@ -39,8 +41,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
-        EquipWeapon(baseWeaponSO);
-
         health = maxHealth;
     }
 
@@ -99,6 +99,7 @@ public class Player : MonoBehaviour
             {
                 PunchBlock();
             }
+            // 25-11-29 TODO-jin : 이러면 무기도 못먹음. energy 효과적용간에는 먹을수있어야함.
             else if(grabbableItem != null)
             {
                 ItemGrabCheck();
@@ -288,8 +289,14 @@ public class Player : MonoBehaviour
 
         // jin: 꼭 호출하세요! else weapon은 player 정보가 없어 작동불가
         equippedWeapon.WeaponInit(this);
+        onWeaponGet.Invoke(equippedWeapon);
     }
     
+    public void PlayerInit()
+    {
+        EquipWeapon(baseWeaponSO);
+    }
+
     // 자동 파괴 무기의 경우 해당 무기가 직접 호출함.
     // public void UnequipWeapon()
     // {

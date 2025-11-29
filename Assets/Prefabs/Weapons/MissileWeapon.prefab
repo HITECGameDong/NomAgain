@@ -95,10 +95,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MissileWeapon
   range: {fileID: 0}
-  onObstacleBroken:
-    m_PersistentCalls:
-      m_Calls: []
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
+  cooltime: 15
+  cooltimeTimer: 0
+  weaponSO: {fileID: 11400000, guid: 67c538ac6bf9f88478e77971417ac560, type: 2}
   breakAmount: 5

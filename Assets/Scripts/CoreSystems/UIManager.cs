@@ -4,8 +4,9 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] ScoreManager scoreUI;
     [SerializeField] UIGameOver gameoverUI;
+    [SerializeField] UIWeaponList weaponListUI;
 
-    void Awake()
+    void Start()
     {
         scoreUI.gameObject.SetActive(true);
         gameoverUI.HideUI();
@@ -14,7 +15,13 @@ public class UIManager : MonoBehaviour
     public void ShowGameOverUI(float lastScore)
     {
         scoreUI.StopScoring();
+        weaponListUI.HideUI();
         gameoverUI.ShowUI(lastScore);
+    }
+
+    public void UpdateWeaponUI(Weapon weapon)
+    {
+        weaponListUI.UpdateWeaponUI(weapon);
     }
     
 }

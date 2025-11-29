@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: MissileWeaponSO
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
   weaponPrefab: {fileID: 6759883297662152335, guid: aec2e4eea057a1f44a3a27e6013bf0fb, type: 3}
-  objectType: 2
-  weapon: {fileID: 3829930550247270947, guid: aec2e4eea057a1f44a3a27e6013bf0fb, type: 3}
+  weaponUISprite: {fileID: 21300000, guid: af4fc95ec8becec42b3febe41c6000b1, type: 3}

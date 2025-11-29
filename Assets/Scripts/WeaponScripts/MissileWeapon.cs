@@ -6,9 +6,7 @@ using UnityEngine;
 public class MissileWeapon : Weapon
 {
     [SerializeField] int breakAmount = 5;
-    [SerializeField] float cooltime = 15f;
-    float cooltimeTimer = 0f;
-
+    
     void FixedUpdate()
     {
         cooltimeTimer += Time.fixedDeltaTime;

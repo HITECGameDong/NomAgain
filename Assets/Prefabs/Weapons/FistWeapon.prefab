@@ -98,5 +98,8 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
+  cooltime: 0
+  cooltimeTimer: 0
+  weaponSO: {fileID: 11400000, guid: 17df334057b9ab3409a3145291917066, type: 2}
   healthAddition: 5
   expToLevelup: 5

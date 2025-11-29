@@ -6,11 +6,14 @@ using UnityEngine.Events;
 // 25-11-28 WARN-jin : 절대로 Weapon이 자기를 Destroy()하게 하지 말것! 그럼 Player는 Unequip시 SO 내부 Prefab을 지우려 애씀(Editor에서 막긴함)
 public abstract class Weapon : MonoBehaviour
 {
-    [SerializeField] protected BoxCollider range;
+    protected BoxCollider range;
     protected Queue<GameObject> currentTargetQueue = new Queue<GameObject>();
     [SerializeField] protected LayerMask targetLayer;
     protected Player weaponUser;
-    protected int weaponLevel = 1;
+    public int weaponLevel {get; protected set;} = 1;
+    [SerializeField] public float cooltime;    
+    public float cooltimeTimer = 0f;
+    public WeaponSO weaponSO;
 
     void Awake()
     {
