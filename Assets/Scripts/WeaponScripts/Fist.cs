@@ -1,11 +1,9 @@
 using UnityEngine;
 
-// 25-11-29 WARN-jin : 현재 장애물 제거 안됨!!!!!!!!!!!!! 수정예정 하단 TODO 참조
 public class Fist : Weapon
 {
     public override void Attack()
     {
-        // 25-11-27 jin : Player에서 이제 Fist 사용 여부 체크할 필요가 없음. 
         if(currentTargetQueue.Count <= 0) return;
 
         currentTargetQueue.Dequeue().gameObject.SetActive(false);
@@ -19,8 +17,7 @@ public class Fist : Weapon
 
     public void OnTriggerEnter(Collider other)
     {
-        // 25-11-29 TODO-jin : HitLine->Obstacle 태그, Range안에 Obstacle이 있으면 되게. 그리고 Range 확줄이기.
-        if(other.gameObject.CompareTag("HitLine"))
+        if(other.gameObject.CompareTag("Obstacles"))
         {
             currentTargetQueue.Enqueue(other.gameObject); 
         }
@@ -28,7 +25,7 @@ public class Fist : Weapon
 
     public void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.CompareTag("HitLine"))
+        if(other.gameObject.CompareTag("Obstacles"))
         {
             currentTargetQueue.Dequeue();
         }
@@ -38,5 +35,10 @@ public class Fist : Weapon
     {
         Debug.Log("FIST LEVEL UP");
         weaponLevel++;
+    }
+    
+    public bool IsFistAttackable()
+    {
+        return currentTargetQueue.Count > 0;
     }
 }
