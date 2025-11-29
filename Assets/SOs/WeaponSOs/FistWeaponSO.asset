@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FistWeaponSO
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
   weaponPrefab: {fileID: 5430424601722202641, guid: 9c58ccda6218aac4a9359536af56e3e5, type: 3}
-  objectType: 0
+  weaponUISprite: {fileID: 21300000, guid: e03da93c5cd975141a245f746345cdd3, type: 3}

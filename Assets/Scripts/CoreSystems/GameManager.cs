@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Player player;
     [SerializeField] ObjectSpawner spawner;
     [SerializeField] ScoreManager scoreManager;
-    [SerializeField] GameOverUI gameOverUI;
+    [SerializeField] UIManager uiManager;
 
     // CONSTANTS
     readonly float checkPointX = 200000f;
@@ -33,13 +33,13 @@ public class GameManager : MonoBehaviour
         player.onArrivingCheckpoint.AddListener(ResetAllPosition);
         player.onPlayerDead.AddListener(GameOver);
         player.onTilePassing.AddListener(CheckTilePass);
+        player.onWeaponGet.AddListener(UpdateWeaponUI);
 
         spawner.BlockPoolInitialize();
+        player.PlayerInit();
 
         SpawnTimerSet(defaultSpawnTimeSec);
         curTimeScale = Time.timeScale;
-
-        gameOverUI.HideUI();
     }
 
     void FixedUpdate()
@@ -64,10 +64,7 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         player.Kill();
-        // 25/11/28 TODO-jin : GAME OVER DISPLAY로 바꾸기
-        scoreManager.StopScoring();
-
-        gameOverUI.ShowUI(scoreManager.GetScore());
+        uiManager.ShowGameOverUI(scoreManager.GetScore());
     }
 
     void CheckTilePass()
@@ -128,5 +125,10 @@ public class GameManager : MonoBehaviour
     public void ReturnHome()
     {
         SceneManager.LoadScene(0);
+    }
+
+    void UpdateWeaponUI(Weapon weapon)
+    {
+        uiManager.UpdateWeaponUI(weapon);
     }
 }   
