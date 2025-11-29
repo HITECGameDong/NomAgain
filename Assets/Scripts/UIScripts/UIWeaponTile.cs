@@ -16,7 +16,12 @@ public class UIWeaponTile : MonoBehaviour
         HideUI();
     }
 
-    public void ShowCooltime()
+    void LateUpdate()
+    {
+        UpdateWeaponUI();
+    }
+
+    public void RunCooltimeMotion()
     {
         if(Mathf.Approximately(weapon.cooltime, 0f))
         {
@@ -34,6 +39,7 @@ public class UIWeaponTile : MonoBehaviour
             cooltimeScreen.fillAmount = curTime;
             yield return null;
         }
+        cooltimeScreen.fillAmount = 0f;
     }
 
     public void AddWeapon(Weapon weapon)
@@ -46,7 +52,6 @@ public class UIWeaponTile : MonoBehaviour
 
         this.weapon = weapon;
         weaponImage.sprite = weapon.weaponSO.weaponUISprite;
-        weaponLevelText.text = weapon.weaponLevel.ToString();
         isEmpty = false;
         ShowUI();
     }
@@ -55,11 +60,19 @@ public class UIWeaponTile : MonoBehaviour
     {
         weaponLevelText.enabled = true;
         weaponImage.enabled = true;
+        cooltimeScreen.enabled = true;
     }
 
     public void HideUI()
     {
         weaponLevelText.enabled = false;
-        cooltimeScreen.enabled = false;    
+        cooltimeScreen.enabled = false;
+    }
+
+    void UpdateWeaponUI()
+    {
+        if(weapon == null) return;
+        weaponLevelText.text = weapon.weaponLevel.ToString();
+        cooltimeScreen.fillAmount = 1f - weapon.cooltimeTimer / weapon.cooltime;       
     }
 }

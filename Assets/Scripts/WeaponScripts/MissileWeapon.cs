@@ -37,7 +37,7 @@ public class MissileWeapon : Weapon
             index++;
             breakAmount--;
             weaponUser.onObstacleBroken.Invoke();
-        }    
+        }
     }
 
     // 미사일은 습득하자마자 쏩니다.
