@@ -2,6 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// 25-11-29 TODO-jin : 이제 쿨 돌면 다시쏘게.
 public class MissileWeapon : Weapon
 {
     [SerializeField] int breakAmount = 5;
@@ -25,7 +26,7 @@ public class MissileWeapon : Weapon
         
         if(everyColliders.Length == 0)
         {
-            weaponUser.UnequipWeapon();
+            // weaponUser.UnequipWeapon();
             return;
         }
 
@@ -41,6 +42,12 @@ public class MissileWeapon : Weapon
         }
 
         // 다쐈으면 무기파괴
-        weaponUser.UnequipWeapon();
+        // weaponUser.UnequipWeapon();
+    }
+
+    public override void WeaponLevelUp()
+    {
+        Debug.Log("MISSILE LEVEL UP");
+        weaponLevel++;
     }
 }

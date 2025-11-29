@@ -10,6 +10,7 @@ public abstract class Weapon : MonoBehaviour
     protected Queue<GameObject> currentTargetQueue = new Queue<GameObject>();
     [SerializeField] protected LayerMask targetLayer;
     protected Player weaponUser;
+    protected int weaponLevel = 1;
 
     void Awake()
     {
@@ -36,8 +37,11 @@ public abstract class Weapon : MonoBehaviour
         SetWeaponUser(player);
     }
 
-    public virtual void SetWeaponUser(Player player)
+    protected virtual void SetWeaponUser(Player player)
     {
         weaponUser = player;
     }
+
+    // 25-11-29 jin : Player가 획득 후 호출하므로 public 
+    public abstract void WeaponLevelUp();
 }

@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using System.Runtime.InteropServices;
 using Unity.Mathematics;
+using System.Collections.Generic;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -12,13 +14,11 @@ public class Player : MonoBehaviour
     public UnityEvent onPlayerDead;
     public UnityEvent<float> onItemGet;
     public UnityEvent onObstacleBroken;
+
     // VARIABLES FROM EDITOR / COMPONENTS
     PlayerMovement playerMovement;
     [SerializeField] GameManager gameManager;
     [SerializeField] WeaponSO baseWeaponSO;
-    // TODO : this is terrible idea to set it as public. did it for scoremanager , also remove SerializeField
-    public Weapon equippedWeapon;
-    GameObject equippedWeaponGO;
     
     // CONSTANTS..
     [SerializeField] float initLocX = -14f;
@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
 
     // VARIABLES
     //GameObject currentSteppingBlock = null;
+    Dictionary<Type, Weapon> equippedWeapons = new Dictionary<Type, Weapon>();
+    GameObject equippedWeaponGO;
     bool isBlockBreakable = false;
     bool isVulnerable = true;
     public float health {get; private set;}
@@ -232,7 +234,7 @@ public class Player : MonoBehaviour
 
     void HitBlock()
     {
-        equippedWeapon.Attack();
+        equippedWeapons[typeof(Fist)].Attack();
         isBlockBreakable = false;
     }
 
@@ -274,10 +276,7 @@ public class Player : MonoBehaviour
     // 무기가 지를 지우지말고, 무기가 player에게 unequip을 요청한다. player는 그걸지우기 equipped를 null로 변경 / fist로 변경
     // 그럼 생성된 player의 프리팹은 어떻게 지우는가?
     void EquipWeapon(WeaponSO weaponToEquipSO)
-    {
-        UnequipWeapon();
-        
-
+    {   
         if(weaponToEquipSO.weaponPrefab == null)
         {
             Debug.LogWarning("Player가 습득한 WeaponSO 내부에 생성할 Prefab이 없음");
@@ -289,23 +288,34 @@ public class Player : MonoBehaviour
         equippedWeaponGO.transform.position = new Vector3(0f,0f,0f);
         equippedWeaponGO.transform.localPosition = new Vector3(weaponToEquipSO.weaponPrefab.transform.localScale.x * 0.5f, 0f, 0f);
         
-        if(!equippedWeaponGO.TryGetComponent<Weapon>(out equippedWeapon))
+        if(!equippedWeaponGO.TryGetComponent<Weapon>(out Weapon equippedWeapon))
         {
             Debug.LogWarning("Weapon Prefab에 Weapon 컴포넌트가 없음");
+            Destroy(equippedWeaponGO);
             return;   
         }
+
+        // 이미 습득했었던 Weapon이면, Levelup.
+        if(!equippedWeapons.TryAdd(equippedWeapon.GetType(), equippedWeapon))
+        {
+            Debug.Log("기존 등록 Item, Level UP");
+            Destroy(equippedWeaponGO);
+            equippedWeapons[equippedWeapon.GetType()].WeaponLevelUp();
+            return;
+        }
+
 
         // jin: 꼭 호출하세요! else weapon은 player 정보가 없어 작동불가
         equippedWeapon.WeaponInit(this);
     }
     
     // 자동 파괴 무기의 경우 해당 무기가 직접 호출함.
-    public void UnequipWeapon()
-    {
-        if(equippedWeapon == null)  return;
-        if(equippedWeaponGO == null) return;
+    // public void UnequipWeapon()
+    // {
+    //     if(equippedWeapon == null)  return;
+    //     if(equippedWeaponGO == null) return;
 
-        equippedWeapon = null;
-        Destroy(equippedWeaponGO);
-    }
+    //     equippedWeapon = null;
+    //     Destroy(equippedWeaponGO);
+    // }
 }
