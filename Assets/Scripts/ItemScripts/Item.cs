@@ -1,7 +1,24 @@
+using Unity.Mathematics;
 using UnityEngine;
 
-// jin: 개별 Spawn Object Prefab에 다는 물건입니다. Monobehaviour 와 IItem을 모두 상속한 Item Class를 만들어주세요. ex)EnergyBooster.cs
-public interface IItem
+public abstract class Item : MonoBehaviour
 {
-    public void GetItem(Player player);
+    [SerializeField] ParticleSystem itemGetParticle;
+    bool particleDisable = true;
+
+    public abstract void GetItem(Player player);
+    protected virtual void OnDisable()
+    {
+        // 최초 pool Init시 particle 진행X
+        if(particleDisable)
+        {
+            particleDisable = false;
+            return;
+        }
+
+        if(itemGetParticle != null)
+        {
+            Instantiate(itemGetParticle, transform.position, Quaternion.AngleAxis(-90f, new Vector3(1f, 0f, 0f)));
+        }
+    } 
 }

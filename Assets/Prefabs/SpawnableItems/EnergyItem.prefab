@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992437ca934bf624bac78f025ca63243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnergyBooster
+  itemGetParticle: {fileID: 5834696962891538266, guid: 618f31880a99b704fa5dd23fed4e743a, type: 3}
   speedAddition: 2
   duration: 2
   healthAddition: 30
