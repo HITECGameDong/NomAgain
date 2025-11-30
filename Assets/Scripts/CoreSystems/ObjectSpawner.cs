@@ -74,6 +74,7 @@ public class ObjectSpawner : MonoBehaviour
             baseObjPool[toSpawnSO].Enqueue(firstQueueObject);
             objToSpawn = firstQueueObject;
 
+            // 25-11-30 WARN-jin : Spawn List에 하나만 들어가있으면, 무한루프!!!!!!!! Player에 꼭 KillLine도 달아라.
             while(objToSpawn.activeSelf)
             {
                 objToSpawn = baseObjPool[toSpawnSO].Dequeue();
@@ -81,6 +82,7 @@ public class ObjectSpawner : MonoBehaviour
 
                 if(firstQueueObject == objToSpawn)
                 {
+                    Debug.LogWarning("Spawner가 Spawn할Pool 오브젝트가 모두 사용중.. 다른 Object를 찾음");
                     toSpawnSO = GetRandomObjectSO();
                 }
             }
