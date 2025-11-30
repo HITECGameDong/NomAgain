@@ -102,6 +102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708b33c4c5f19ef46bc12c96fbfa0e83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Background
-  BGPosOffset: {x: 3, y: 1, z: 10}
+  BGPosOffset: {x: 4, y: 1, z: 12}
   player: {fileID: 0}
   speedoffset: 100

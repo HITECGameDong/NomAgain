@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     PlayerMovement playerMovement;
     [SerializeField] GameManager gameManager;
     [SerializeField] WeaponSO baseWeaponSO;
+    [SerializeField] BoxCollider rocketStompRange;
+    [SerializeField] LayerMask obstacleLayer;
 
     // CONSTANTS..
     [SerializeField] float initLocX = -14f;
@@ -62,6 +64,10 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Obstacles"))
         {
+            if(playerMovement.state == PlayerState.ON_ROCKET)
+            {
+                isVulnerable = false;
+            }
             // TODO : check obstacle type and get diffrent damages
             GetDamage(30f);
         }
@@ -81,6 +87,17 @@ public class Player : MonoBehaviour
         // {
         //     currentSteppingBlock = other.gameObject;
         // }
+    }
+
+    void RocketStomp(GameObject objToDestroy)
+    {
+        if(rocketStompRange == null)
+        {
+            Debug.LogWarning("Player 오브젝트 내에 RocketStompRange 객체가 없음");
+            return;
+        }
+
+        objToDestroy.SetActive(false);
     }
 
     void OnTriggerExit(Collider other)
@@ -218,6 +235,7 @@ public class Player : MonoBehaviour
 
     void GetDamage(float amount)
     {
+        if(!isVulnerable) return;
         health = Mathf.Max(health - amount, 0f);
     }
 
@@ -306,4 +324,23 @@ public class Player : MonoBehaviour
     //     equippedWeapon = null;
     //     Destroy(equippedWeaponGO);
     // }
+
+    // PlayerMovement 코드에서 Rocket상태에서 Ground 착지 확인 후 직접 호출함. 
+    public void RocketStomp()
+    {
+        Collider[] everyObstacles = Physics.OverlapBox(
+        rocketStompRange.transform.TransformPoint(rocketStompRange.center), 
+        rocketStompRange.bounds.extents,
+        Quaternion.identity,
+        obstacleLayer);
+
+        foreach(Collider eachCollider in everyObstacles)
+        {
+            eachCollider.gameObject.SetActive(false);
+            onObstacleBroken.Invoke();
+        }
+
+        // Rocket 상태 끝나면, 피해 입음
+        isVulnerable = true;
+    }
 }
