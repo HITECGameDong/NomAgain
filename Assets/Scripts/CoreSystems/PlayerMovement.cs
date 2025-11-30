@@ -61,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
     void GravityWorking()
     {
+        if(isOnRocket) return;
         halfGravOrFullGrav = (rb.linearVelocity.y >= halfGravThresSpeed) ? 0.5f : 1f; 
         rb.linearVelocity += Vector3.up * Physics.gravity.y * gravityMult * halfGravOrFullGrav * Time.fixedDeltaTime;
     }
