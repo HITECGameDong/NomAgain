@@ -18,7 +18,7 @@ public abstract class Item : MonoBehaviour
 
         if(itemGetParticle != null)
         {
-            Instantiate(itemGetParticle, transform.position, Quaternion.identity);
+            Instantiate(itemGetParticle, transform.position, Quaternion.AngleAxis(-90f, new Vector3(1f, 0f, 0f)));
         }
     } 
 }

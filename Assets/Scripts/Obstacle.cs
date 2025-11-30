@@ -15,7 +15,7 @@ public class Obstacle : MonoBehaviour
 
         if(brokenParticle != null)
         {
-            Instantiate(brokenParticle, transform.position, Quaternion.identity);
+            Instantiate(brokenParticle, transform.position, Quaternion.AngleAxis(-90f, new Vector3(1f, 0f, 0f)));
         }
     }
 }
