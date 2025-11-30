@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     public float health {get; private set;}
     bool isItemWorking = false;
     float gainedItemDuration = 0f;
-    IItem grabbableItem = null;
+    Item grabbableItem = null;
 
 
     private void Awake()
@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
 
         if(other.gameObject.CompareTag("Item"))
         {
-            grabbableItem = other.GetComponent<IItem>();
+            grabbableItem = other.GetComponent<Item>();
         }
 
         // Get Block Obj that player stands.

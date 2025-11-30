@@ -124,5 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c41661902e9c549ae3ed397f487b61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  itemGetParticle: {fileID: 5834696962891538266, guid: 618f31880a99b704fa5dd23fed4e743a, type: 3}
   speedAddition: 30
   duration: 2
