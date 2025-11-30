@@ -209,8 +209,6 @@ public class Player : MonoBehaviour
 
     void HealthDoSomething()
     {
-        if(!isVulnerable) return;
-
         GetDamage(fatigueRate * Time.deltaTime);
         if(health <= 0f)
         {
@@ -230,6 +228,10 @@ public class Player : MonoBehaviour
 
     public void GetHealth(float amount)
     {
+        if(!isVulnerable && amount < 0)
+        {
+            return;
+        }
         health = Mathf.Min(amount + health, maxHealth);
     }
 
