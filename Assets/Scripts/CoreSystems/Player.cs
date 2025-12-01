@@ -110,24 +110,25 @@ public class Player : MonoBehaviour
 
     void InputChecking()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current.leftButton.wasPressedThisFrame 
+          ||Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             if(equippedWeapons[typeof(Fist)].IsAttackable())
             {
                 PunchBlock();
             }
+
             // 25-11-29 TODO-jin : 이러면 무기도 못먹음. energy 효과적용간에는 먹을수있어야함.
             else if(grabbableItem != null)
             {
                 ItemGrabCheck();
             }
-        }
-            
-        if (Keyboard.current.spaceKey.wasPressedThisFrame){
-            Jump();
-        }else if(Keyboard.current.spaceKey.isPressed){
+        }else if (Mouse.current.leftButton.isPressed
+                ||Keyboard.current.spaceKey.isPressed)
+        {
             Jump();
         }
+        
     }
 
     void CheckToResetPos()
