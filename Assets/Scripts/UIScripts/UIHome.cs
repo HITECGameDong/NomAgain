@@ -18,6 +18,11 @@ public class UIHome : MonoBehaviour
            SceneManager.LoadScene(1); 
         });
 
+        settingsButton.onClick.AddListener(() =>
+        {
+           SceneManager.LoadScene(2); 
+        });
+
         ExitButton.onClick.AddListener(() =>
         {
             Application.Quit();
