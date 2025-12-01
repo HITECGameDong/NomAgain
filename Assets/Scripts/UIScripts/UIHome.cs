@@ -11,7 +11,6 @@ public class UIHome : MonoBehaviour
 
     void Awake()
     {
-        // Updated upstream
         Application.targetFrameRate = 60;
         
         playButton.onClick.AddListener(() =>
