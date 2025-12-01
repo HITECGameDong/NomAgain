@@ -121,11 +121,11 @@ public class Player : MonoBehaviour
             {
                 ItemGrabCheck();
             }
-            else Jump();
         }
-        
-        else if (Mouse.current.leftButton.isPressed)
-        {
+            
+        if (Keyboard.current.spaceKey.wasPressedThisFrame){
+            Jump();
+        }else if(Keyboard.current.spaceKey.isPressed){
             Jump();
         }
     }

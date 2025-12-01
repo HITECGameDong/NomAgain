@@ -1365,6 +1365,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7476782402284547059, guid: e228262bb25d1a241b2cbe967b7b95dc, type: 3}
+      propertyPath: state
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7476782402284547059, guid: e228262bb25d1a241b2cbe967b7b95dc, type: 3}
       propertyPath: jumpForce
       value: 18
       objectReference: {fileID: 0}
