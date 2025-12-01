@@ -11,6 +11,8 @@ public class UIHome : MonoBehaviour
 
     void Awake()
     {
+        Application.targetFrameRate = 60;
+        
         playButton.onClick.AddListener(() =>
         {
            SceneManager.LoadScene(1); 
