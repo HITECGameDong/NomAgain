@@ -4,15 +4,13 @@ public class CamMovement : MonoBehaviour
 {
     Transform camTransform;
     [SerializeField] Player player;
-    [SerializeField] float offsetX = 8f;    
-    [SerializeField] float offsetZ = -15f;
-    Vector3 camPosOffset;
-    //readonly Vector3 camPosInitOffset = new Vector3(8f, 0f, -15f);
+    [SerializeField] Vector3 camPosOffset;
+    [SerializeField] Vector3 camAngleOffset;
 
-    void Start()
+    void Awake()
     {
         camTransform = GetComponent<Transform>();
-        camPosOffset = new Vector3(offsetX, 0f, offsetZ);
+        camTransform.eulerAngles = camAngleOffset;
     }
 
     void LateUpdate()
