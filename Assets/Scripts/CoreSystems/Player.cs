@@ -118,6 +118,7 @@ public class Player : MonoBehaviour
                 PunchBlock();
             }
 
+            // 25-11-29 jin : 굳이 클릭을 해야 먹는거야?
             // 25-11-29 TODO-jin : 이러면 무기도 못먹음. energy 효과적용간에는 먹을수있어야함.
             else if(grabbableItem != null)
             {
@@ -158,6 +159,11 @@ public class Player : MonoBehaviour
         StartCoroutine(GetRocketBoostCoroutine(duration));
         playerMovement.RocketBoost(speedAddition, duration);
         gainedItemDuration = duration;
+    }
+
+    public void GetJumpOrb()
+    {
+        playerMovement.RefillJumpOnce();        
     }
 
     void ItemGrabCheck()
@@ -272,7 +278,6 @@ public class Player : MonoBehaviour
 
         EquipWeapon(weaponToEquipSO);
     }
-
 
     //문제 : 미사일 먹고 미사일무기 지가 지움, eplayer equipp에는 SO 내부 프리팹의 weapon 컴포넌트가 들어가있음.
     // 그럼 이후에 SO 프리팹을 지우게됨.
