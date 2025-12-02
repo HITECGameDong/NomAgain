@@ -93,6 +93,12 @@ public class PlayerMovement : MonoBehaviour
         jumpCount = maxJumpCount;
     }
 
+    public void RefillJumpOnce()
+    {
+        jumpCount++;
+    }
+
+    //25-12-02 TODO-jin: 위아래 velocity를 0으로 초기화한다음에 점프해야함. 공중에서 점프시 중력이 너무 쎄서 씹힘.
     public void Jump()
     {
         if(jumpCount <= 0) return;
