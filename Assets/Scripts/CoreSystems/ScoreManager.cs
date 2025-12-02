@@ -14,13 +14,13 @@ public class ScoreManager : MonoBehaviour
 {
     float score;
     [SerializeField] Player player;
-    TextMeshPro scoreText;
+    TextMeshProUGUI scoreText;
     ScoreDisplayState curDisplayState = ScoreDisplayState.SCORE;
 
     // 25-11-27 TODO-jin : Player 가지고 온거 맞는지 에러 캐치
     void Start()
     {
-        scoreText = GetComponent<TextMeshPro>();
+        scoreText = GetComponent<TextMeshProUGUI>();
         // 25-11-28 TODO-jin : player가 직접 event 호출하도록한다. weapon은 Destroy됨
         player.onObstacleBroken.AddListener(OnObstacleBroken);
     }
