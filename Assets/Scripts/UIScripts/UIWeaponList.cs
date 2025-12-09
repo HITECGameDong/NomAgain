@@ -25,6 +25,14 @@ public class UIWeaponList : MonoBehaviour
         }
     }
 
+    public void ShowUI()
+    {
+        foreach(UIWeaponTile tile in tileList)
+        {
+            tile.ShowUI();
+        }        
+    }
+
     public void HideUI()
     {
         foreach(UIWeaponTile tile in tileList)

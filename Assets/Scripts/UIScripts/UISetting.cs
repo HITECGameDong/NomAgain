@@ -5,19 +5,16 @@ using UnityEngine.UI;
 
 public class UISetting : MonoBehaviour
 {
-    //기본틀
+    [SerializeField] UIManager uiManager;
     [SerializeField] Button backbutton;
 
     void Awake()
     {
-        
-        Application.targetFrameRate = 60;
-
         backbutton.onClick.AddListener(() =>
         {
-           SceneManager.LoadScene(0); 
+           uiManager.HomePressed();
+           gameObject.SetActive(false);
         });
-
     }
 
 }

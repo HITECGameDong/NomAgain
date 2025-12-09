@@ -48,11 +48,13 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerMovement.onItemWorkingDone.AddListener(ItemWorkingDone);
+        PlayerInit();
     }
 
 
     void Update()
     {
+        if(isDead) return;
         InputChecking();
         CheckToResetPos();
         HealthDoSomething();
@@ -90,7 +92,6 @@ public class Player : MonoBehaviour
 
     void InputChecking()
     {
-        if(isDead) return;
         if (Mouse.current.leftButton.wasPressedThisFrame 
           ||Keyboard.current.spaceKey.wasPressedThisFrame)
         {
@@ -290,6 +291,14 @@ public class Player : MonoBehaviour
     public void PlayerInit()
     {
         EquipWeapon(baseWeaponSO);
+        playerMovement.Disable();
+        isDead = true;
+    }
+
+    public void PlayerGameStart()
+    {
+        playerMovement.Enable();
+        isDead = false;
     }
 
     // 자동 파괴 무기의 경우 해당 무기가 직접 호출함.

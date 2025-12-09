@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using NUnit.Framework;
 
 // RUN : 최초, Ground 인식시.
 // JUMP : Jump 시작시
@@ -36,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     int jumpCount;
     bool isFlying = true;
     bool isGravityOn = true;
+    bool isMovable = false;
     // jin : Player에서 RocketStomp목적 사용
     public PlayerState state = PlayerState.RUN;
 
@@ -49,13 +51,25 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if(!isMovable) return;
         playerTransform.Translate(Vector3.right * (baseSpeed + speedAddition) * Time.deltaTime);    
     }
 
     void FixedUpdate()
     {
+        if(!isMovable) return;
         OnGroundAction();
         GravityWorking();
+    }
+
+    public void Disable()
+    {
+        isMovable = false;
+    }
+
+    public void Enable()
+    {
+        isMovable = true;
     }
 
     void OnGroundAction()

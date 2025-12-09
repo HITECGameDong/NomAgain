@@ -5,7 +5,17 @@ using UnityEngine.UI;
 
 public class UIGameOver : MonoBehaviour
 {
+    [SerializeField] GameManager gameManager;
     [SerializeField] TextMeshProUGUI finalScoreText;
+    [SerializeField] Button returnHomeButton;
+
+    void OnEnable()
+    {
+        returnHomeButton.onClick.AddListener(() =>
+        {
+            gameManager.RestartGame();
+        });
+    }
 
     public void ShowUI(float lastScore)
     {
