@@ -72,6 +72,8 @@ public class PlayerMovement : MonoBehaviour
                     player.RocketStomp();
                 }
                 RefillJump();
+                // 땅에 착지시 덜컹거리는거 억제
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, -4f, rb.linearVelocity.z);
                 state = PlayerState.RUN;
 
             } 
