@@ -27,7 +27,7 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] SpawnableObjectSO GroundSO;
     [SerializeField] Transform groundPoolParentTransform;
     Queue<GameObject> groundPool = new Queue<GameObject>();
-    readonly int groundPoolSize = 4;
+    readonly int groundPoolSize = 6;
 
 
 
@@ -142,7 +142,7 @@ public class ObjectSpawner : MonoBehaviour
         for(int i = 0; i < groundPoolSize ; i++)
         {
             GameObject spawnedGround = InstantiateAndGetFromObjectSO(GroundSO, 0, nextLocForGround, groundPoolParentTransform);
-            if(i >= 2)
+            if(i >= 3)
             {
                 spawnedGround.SetActive(true);
                 nextLocForGround.position += new Vector3(offsetX, 0f, 0f);
