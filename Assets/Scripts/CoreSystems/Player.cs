@@ -87,17 +87,6 @@ public class Player : MonoBehaviour
         // }
     }
 
-    void RocketStomp(GameObject objToDestroy)
-    {
-        if(rocketStompRange == null)
-        {
-            Debug.LogWarning("Player 오브젝트 내에 RocketStompRange 객체가 없음");
-            return;
-        }
-
-        objToDestroy.SetActive(false);
-    }
-
     void InputChecking()
     {
         if (Mouse.current.leftButton.wasPressedThisFrame 
