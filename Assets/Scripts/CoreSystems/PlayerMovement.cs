@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnGroundAction()
     {  
-        bool isOnGround = Physics.CheckSphere(groundChecker.position, 0.1f, groundLayer);
+        bool isOnGround = Physics.CheckSphere(groundChecker.position, 0.25f, groundLayer);
         if(isOnGround)
         {
             // 착지 직후 인식
