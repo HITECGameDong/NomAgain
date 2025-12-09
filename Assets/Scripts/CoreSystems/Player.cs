@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerMovement.onItemWorkingDone.AddListener(ItemWorkingDone);
+        PlayerInit();
     }
 
 
@@ -291,6 +292,12 @@ public class Player : MonoBehaviour
     public void PlayerInit()
     {
         EquipWeapon(baseWeaponSO);
+        playerMovement.Disable();
+    }
+
+    public void PlayerGameStart()
+    {
+        playerMovement.Enable();
     }
 
     // 자동 파괴 무기의 경우 해당 무기가 직접 호출함.

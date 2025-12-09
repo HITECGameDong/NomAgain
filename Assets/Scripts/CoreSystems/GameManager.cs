@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     int tilePassCount = 0;
     float spawnTimer = 0f;
     float curTimeScale = 1f;
+    bool isGameStarted = false;
 
 
     // 25-11-27 TODO-jin : Player, Spawner, ScoreManager 등록되었는지 캐치하기
@@ -44,8 +45,15 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(!isGameStarted) return;
         SpawnTimeSetBySpeed();
         SpawnTimerRun();
+    }
+
+    public void GameStart()
+    {
+        isGameStarted = true;
+        player.PlayerGameStart();
     }
 
     void ResetAllPosition()

@@ -5,22 +5,22 @@ using UnityEngine.UI;
 
 public class UIHome : MonoBehaviour
 {
+    [SerializeField] UIManager uiManager;
     [SerializeField] Button playButton;
     [SerializeField] Button settingsButton;
     [SerializeField] Button ExitButton;
 
     void Awake()
     {
-        Application.targetFrameRate = 60;
-        
         playButton.onClick.AddListener(() =>
         {
-           SceneManager.LoadScene(1); 
+           uiManager.GameStartPressed();
+           gameObject.SetActive(false);
         });
 
         settingsButton.onClick.AddListener(() =>
         {
-           SceneManager.LoadScene(2); 
+           //SceneManager.LoadScene(2); 
         });
 
         ExitButton.onClick.AddListener(() =>
