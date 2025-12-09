@@ -37,8 +37,6 @@ public class Player : MonoBehaviour
     public float health {get; private set;}
     bool isItemWorking = false;
     float gainedItemDuration = 0f;
-    Item grabbableItem = null;
-
 
     private void Awake()
     {
@@ -79,7 +77,7 @@ public class Player : MonoBehaviour
 
         if(other.gameObject.CompareTag("Item"))
         {
-            grabbableItem = other.GetComponent<Item>();
+            ItemGrabCheck(other.GetComponent<Item>());
         }
 
         // Get Block Obj that player stands.
@@ -88,25 +86,6 @@ public class Player : MonoBehaviour
         //     currentSteppingBlock = other.gameObject;
         // }
     }
-
-    void RocketStomp(GameObject objToDestroy)
-    {
-        if(rocketStompRange == null)
-        {
-            Debug.LogWarning("Player 오브젝트 내에 RocketStompRange 객체가 없음");
-            return;
-        }
-
-        objToDestroy.SetActive(false);
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Item"))
-        {
-            grabbableItem = null;
-        }
-    } 
 
     void InputChecking()
     {
@@ -117,14 +96,8 @@ public class Player : MonoBehaviour
             {
                 PunchBlock();
             }
-
-            // 25-11-29 jin : 굳이 클릭을 해야 먹는거야?
-            // 25-11-29 TODO-jin : 이러면 무기도 못먹음. energy 효과적용간에는 먹을수있어야함.
-            else if(grabbableItem != null)
-            {
-                ItemGrabCheck();
-            }
-        }else if (Mouse.current.leftButton.isPressed
+        }
+        else if (Mouse.current.leftButton.isPressed
                 ||Keyboard.current.spaceKey.isPressed)
         {
             Jump();
@@ -166,16 +139,15 @@ public class Player : MonoBehaviour
         playerMovement.RefillJumpOnce();        
     }
 
-    void ItemGrabCheck()
+    void ItemGrabCheck(Item item)
     {
         if(!isItemWorking)
         {
-            if(grabbableItem == null) return;
+            if(item == null) return;
             
-            grabbableItem.GetItem(this);
+            item.GetItem(this);
             onItemGet.Invoke(gainedItemDuration);
             gainedItemDuration = 0f;
-            grabbableItem = null;
         }
     }
 
