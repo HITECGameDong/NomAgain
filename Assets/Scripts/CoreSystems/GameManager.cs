@@ -69,9 +69,9 @@ public class GameManager : MonoBehaviour
         return checkPointX;
     }
 
+    // Player Die Event에서 호출됩니다.
     void GameOver()
     {
-        player.Kill();
         uiManager.ShowGameOverUI(scoreManager.GetScore());
     }
 

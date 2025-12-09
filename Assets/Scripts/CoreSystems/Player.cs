@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     bool isVulnerable = true;
     public float health {get; private set;}
     bool isItemWorking = false;
-    bool isGameStart = false;
+    public bool isDead = false;
     float gainedItemDuration = 0f;
 
     private void Awake()
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(!isGameStart) return;
+        if(isDead) return;
         InputChecking();
         CheckToResetPos();
         HealthDoSomething();
@@ -196,14 +196,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Die()
-    {
-        onPlayerDead.Invoke();
-    }
-
-    public void Kill()
+    public void Die()
     {
         playerMovement.enabled = false;
+        isDead = true;
+        onPlayerDead.Invoke();
     }
 
     public void GetHealth(float amount)
@@ -295,13 +292,13 @@ public class Player : MonoBehaviour
     {
         EquipWeapon(baseWeaponSO);
         playerMovement.Disable();
-        isGameStart = false;
+        isDead = true;
     }
 
     public void PlayerGameStart()
     {
         playerMovement.Enable();
-        isGameStart = true;
+        isDead = false;
     }
 
     // 자동 파괴 무기의 경우 해당 무기가 직접 호출함.
