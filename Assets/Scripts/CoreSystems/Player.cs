@@ -96,13 +96,11 @@ public class Player : MonoBehaviour
             {
                 PunchBlock();
             }
+            else
+            {
+                Jump();
+            }
         }
-        else if (Mouse.current.leftButton.isPressed
-                ||Keyboard.current.spaceKey.isPressed)
-        {
-            Jump();
-        }
-        
     }
 
     void CheckToResetPos()
