@@ -5,5 +5,6 @@ public class JumpOrb : Item
     public override void GetItem(Player player)
     {
         player.GetJumpOrb();
+        gameObject.SetActive(false);
     }
 }
