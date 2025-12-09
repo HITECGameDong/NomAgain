@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     bool isVulnerable = true;
     public float health {get; private set;}
     bool isItemWorking = false;
+    public bool isDead = false;
     float gainedItemDuration = 0f;
 
     private void Awake()
@@ -89,6 +90,7 @@ public class Player : MonoBehaviour
 
     void InputChecking()
     {
+        if(isDead) return;
         if (Mouse.current.leftButton.wasPressedThisFrame 
           ||Keyboard.current.spaceKey.wasPressedThisFrame)
         {
@@ -193,14 +195,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Die()
-    {
-        onPlayerDead.Invoke();
-    }
-
-    public void Kill()
+    public void Die()
     {
         playerMovement.enabled = false;
+        isDead = true;
+        onPlayerDead.Invoke();
     }
 
     public void GetHealth(float amount)
