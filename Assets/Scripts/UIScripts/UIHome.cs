@@ -20,7 +20,8 @@ public class UIHome : MonoBehaviour
 
         settingsButton.onClick.AddListener(() =>
         {
-           //SceneManager.LoadScene(2); 
+           uiManager.SettingsPressed();
+           gameObject.SetActive(false);
         });
 
         ExitButton.onClick.AddListener(() =>

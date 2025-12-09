@@ -6,13 +6,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] ScoreManager scoreUI;
     [SerializeField] UIGameOver gameoverUI;
     [SerializeField] UIWeaponList weaponListUI;
-    [SerializeField] UIHome UIHome;
+    [SerializeField] UIHome homeUI;
+    [SerializeField] UISetting settingUI;
 
     void Start()
     {
         scoreUI.gameObject.SetActive(false);
         weaponListUI.HideUI();
         gameoverUI.HideUI();
+        settingUI.gameObject.SetActive(false);
     }
 
     public void GameStartPressed()
@@ -39,4 +41,13 @@ public class UIManager : MonoBehaviour
         weaponListUI.UpdateWeaponUI(weapon);
     }
     
+    public void SettingsPressed()
+    {
+        settingUI.gameObject.SetActive(true);   
+    }
+
+    public void HomePressed()
+    {
+        homeUI.gameObject.SetActive(true);
+    }
 }
