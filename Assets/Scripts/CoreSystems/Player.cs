@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     bool isVulnerable = true;
     public float health {get; private set;}
     bool isItemWorking = false;
+    bool isGameStart = false;
     float gainedItemDuration = 0f;
 
     private void Awake()
@@ -53,6 +54,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if(!isGameStart) return;
         InputChecking();
         CheckToResetPos();
         HealthDoSomething();
@@ -293,11 +295,13 @@ public class Player : MonoBehaviour
     {
         EquipWeapon(baseWeaponSO);
         playerMovement.Disable();
+        isGameStart = false;
     }
 
     public void PlayerGameStart()
     {
         playerMovement.Enable();
+        isGameStart = true;
     }
 
     // 자동 파괴 무기의 경우 해당 무기가 직접 호출함.
