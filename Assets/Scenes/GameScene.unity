@@ -607,6 +607,10 @@ PrefabInstance:
       propertyPath: camAngleOffset.y
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 5084402120628850527, guid: b73776d14e5fa334296c2d30ae18937f, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1068452482}
     - target: {fileID: 5995944841947268988, guid: b73776d14e5fa334296c2d30ae18937f, type: 3}
       propertyPath: player
       value: 

@@ -403,8 +403,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7009127046804884127, guid: 9874e8f397adff243a53e2a22870cf27, type: 3}
+      propertyPath: returnHomeButton
+      value: 
+      objectReference: {fileID: 6523092244284440340}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4896484089245964784, guid: 9874e8f397adff243a53e2a22870cf27, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9874e8f397adff243a53e2a22870cf27, type: 3}
@@ -419,6 +424,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b787445f0d634a48be3631a9eb93291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameOverUI
+--- !u!114 &6523092244284440340 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9028779327795100372, guid: 9874e8f397adff243a53e2a22870cf27, type: 3}
+  m_PrefabInstance: {fileID: 2867111962182944192}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!224 &8063789340607440434 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5197807689296307186, guid: 9874e8f397adff243a53e2a22870cf27, type: 3}
