@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
 
         state = PlayerState.JUMP;
         isFlying = true;
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
         jumpCount--;
     }
 
