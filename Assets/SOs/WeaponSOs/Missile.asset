@@ -15,7 +15,8 @@ MonoBehaviour:
   itemPrefabList:
   - {fileID: 902330265884115229, guid: 9341b52d6c1511b42b88adcbf89f93a3, type: 3}
   objectType: 2
-  spawnWeight: 100
+  spawnWeight: 10
   itemGetParticle: {fileID: 5834696962891538266, guid: 618f31880a99b704fa5dd23fed4e743a, type: 3}
+  itemName: 
   weaponPrefab: {fileID: 6759883297662152335, guid: aec2e4eea057a1f44a3a27e6013bf0fb, type: 3}
   weaponUISprite: {fileID: 21300000, guid: af4fc95ec8becec42b3febe41c6000b1, type: 3}

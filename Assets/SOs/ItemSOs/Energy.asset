@@ -17,6 +17,7 @@ MonoBehaviour:
   objectType: 2
   spawnWeight: 30
   itemGetParticle: {fileID: 5834696962891538266, guid: 618f31880a99b704fa5dd23fed4e743a, type: 3}
+  itemName: ENERGY
   speedAddition: 2
   duration: 2
   healthAddition: 30
