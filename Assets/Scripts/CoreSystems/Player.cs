@@ -27,7 +27,6 @@ public class Player : MonoBehaviour
 
     // CONSTANTS..
     [SerializeField] float initLocX = -14f;
-    [SerializeField] float fatigueRate = 2f;
     [SerializeField] public float maxHealth {get; private set;} = 100f; 
 
     // VARIABLES
@@ -58,7 +57,6 @@ public class Player : MonoBehaviour
         if(isDead) return;
         InputChecking();
         CheckToResetPos();
-        HealthDoSomething();
     }
 
 
@@ -191,15 +189,6 @@ public class Player : MonoBehaviour
         return initLocX;
     }
 
-    void HealthDoSomething()
-    {
-        GetDamage(fatigueRate * Time.deltaTime);
-        if(health <= 0f)
-        {
-            Die();
-        }
-    }
-
     public void Die()
     {
         playerMovement.enabled = false;
@@ -214,6 +203,11 @@ public class Player : MonoBehaviour
             return;
         }
         health = Mathf.Min(amount + health, maxHealth);
+
+        if(health <= 0f)
+        {
+            Die();
+        }
     }
 
     void GetDamage(float amount)
