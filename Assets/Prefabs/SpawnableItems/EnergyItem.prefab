@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6563920370449453746}
   - component: {fileID: 600674810941786970}
   - component: {fileID: 6282750622717604695}
-  - component: {fileID: 4004652760296863821}
+  - component: {fileID: 5041846632384250909}
   m_Layer: 0
   m_Name: EnergyItem
   m_TagString: Item
@@ -112,7 +112,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4004652760296863821
+--- !u!114 &5041846632384250909
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,10 +121,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2500205578143049717}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 992437ca934bf624bac78f025ca63243, type: 3}
+  m_Script: {fileID: 11500000, guid: 8807a2fcff9ab3e40892d7a0997b9ac8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnergyBooster
-  itemGetParticle: {fileID: 5834696962891538266, guid: 618f31880a99b704fa5dd23fed4e743a, type: 3}
-  speedAddition: 2
-  duration: 2
-  healthAddition: 30
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  itemSO: {fileID: 11400000, guid: eb84c8abe7cd21542b74e88e13dcecd8, type: 2}

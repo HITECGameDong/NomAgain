@@ -1,12 +1,18 @@
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class Item : MonoBehaviour
+public class Item : MonoBehaviour
 {
-    [SerializeField] ParticleSystem itemGetParticle;
+    [SerializeField] ItemSO itemSO;
     bool particleDisable = true;
 
-    public abstract void GetItem(Player player);
+    public virtual void GetItem(Player player)
+    {
+        itemSO.GetItem(player);
+        gameObject.SetActive(false);
+    }
+
     protected virtual void OnDisable()
     {
         // 최초 pool Init시 particle 진행X
@@ -16,9 +22,9 @@ public abstract class Item : MonoBehaviour
             return;
         }
 
-        if(itemGetParticle != null)
+        if(itemSO.itemGetParticle != null)
         {
-            Instantiate(itemGetParticle, transform.position, Quaternion.AngleAxis(-90f, new Vector3(1f, 0f, 0f)));
+            Instantiate(itemSO.itemGetParticle, transform.position, Quaternion.AngleAxis(-90f, new Vector3(1f, 0f, 0f)));
         }
     } 
 }

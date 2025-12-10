@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8109597626445909768}
   - component: {fileID: 6033914869648174536}
   - component: {fileID: 3979703146992470067}
-  - component: {fileID: 2850059916194257202}
+  - component: {fileID: 4564946405190413299}
   m_Layer: 0
   m_Name: MissileWeaponItem
   m_TagString: Item
@@ -112,7 +112,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2850059916194257202
+--- !u!114 &4564946405190413299
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,8 +121,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 902330265884115229}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0091026a867be434d8287370ff7023b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 8807a2fcff9ab3e40892d7a0997b9ac8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponItem
-  itemGetParticle: {fileID: 5834696962891538266, guid: 618f31880a99b704fa5dd23fed4e743a, type: 3}
-  weaponSO: {fileID: 11400000, guid: 67c538ac6bf9f88478e77971417ac560, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  itemSO: {fileID: 11400000, guid: f584f318a5ebbb944b27d9e2a7f356ce, type: 2}

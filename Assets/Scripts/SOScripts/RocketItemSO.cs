@@ -1,6 +1,9 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class RocketBooster : Item
+[CreateAssetMenu(fileName = "ObjectSO", menuName = "SOs/Item/Rocket")]
+public class RocketItemSO : ItemSO
 {
     [SerializeField] float speedAddition = 30f;
     [SerializeField] float duration = 2f;
@@ -9,6 +12,5 @@ public class RocketBooster : Item
     public override void GetItem(Player player)
     {
        player.GetRocketBoost(speedAddition, duration);
-       gameObject.SetActive(false);
     }
 }

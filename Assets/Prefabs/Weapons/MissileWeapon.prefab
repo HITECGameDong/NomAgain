@@ -94,11 +94,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 536d8ea84cdbecb48a329a3288af52f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MissileWeapon
-  range: {fileID: 0}
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
   cooltime: 15
   cooltimeTimer: 0
-  weaponSO: {fileID: 11400000, guid: 67c538ac6bf9f88478e77971417ac560, type: 2}
+  weaponSO: {fileID: 11400000, guid: f584f318a5ebbb944b27d9e2a7f356ce, type: 2}
   breakAmount: 5
