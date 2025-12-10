@@ -29,6 +29,7 @@ public class UIWeaponList : MonoBehaviour
     {
         foreach(UIWeaponTile tile in tileList)
         {
+            tile.gameObject.SetActive(true);
             tile.ShowUI();
         }        
     }
@@ -37,7 +38,7 @@ public class UIWeaponList : MonoBehaviour
     {
         foreach(UIWeaponTile tile in tileList)
         {
-            tile.HideUI();
+            tile.gameObject.SetActive(false);
         }
     }
 }
