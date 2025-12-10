@@ -10,10 +10,9 @@ public enum ObjectType
     OBSTACLE,
 }
 
-[CreateAssetMenu(fileName = "ObjectSO", menuName = "SOs/ObjectSO")]
 public class SpawnableObjectSO : ScriptableObject
 {
-    // WARN-jin : 난이도 테마별 프리팹 저장, 난이도 테마 순서대로 저장할것! ex) 0: 이지, 1: 하드, 2: 지옥 테마 프리팹
+    // 테마별 다른 스폰 프리팹 리스트. 바닥에 스폰되는거임! 장착하는 무기 프리팹은 WeaponSO.cs에 정리!
     public List<GameObject> itemPrefabList;
     public ObjectType objectType;
 

@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c05894fdd4cfb96409df4a8ce4be9780, type: 3}
-  m_Name: Pattern1SO
-  m_EditorClassIdentifier: Assembly-CSharp::SpawnableObjectSO
+  m_Script: {fileID: 11500000, guid: c0b44d9a49e1cd54292ea5b8f5045dab, type: 3}
+  m_Name: Pattern1
+  m_EditorClassIdentifier: Assembly-CSharp::ObstacleSO
   itemPrefabList:
   - {fileID: 1994867180839900513, guid: d3bcd956e2e705143bdcddc8a867bc69, type: 3}
   objectType: 3
-  spawnWeight: 70
+  spawnWeight: 25
+  onBrokenParticle: {fileID: 6642456186561687649, guid: 40574b813b6950447b6539af388e986a, type: 3}

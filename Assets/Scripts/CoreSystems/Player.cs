@@ -6,6 +6,7 @@ using Unity.Mathematics;
 using System.Collections.Generic;
 using System;
 using Unity.VisualScripting;
+using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
@@ -48,7 +49,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerMovement.onItemWorkingDone.AddListener(ItemWorkingDone);
-        PlayerInit();
     }
 
 
@@ -249,10 +249,6 @@ public class Player : MonoBehaviour
         EquipWeapon(weaponToEquipSO);
     }
 
-    //문제 : 미사일 먹고 미사일무기 지가 지움, eplayer equipp에는 SO 내부 프리팹의 weapon 컴포넌트가 들어가있음.
-    // 그럼 이후에 SO 프리팹을 지우게됨.
-    // 무기가 지를 지우지말고, 무기가 player에게 unequip을 요청한다. player는 그걸지우기 equipped를 null로 변경 / fist로 변경
-    // 그럼 생성된 player의 프리팹은 어떻게 지우는가?
     void EquipWeapon(WeaponSO weaponToEquipSO)
     {   
         if(weaponToEquipSO.weaponPrefab == null)
@@ -290,7 +286,7 @@ public class Player : MonoBehaviour
     
     public void PlayerInit()
     {
-        EquipWeapon(baseWeaponSO);
+        baseWeaponSO.GetItem(this);
         playerMovement.Disable();
         isDead = true;
     }

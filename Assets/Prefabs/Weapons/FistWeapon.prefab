@@ -94,12 +94,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc582e715986ea4282ac3a754b24424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fist
-  range: {fileID: 0}
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
   cooltime: 0
   cooltimeTimer: 0
-  weaponSO: {fileID: 11400000, guid: 17df334057b9ab3409a3145291917066, type: 2}
+  weaponSO: {fileID: 11400000, guid: fd8f9396b60902f489f723c4b741f606, type: 2}
   healthAddition: 5
   expToLevelup: 5

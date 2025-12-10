@@ -382,13 +382,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   gameManager: {fileID: 0}
-  baseWeaponSO: {fileID: 11400000, guid: 17df334057b9ab3409a3145291917066, type: 2}
+  baseWeaponSO: {fileID: 11400000, guid: fd8f9396b60902f489f723c4b741f606, type: 2}
   rocketStompRange: {fileID: 3563649391227838110}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
   initLocX: -14
   fatigueRate: 2
+  isDead: 0
 --- !u!114 &7476782402284547059
 MonoBehaviour:
   m_ObjectHideFlags: 0

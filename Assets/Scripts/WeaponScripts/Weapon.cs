@@ -13,6 +13,7 @@ public abstract class Weapon : MonoBehaviour
     public int weaponLevel {get; protected set;} = 1;
     [SerializeField] public float cooltime;    
     public float cooltimeTimer = 0f;
+    // Weapon List UI sprite 전용.
     public WeaponSO weaponSO;
 
     void Awake()

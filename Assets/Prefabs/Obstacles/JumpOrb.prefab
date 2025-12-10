@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8109597626445909768}
   - component: {fileID: 6033914869648174536}
   - component: {fileID: 3979703146992470067}
-  - component: {fileID: 2726115760489066257}
+  - component: {fileID: 713320785838264158}
   m_Layer: 0
   m_Name: JumpOrb
   m_TagString: Item
@@ -112,7 +112,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2726115760489066257
+--- !u!114 &713320785838264158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 902330265884115229}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3e9fec3b4ba7214f906322eaa112dcb, type: 3}
+  m_Script: {fileID: 11500000, guid: 8807a2fcff9ab3e40892d7a0997b9ac8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  itemGetParticle: {fileID: 5834696962891538266, guid: 618f31880a99b704fa5dd23fed4e743a, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  itemSO: {fileID: 11400000, guid: 6368b7a16355600449abbcecafa5f3cc, type: 2}
