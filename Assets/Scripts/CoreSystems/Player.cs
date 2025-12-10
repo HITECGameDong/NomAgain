@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public UnityEvent onTilePassing;
     public UnityEvent onArrivingCheckpoint;
     public UnityEvent onPlayerDead;
-    public UnityEvent<float> onItemGet;
+    public UnityEvent<float, string> onItemGet;
     public UnityEvent onObstacleBroken;
     public UnityEvent<Weapon> onWeaponGet;
 
@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     bool isItemWorking = false;
     public bool isDead = false;
     float gainedItemDuration = 0f;
+    String gainedItemName;
 
     private void Awake()
     {
@@ -119,20 +120,22 @@ public class Player : MonoBehaviour
         playerMovement.Jump();
     }
 
-    public void GetEnergyBoost(float speedAddition, float duration, float healthAddition)
+    public void GetEnergyBoost(float speedAddition, float duration, float healthAddition, string name)
     {
         isItemWorking = true;
         GetHealth(healthAddition);
         playerMovement.IncreaseSpeed(speedAddition, duration);
         gainedItemDuration = duration;
+        gainedItemName = name;
     }
 
-    public void GetRocketBoost(float speedAddition, float duration)
+    public void GetRocketBoost(float speedAddition, float duration, string name)
     {
         isItemWorking = true;
         StartCoroutine(GetRocketBoostCoroutine(duration));
         playerMovement.RocketBoost(speedAddition, duration);
         gainedItemDuration = duration;
+        gainedItemName = name;
     }
 
     public void GetJumpOrb()
@@ -147,8 +150,9 @@ public class Player : MonoBehaviour
             if(item == null) return;
             
             item.GetItem(this);
-            onItemGet.Invoke(gainedItemDuration);
+            onItemGet.Invoke(gainedItemDuration, gainedItemName);
             gainedItemDuration = 0f;
+            gainedItemName = null;
         }
     }
 

@@ -12,6 +12,6 @@ public class EnergyItemSO : ItemSO
     // 25-11-27 TODO-jin : addition / duration err catch넣기
     public override void GetItem(Player player)
     {    
-        player.GetEnergyBoost(speedAddition, duration, healthAddition);
+        player.GetEnergyBoost(speedAddition, duration, healthAddition, itemName);
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine;
 public abstract class ItemSO : SpawnableObjectSO
 {
     public ParticleSystem itemGetParticle;
+    public string itemName;
 
     public abstract void GetItem(Player player);
 }

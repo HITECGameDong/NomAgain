@@ -11,6 +11,6 @@ public class RocketItemSO : ItemSO
     // 25-11-27 TODO-jin : addition / duration err catch넣기
     public override void GetItem(Player player)
     {
-       player.GetRocketBoost(speedAddition, duration);
+       player.GetRocketBoost(speedAddition, duration, itemName);
     }
 }
