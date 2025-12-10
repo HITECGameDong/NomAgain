@@ -254,5 +254,68 @@ Transform:
   m_Children:
   - {fileID: 1615838943640592403}
   - {fileID: 2367696137163730753}
+  - {fileID: 2380380854457524938}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2039469652646869764
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3002639122640231750}
+    m_Modifications:
+    - target: {fileID: 4415050533792930254, guid: 8ab11e2da2ecc2a4e91f0ec2d412b1c7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415050533792930254, guid: 8ab11e2da2ecc2a4e91f0ec2d412b1c7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415050533792930254, guid: 8ab11e2da2ecc2a4e91f0ec2d412b1c7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415050533792930254, guid: 8ab11e2da2ecc2a4e91f0ec2d412b1c7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415050533792930254, guid: 8ab11e2da2ecc2a4e91f0ec2d412b1c7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415050533792930254, guid: 8ab11e2da2ecc2a4e91f0ec2d412b1c7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415050533792930254, guid: 8ab11e2da2ecc2a4e91f0ec2d412b1c7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415050533792930254, guid: 8ab11e2da2ecc2a4e91f0ec2d412b1c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415050533792930254, guid: 8ab11e2da2ecc2a4e91f0ec2d412b1c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415050533792930254, guid: 8ab11e2da2ecc2a4e91f0ec2d412b1c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8402481952328729132, guid: 8ab11e2da2ecc2a4e91f0ec2d412b1c7, type: 3}
+      propertyPath: m_Name
+      value: FogPlane
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8ab11e2da2ecc2a4e91f0ec2d412b1c7, type: 3}
+--- !u!4 &2380380854457524938 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4415050533792930254, guid: 8ab11e2da2ecc2a4e91f0ec2d412b1c7, type: 3}
+  m_PrefabInstance: {fileID: 2039469652646869764}
+  m_PrefabAsset: {fileID: 0}
