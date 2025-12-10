@@ -207,8 +207,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   player: {fileID: 0}
-  camPosOffset: {x: 0, y: 0, z: 0}
-  camAngleOffset: {x: 0, y: 0, z: 0}
+  camPosOffset: {x: -2, y: 1, z: -10}
+  camAngleOffset: {x: 0, y: 30, z: 0}
 --- !u!1 &2316015411464753102
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,11 +522,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8575561035498228877, guid: ad1691cb53e055b4d8b0237c0253da01, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 8.988953
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8575561035498228877, guid: ad1691cb53e055b4d8b0237c0253da01, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -28.926025
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8575561035498228877, guid: ad1691cb53e055b4d8b0237c0253da01, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -631,11 +631,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3112519879303456964, guid: 57ae5ffeb92a9d0408d00aa6e86a838e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 8.988953
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3112519879303456964, guid: 57ae5ffeb92a9d0408d00aa6e86a838e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -28.926025
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3112519879303456964, guid: 57ae5ffeb92a9d0408d00aa6e86a838e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

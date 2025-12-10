@@ -591,22 +591,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 379062534}
-    - target: {fileID: 1951843001656050473, guid: b73776d14e5fa334296c2d30ae18937f, type: 3}
-      propertyPath: camPosOffset.x
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1951843001656050473, guid: b73776d14e5fa334296c2d30ae18937f, type: 3}
-      propertyPath: camPosOffset.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1951843001656050473, guid: b73776d14e5fa334296c2d30ae18937f, type: 3}
-      propertyPath: camPosOffset.z
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1951843001656050473, guid: b73776d14e5fa334296c2d30ae18937f, type: 3}
-      propertyPath: camAngleOffset.y
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 5084402120628850527, guid: b73776d14e5fa334296c2d30ae18937f, type: 3}
       propertyPath: gameManager
       value: 
@@ -615,10 +599,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 379062534}
-    - target: {fileID: 6189145949195248225, guid: b73776d14e5fa334296c2d30ae18937f, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1068452482}
     - target: {fileID: 6523092244284440340, guid: b73776d14e5fa334296c2d30ae18937f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
