@@ -3,6 +3,7 @@ using NUnit.Framework.Internal.Commands;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using System.Threading.Tasks;
 
 
 public class ObjectSpawner : MonoBehaviour
@@ -39,15 +40,15 @@ public class ObjectSpawner : MonoBehaviour
 
     void SpawnGround()
     {
-        SpawnObject(ObjectType.GROUND);
+        SpawnObjectAsync(ObjectType.GROUND);
     }
 
     public void SpawnObject()
     {
-        SpawnObject(ObjectType.OBSTACLE);
+        SpawnObjectAsync(ObjectType.OBSTACLE);
     }
 
-    void SpawnObject(ObjectType objType)
+    async Task SpawnObjectAsync(ObjectType objType)
     {
         ChangeSpawnLocByPlayerLoc();
 
@@ -63,6 +64,7 @@ public class ObjectSpawner : MonoBehaviour
             groundPool.Enqueue(objToActive);
 
             nextLocForGround.position += new Vector3(offsetX, 0f, 0f);    
+            return;
         }
 
         // ? TODO-jin : separate obs / item spawn
@@ -85,6 +87,8 @@ public class ObjectSpawner : MonoBehaviour
                     Debug.LogWarning("Spawner가 Spawn할Pool 오브젝트가 모두 사용중.. 다른 Object를 찾음");
                     toSpawnSO = GetRandomObjectSO();
                 }
+
+                await Task.Yield();
             }
 
             objToSpawn.transform.position = new Vector3(objSpawnerCurXPos, 0f, 0f);
@@ -164,7 +168,7 @@ public class ObjectSpawner : MonoBehaviour
         objSpawnerCurXPos = initObjStartXPos;
         for(int i = 0 ; i < 3 ; i++)
         {
-            SpawnObject(ObjectType.ITEM);
+            SpawnObjectAsync(ObjectType.ITEM);
         }
     }
 
