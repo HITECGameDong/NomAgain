@@ -212,22 +212,22 @@ public class Player : MonoBehaviour
 
     public void GetHealth(float amount)
     {
-        if(!isVulnerable && amount < 0)
+        if(amount < 0)
         {
             return;
         }
         health = Mathf.Min(amount + health, maxHealth);
-
-        if(health <= 0f)
-        {
-            Die();
-        }
     }
 
     void GetDamage(float amount)
     {
         if(!isVulnerable) return;
         health = Mathf.Max(health - amount, 0f);
+        if(health <= 0f)
+        {
+            Die();
+        }
+
     }
 
     void PunchBlock()
