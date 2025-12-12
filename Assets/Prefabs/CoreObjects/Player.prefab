@@ -221,6 +221,8 @@ GameObject:
   - component: {fileID: 6337844686404699983}
   - component: {fileID: 7608818241357782658}
   - component: {fileID: 7476782402284547059}
+  - component: {fileID: 2183614493993542436}
+  - component: {fileID: 1946673630136139364}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -381,6 +383,7 @@ MonoBehaviour:
   onWeaponGet:
     m_PersistentCalls:
       m_Calls: []
+  playerAnimator: {fileID: 2183614493993542436}
   gameManager: {fileID: 0}
   baseWeaponSO: {fileID: 11400000, guid: fd8f9396b60902f489f723c4b741f606, type: 2}
   rocketStompRange: {fileID: 3563649391227838110}
@@ -415,6 +418,40 @@ MonoBehaviour:
   halfGravThresSpeed: -16
   baseSpeed: 6
   state: 0
+--- !u!114 &2183614493993542436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235515673589600616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63bfecd500b29f14384467b0a279c172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimator
+--- !u!95 &1946673630136139364
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235515673589600616}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 81e9759faba3166499f418f4d4580e0e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2785006402871509272
 GameObject:
   m_ObjectHideFlags: 0
