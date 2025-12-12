@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
         // DIV BY 0 방지
         if(speedMult <= 0.01f) return;
         
-        float nextSpawnTime = Mathf.Max(defaultSpawnTimeSec / curTimeScale / speedMult,  minSpawnTimeSec);
+        float nextSpawnTime = Mathf.Max(defaultSpawnTimeSec / speedMult,  minSpawnTimeSec);
         SpawnTimerSet(nextSpawnTime);
     }
 
