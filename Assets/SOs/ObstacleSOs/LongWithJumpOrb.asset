@@ -15,5 +15,5 @@ MonoBehaviour:
   itemPrefabList:
   - {fileID: 2003619014509062226, guid: 13e56bceaeb648649bca806ae54cc3e6, type: 3}
   objectType: 3
-  spawnWeight: 20
+  spawnWeight: 30
   onBrokenParticle: {fileID: 6642456186561687649, guid: 40574b813b6950447b6539af388e986a, type: 3}
