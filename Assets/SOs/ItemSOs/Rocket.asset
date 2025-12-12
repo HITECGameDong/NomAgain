@@ -15,7 +15,7 @@ MonoBehaviour:
   itemPrefabList:
   - {fileID: 902330265884115229, guid: 19b52fcbf0b793b4e9a13addfee7b835, type: 3}
   objectType: 2
-  spawnWeight: 100
+  spawnWeight: 10
   itemGetParticle: {fileID: 5834696962891538266, guid: 618f31880a99b704fa5dd23fed4e743a, type: 3}
   itemName: ROCKET
   speedAddition: 30

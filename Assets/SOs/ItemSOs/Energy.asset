@@ -15,7 +15,7 @@ MonoBehaviour:
   itemPrefabList:
   - {fileID: 2500205578143049717, guid: 3dbb50a02f98b844eabfadb63c9f4f89, type: 3}
   objectType: 2
-  spawnWeight: 30
+  spawnWeight: 15
   itemGetParticle: {fileID: 5834696962891538266, guid: 618f31880a99b704fa5dd23fed4e743a, type: 3}
   itemName: ENERGY
   speedAddition: 2
