@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e47c9867983895a448e9849f3cc47b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  outlineObject: {fileID: 7089206662921115725}
   brokenParticle: {fileID: 6642456186561687649, guid: 40574b813b6950447b6539af388e986a, type: 3}
 --- !u!1 &7089206662921115725
 GameObject:
