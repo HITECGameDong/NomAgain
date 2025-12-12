@@ -91,7 +91,7 @@ public class ObjectSpawner : MonoBehaviour
                 await Task.Yield();
             }
 
-            objToSpawn.transform.position = new Vector3(objSpawnerCurXPos, 0f, 0f);
+            objToSpawn.transform.position += new Vector3(objSpawnerCurXPos, 0f, 0f);
             objSpawnerCurXPos += Random.Range(25f, 30f);
             objToSpawn.SetActive(true);
         }
