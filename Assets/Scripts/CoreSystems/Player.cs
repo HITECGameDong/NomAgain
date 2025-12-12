@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
 
     // VARIABLES FROM EDITOR / COMPONENTS
     PlayerMovement playerMovement;
+    [SerializeField] PlayerAnimator playerAnimator;
     [SerializeField] GameManager gameManager;
     [SerializeField] WeaponSO baseWeaponSO;
     [SerializeField] BoxCollider rocketStompRange;
@@ -55,6 +56,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(isDead) return;
+        PlayerAnimUpdate();
         InputChecking();
         CheckToResetPos();
     }
@@ -87,6 +89,18 @@ public class Player : MonoBehaviour
         // {
         //     currentSteppingBlock = other.gameObject;
         // }
+    }
+
+    void PlayerAnimUpdate()
+    {
+        if(equippedWeapons[typeof(Fist)].IsAttackable())
+        {
+            playerAnimator.ChangeToPunchableAnim();
+        }
+        else
+        {
+            playerAnimator.ChangeToNormalAnim();
+        }
     }
 
     void InputChecking()
