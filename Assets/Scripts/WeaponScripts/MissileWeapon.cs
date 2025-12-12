@@ -7,9 +7,9 @@ public class MissileWeapon : Weapon
 {
     [SerializeField] int breakAmount = 5;
     
-    void FixedUpdate()
+    void Update()
     {
-        cooltimeTimer += Time.fixedDeltaTime;
+        cooltimeTimer += Time.unscaledDeltaTime;
         if(cooltimeTimer >= cooltime)
         {
             cooltimeTimer = 0f;
@@ -17,6 +17,7 @@ public class MissileWeapon : Weapon
         }   
     }    
 
+    // 25-12-12 TODO-jin: Async func으로 바꾸기(while간 스레드 넘겨주기)
     public override void Attack()
     {
         cooltimeTimer = 0f;
