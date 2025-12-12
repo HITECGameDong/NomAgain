@@ -34,6 +34,7 @@ public class Fist : Weapon
         if(other.gameObject.CompareTag("Obstacles"))
         {
             currentTargetQueue.Enqueue(other.gameObject); 
+            other.gameObject.GetComponent<Obstacle>().ActivateOutline();
         }
     }
 
@@ -42,6 +43,7 @@ public class Fist : Weapon
         if(other.gameObject.CompareTag("Obstacles"))
         {
             currentTargetQueue.Dequeue();
+            other.gameObject.GetComponent<Obstacle>().DeactivateOutline();
         }
     }
 

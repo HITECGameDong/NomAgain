@@ -2,8 +2,24 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    [SerializeField] GameObject outlineObject;
     [SerializeField] ParticleSystem brokenParticle;
     bool disableParticle = true;
+
+    void Awake()
+    {
+        DeactivateOutline();
+    }
+
+    public void ActivateOutline()
+    {
+        outlineObject.SetActive(true);
+    }
+
+    public void DeactivateOutline()
+    {
+        outlineObject.SetActive(false);
+    }
 
     void OnDisable()
     {
