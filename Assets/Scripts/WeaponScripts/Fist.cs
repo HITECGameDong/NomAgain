@@ -8,10 +8,11 @@ public class Fist : Weapon
 
     public override void Attack()
     {
-        if(currentTargetQueue.Count <= 0) return;
+        if(currentTargetObstacle == null) return;
 
         Debug.Log("ATTACK");
-        currentTargetQueue.Peek().GetComponent<Obstacle>().DestroyObstacle();
+        currentTargetObstacle.DestroyObstacle();
+        currentTargetObstacle = null;
         weaponUser.GetHealth(healthAddition);
 
         curExp++;
@@ -34,8 +35,8 @@ public class Fist : Weapon
     {
         if(other.gameObject.CompareTag("Obstacles"))
         {
-            currentTargetQueue.Enqueue(other.gameObject); 
-            other.gameObject.GetComponent<Obstacle>().ActivateOutline();
+            currentTargetObstacle = other.gameObject.GetComponent<Obstacle>(); 
+            currentTargetObstacle.ActivateOutline();
         }
     }
 
@@ -43,8 +44,8 @@ public class Fist : Weapon
     {
         if(other.gameObject.CompareTag("Obstacles"))
         {
-            currentTargetQueue.Dequeue();
-            other.gameObject.GetComponent<Obstacle>().DeactivateOutline();
+            currentTargetObstacle.DeactivateOutline();
+            currentTargetObstacle = null;
         }
     }
 
@@ -57,6 +58,6 @@ public class Fist : Weapon
     
     public bool IsFistAttackable()
     {
-        return currentTargetQueue.Count > 0;
+        return currentTargetObstacle != null;
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     [SerializeField] ItemSO itemSO;
-    bool particleDisable = true;
 
     public virtual void GetItem(Player player)
     {
@@ -13,15 +12,8 @@ public class Item : MonoBehaviour
         DestroyMyself();
     }
 
-    void DestroyMyself()
+    public void DestroyMyself()
     {
-      // 최초 pool Init시 particle 진행X
-        if(particleDisable)
-        {
-            particleDisable = false;
-            return;
-        }
-
         if(itemSO.itemGetParticle != null)
         {
             Instantiate(itemSO.itemGetParticle, transform.position, Quaternion.AngleAxis(-90f, new Vector3(1f, 0f, 0f)));

@@ -8,6 +8,10 @@ public abstract class Weapon : MonoBehaviour
 {
     protected BoxCollider range;
     protected Queue<GameObject> currentTargetQueue = new Queue<GameObject>();
+    
+    // Fist만 사용함.
+    protected Obstacle currentTargetObstacle;
+
     [SerializeField] protected LayerMask targetLayer;
     protected Player weaponUser;
     public int weaponLevel {get; protected set;} = 1;
@@ -50,6 +54,6 @@ public abstract class Weapon : MonoBehaviour
 
     public bool IsAttackable()
     {
-        return currentTargetQueue.Count > 0;
+        return (currentTargetObstacle != null) || (currentTargetQueue.Count >= 1);
     }
 }

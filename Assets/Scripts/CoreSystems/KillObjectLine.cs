@@ -7,12 +7,12 @@ public class KillObjectLine : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Obstacles"))
         {
-            other.GetComponentInParent<Obstacle>().gameObject.SetActive(false);
+            other.GetComponentInParent<Obstacle>().DestroyObstacle();
             return;
         }
         if(other.gameObject.CompareTag("Item"))
         {
-            other.GetComponentInParent<Item>().gameObject.SetActive(false);
+            other.GetComponentInParent<Item>().DestroyMyself();
             return;
         }
     }
