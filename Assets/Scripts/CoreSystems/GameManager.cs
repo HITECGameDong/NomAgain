@@ -118,7 +118,6 @@ public class GameManager : MonoBehaviour
     {
         // TODO : change Theme
         onDifficultyUp.Invoke();
-        Debug.Log("DIFF");
 
         curTimeScale *= difficultyMultiply;
         Time.timeScale = curTimeScale;
