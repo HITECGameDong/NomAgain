@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    // EVENTS
+    public UnityEvent onDifficultyUp;
+
     // COMPOENENTS FROM EDITOR
     [SerializeField] Player player;
     [SerializeField] ObjectSpawner spawner;
@@ -114,8 +117,7 @@ public class GameManager : MonoBehaviour
     void IncreaseDifficulty()
     {
         // TODO : change Theme
-        scoreManager.GetTilePassBonus();
-        scoreManager.DisplayDifficultyUp();
+        onDifficultyUp.Invoke();
 
         curTimeScale *= difficultyMultiply;
         Time.timeScale = curTimeScale;

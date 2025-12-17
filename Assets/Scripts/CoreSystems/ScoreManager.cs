@@ -14,15 +14,23 @@ public class ScoreManager : MonoBehaviour
 {
     float score;
     [SerializeField] Player player;
+    [SerializeField] GameManager gameManager;
     TextMeshProUGUI scoreText;
     ScoreDisplayState curDisplayState = ScoreDisplayState.SCORE;
 
     // 25-11-27 TODO-jin : Player 가지고 온거 맞는지 에러 캐치
-    void Start()
+    void OnEnable()
     {
         scoreText = GetComponent<TextMeshProUGUI>();
         // 25-11-28 TODO-jin : player가 직접 event 호출하도록한다. weapon은 Destroy됨
         player.onObstacleBroken.AddListener(OnObstacleBroken);
+        gameManager.onDifficultyUp.AddListener(DisplayDifficultyUp);
+    }
+
+    void OnDisable()
+    {
+        player.onObstacleBroken.RemoveListener(OnObstacleBroken);    
+        gameManager.onDifficultyUp.RemoveListener(DisplayDifficultyUp);    
     }
 
     void Update()
@@ -86,8 +94,9 @@ public class ScoreManager : MonoBehaviour
     }
 
     // GAME MANAGER에 의해, 난이도 상승시 한번 호출됨.
-    public void DisplayDifficultyUp()
+    void DisplayDifficultyUp()
     {
+        GetTilePassBonus();
         StartCoroutine(DisplayDiffucultyUpCoroutine());
     }
 
