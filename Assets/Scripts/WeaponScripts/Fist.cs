@@ -10,7 +10,8 @@ public class Fist : Weapon
     {
         if(currentTargetQueue.Count <= 0) return;
 
-        currentTargetQueue.Dequeue().gameObject.SetActive(false);
+        Debug.Log("ATTACK");
+        currentTargetQueue.Peek().GetComponent<Obstacle>().DestroyObstacle();
         weaponUser.GetHealth(healthAddition);
 
         curExp++;

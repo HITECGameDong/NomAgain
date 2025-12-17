@@ -330,7 +330,7 @@ public class Player : MonoBehaviour
 
         foreach(Collider eachCollider in everyObstacles)
         {
-            eachCollider.gameObject.SetActive(false);
+            eachCollider.gameObject.GetComponent<Obstacle>().DestroyObstacle();
             onObstacleBroken.Invoke();
         }
 
