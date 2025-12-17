@@ -10,12 +10,12 @@ public class Item : MonoBehaviour
     public virtual void GetItem(Player player)
     {
         itemSO.GetItem(player);
-        gameObject.SetActive(false);
+        DestroyMyself();
     }
 
-    protected virtual void OnDisable()
+    void DestroyMyself()
     {
-        // 최초 pool Init시 particle 진행X
+      // 최초 pool Init시 particle 진행X
         if(particleDisable)
         {
             particleDisable = false;
@@ -25,6 +25,8 @@ public class Item : MonoBehaviour
         if(itemSO.itemGetParticle != null)
         {
             Instantiate(itemSO.itemGetParticle, transform.position, Quaternion.AngleAxis(-90f, new Vector3(1f, 0f, 0f)));
-        }
+        }      
+
+        gameObject.SetActive(false);  
     } 
 }

@@ -21,7 +21,7 @@ public class Obstacle : MonoBehaviour
         outlineObject.SetActive(false);
     }
 
-    void OnDisable()
+    public void DestroyObstacle()
     {
         if(disableParticle)
         {
@@ -33,5 +33,7 @@ public class Obstacle : MonoBehaviour
         {
             Instantiate(brokenParticle, transform.position, Quaternion.AngleAxis(-90f, new Vector3(1f, 0f, 0f)));
         }
+
+        gameObject.SetActive(false);
     }
 }
