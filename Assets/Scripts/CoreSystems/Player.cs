@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
     public UnityEvent onArrivingCheckpoint;
     public UnityEvent onPlayerDead;
     public UnityEvent<float, string> onItemGet;
-    public UnityEvent onObstacleBroken;
     public UnityEvent<Weapon> onWeaponGet;
 
     // VARIABLES FROM EDITOR / COMPONENTS
@@ -336,10 +335,15 @@ public class Player : MonoBehaviour
         foreach(Collider eachCollider in everyObstacles)
         {
             eachCollider.gameObject.GetComponent<Obstacle>().DestroyObstacle();
-            onObstacleBroken.Invoke();
+            gameManager.onObstacleBroken.Invoke();
         }
 
         // Rocket 상태 끝나면, 피해 입음
         isVulnerable = true;
+    }
+    
+    public void OnObstacleBroken()
+    {
+        gameManager.onObstacleBroken.Invoke();
     }
 }

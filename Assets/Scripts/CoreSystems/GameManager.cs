@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     // EVENTS
     public UnityEvent onDifficultyUp;
+    public UnityEvent onObstacleBroken;
+
 
     // COMPOENENTS FROM EDITOR
     [SerializeField] Player player;

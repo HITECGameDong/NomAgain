@@ -37,7 +37,7 @@ public class MissileWeapon : Weapon
             
             index++;
             breakAmount--;
-            weaponUser.onObstacleBroken.Invoke();
+            weaponUser.OnObstacleBroken();
         }
     }
 
