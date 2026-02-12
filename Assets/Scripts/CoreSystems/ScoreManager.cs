@@ -104,7 +104,7 @@ public class ScoreManager : MonoBehaviour
     {
         curDisplayState = ScoreDisplayState.LEVEL_UP;
         scoreText.text = "Difficulty Up!";
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(1f);
         curDisplayState = ScoreDisplayState.SCORE;
     }
 
