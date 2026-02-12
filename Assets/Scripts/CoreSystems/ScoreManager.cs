@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using UnityEditor.Rendering;
+using UnityEngine.Events;
 
 enum ScoreDisplayState
 {
@@ -23,13 +23,13 @@ public class ScoreManager : MonoBehaviour
     {
         scoreText = GetComponent<TextMeshProUGUI>();
         // 25-11-28 TODO-jin : player가 직접 event 호출하도록한다. weapon은 Destroy됨
-        player.onObstacleBroken.AddListener(OnObstacleBroken);
+        gameManager.onObstacleBroken.AddListener(OnObstacleBroken);
         gameManager.onDifficultyUp.AddListener(DisplayDifficultyUp);
     }
 
     void OnDisable()
     {
-        player.onObstacleBroken.RemoveListener(OnObstacleBroken);    
+        gameManager.onObstacleBroken.RemoveListener(OnObstacleBroken);    
         gameManager.onDifficultyUp.RemoveListener(DisplayDifficultyUp);    
     }
 
