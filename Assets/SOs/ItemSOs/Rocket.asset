@@ -19,4 +19,3 @@ MonoBehaviour:
   itemGetParticle: {fileID: 5834696962891538266, guid: 618f31880a99b704fa5dd23fed4e743a, type: 3}
   itemName: ROCKET
   speedAddition: 30
-  duration: 2
