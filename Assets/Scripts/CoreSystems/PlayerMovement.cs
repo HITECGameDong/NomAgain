@@ -15,8 +15,6 @@ public enum PlayerState
 
 public class PlayerMovement : MonoBehaviour
 {
-    // EVENTS
-    public UnityEvent onItemWorkingDone;
     // VARIABLES FROM EDITOR / COMPONENTS
     [SerializeField] Player player;
     Rigidbody rb;
@@ -80,10 +78,9 @@ public class PlayerMovement : MonoBehaviour
             // 착지 직후 인식
             if(!isFlying)
             {
-                // Rocket 이후 착지하면, Stomp!
                 if(state == PlayerState.ON_ROCKET)
                 {
-                    player.RocketStomp();
+                    RocketStomp();
                 }
                 RefillJump();
                 // 땅에 착지시 덜컹거리는거 억제
@@ -141,8 +138,6 @@ public class PlayerMovement : MonoBehaviour
         speedAddition += addition;
         yield return new WaitForSeconds(duration);
         speedAddition -= addition;
-
-        onItemWorkingDone.Invoke();
     }
 
     public float GetCurrentSpeed()
@@ -155,40 +150,19 @@ public class PlayerMovement : MonoBehaviour
         return baseSpeed;
     }
 
-    public void RocketBoost(float rocketSpeed, float duration)
+    public void RocketBoost(float rocketSpeed)
     {
-        StartCoroutine(RocketBoostCoroutine(rocketSpeed, duration));
-    }
-
-    System.Collections.IEnumerator RocketBoostCoroutine(float rocketSpeed, float duration)
-    {
-        float lastMoveSpeedAdd = speedAddition;
-
         // Rocket State는 착지시 원복예정.
         state = PlayerState.ON_ROCKET;
-        speedAddition = rocketSpeed;
-        DisableGravity();
         // Ground Check 두번 방지 관련 설정
         isFlying = true;
-        playerTransform.position = new Vector3(playerTransform.position.x, 10f, playerTransform.position.z);
 
-        yield return new WaitForSeconds(duration);
-
-        speedAddition = lastMoveSpeedAdd;
-        EnableGravity();
-
-        onItemWorkingDone.Invoke();
+        Vector3 rocketDirection = new Vector3(1f, 1f, 0f);
+        rb.AddForce(rocketDirection * rocketSpeed, ForceMode.VelocityChange);
     }
 
-    void DisableGravity()
+    void RocketStomp()
     {
-        rb.useGravity = false;
-        isGravityOn = false;
-    }
-
-    void EnableGravity()
-    {
-        rb.useGravity = true;
-        isGravityOn = true;
+        player.RocketStomp();
     }
 }

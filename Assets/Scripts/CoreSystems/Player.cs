@@ -35,7 +35,6 @@ public class Player : MonoBehaviour
     GameObject equippedWeaponGO;
     bool isVulnerable = true;
     public float health {get; private set;}
-    bool isItemWorking = false;
     public bool isDead = false;
     float gainedItemDuration = 0f;
     String gainedItemName;
@@ -44,11 +43,6 @@ public class Player : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         health = maxHealth;
-    }
-
-    void Start()
-    {
-        playerMovement.onItemWorkingDone.AddListener(ItemWorkingDone);
     }
 
 
@@ -133,25 +127,17 @@ public class Player : MonoBehaviour
 
     public void GetEnergyBoost(float speedAddition, float duration, float healthAddition, string name)
     {
-        isItemWorking = true;
         GetHealth(healthAddition);
         playerMovement.IncreaseSpeed(speedAddition, duration);
         gainedItemDuration = duration;
         gainedItemName = name;
     }
 
-    public void GetRocketBoost(float speedAddition, float duration, string name)
+    public void GetRocketBoost(float speedAddition, string name)
     {
-        if(isItemWorking)
-        {
-            return;
-        }
-        
-        isItemWorking = true;
-        StartCoroutine(GetRocketBoostCoroutine(duration));
-        playerMovement.RocketBoost(speedAddition, duration);
-        gainedItemDuration = duration;
-        gainedItemName = name;
+        // jin : Turn On When? -> RocketStomp() !
+        InvulnerableOff();
+        playerMovement.RocketBoost(speedAddition);
     }
 
     public void GetJumpOrb()
@@ -161,27 +147,12 @@ public class Player : MonoBehaviour
 
     void ItemGrabCheck(Item item)
     {
-        if(!isItemWorking)
-        {
-            if(item == null) return;
-            
-            item.GetItem(this);
-            onItemGet.Invoke(gainedItemDuration, gainedItemName);
-            gainedItemDuration = 0f;
-            gainedItemName = null;
-        }
-    }
-
-    void ItemWorkingDone()
-    {
-        isItemWorking = false;
-    }
-
-    System.Collections.IEnumerator GetRocketBoostCoroutine(float duration)
-    {
-        isVulnerable = false;
-        yield return new WaitForSeconds(duration);
-        isVulnerable = true;
+        if(item == null) return;
+        
+        item.GetItem(this);
+        onItemGet.Invoke(gainedItemDuration, gainedItemName);
+        gainedItemDuration = 0f;
+        gainedItemName = null;
     }
 
     public void ResetPosition()
@@ -339,11 +310,21 @@ public class Player : MonoBehaviour
         }
 
         // Rocket 상태 끝나면, 피해 입음
-        isVulnerable = true;
+        InvulnerableOff();
     }
     
     public void OnObstacleBroken()
     {
         gameManager.onObstacleBroken.Invoke();
+    }
+
+    public void InvulnerableOn()
+    {
+        isVulnerable = false;
+    }
+
+    public void InvulnerableOff()
+    {
+        isVulnerable = true;
     }
 }
