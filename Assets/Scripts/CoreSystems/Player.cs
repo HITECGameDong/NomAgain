@@ -143,6 +143,11 @@ public class Player : MonoBehaviour
 
     public void GetRocketBoost(float speedAddition, float duration, string name)
     {
+        if(isItemWorking)
+        {
+            return;
+        }
+        
         isItemWorking = true;
         StartCoroutine(GetRocketBoostCoroutine(duration));
         playerMovement.RocketBoost(speedAddition, duration);
