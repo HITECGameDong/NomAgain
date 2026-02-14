@@ -203,10 +203,10 @@ public class ObjectSpawner : MonoBehaviour
         }
 
         objSpawnerCurXPos = initObjStartXPos;
-        for(int i = 0 ; i < 5 ; i++)
-        {
-            SpawnObjectInARowAsync();
-        }
+        // for(int i = 0 ; i < 5 ; i++)
+        // {
+        //     SpawnObjectInARowAsync();
+        // }
     }
 
     // jin: 누적합 방식 랜덤 뽑기 채용. 백분율 기준 뽑기는 어떻게할지?
