@@ -51,6 +51,35 @@ public class ObjectSpawner : MonoBehaviour
         SpawnObjectAsync(ObjectType.OBSTACLE);
     }
 
+    async Task SpawnObjectInARowAsync()
+    {
+        SpawnableObjectSO toSpawnSO = GetRandomObjectSO();
+        GameObject objToSpawn;
+        GameObject firstQueueObject = baseObjPool[toSpawnSO].Dequeue();
+        baseObjPool[toSpawnSO].Enqueue(firstQueueObject);
+        objToSpawn = firstQueueObject;
+
+        // 25-11-30 WARN-jin : Spawn List에 하나만 들어가있으면, 무한루프!!!!!!!! Player에 꼭 KillLine도 달아라.
+        while(objToSpawn.activeSelf)
+        {
+            objToSpawn = baseObjPool[toSpawnSO].Dequeue();
+            baseObjPool[toSpawnSO].Enqueue(objToSpawn);
+
+            if(firstQueueObject == objToSpawn)
+            {
+                Debug.LogWarning("Spawner가 Spawn할Pool 오브젝트가 모두 사용중.. 다른 Object를 찾음");
+                toSpawnSO = GetRandomObjectSO();
+            }
+
+            await Task.Yield();
+        }
+
+        objToSpawn.transform.position = new Vector3(objSpawnerCurXPos, 0f, 0f);
+        // JIN : ChangeSpawnLocByPlayerLoc()에서도 CurXPos 값을 변환시킴. 하드코딩되어있으므로 같이 수정하기.
+        objSpawnerCurXPos += Random.Range(20f - gapReduceLevel, 30f - gapReduceLevel);
+        objToSpawn.SetActive(true);
+    }
+
     async Task SpawnObjectAsync(ObjectType objType)
     {
         ChangeSpawnLocByPlayerLoc();
@@ -94,8 +123,9 @@ public class ObjectSpawner : MonoBehaviour
                 await Task.Yield();
             }
 
-            objToSpawn.transform.position += new Vector3(objSpawnerCurXPos, 0f, 0f);
-            objSpawnerCurXPos += Random.Range(25f - gapReduceLevel, 30f - gapReduceLevel);
+            objToSpawn.transform.position = new Vector3(objSpawnerCurXPos, 0f, 0f);
+            // JIN : 바로 밑 ChangeSpawnLocByPlayerLoc()에서도 CurXPos 값을 변환시킴. 하드코딩되어있으므로 같이 수정하기.
+            objSpawnerCurXPos += Random.Range(20f - gapReduceLevel, 30f - gapReduceLevel);
             objToSpawn.SetActive(true);
         }
     }
@@ -104,10 +134,14 @@ public class ObjectSpawner : MonoBehaviour
     void ChangeSpawnLocByPlayerLoc()
     {
         float curPlayerPosX = player.transform.position.x;
-        if(curPlayerPosX + 25f >= objSpawnerCurXPos)
+        float randGapMin = 20f - gapReduceLevel;
+        float randGapMax = 30f - gapReduceLevel;
+        if(curPlayerPosX + randGapMin >= objSpawnerCurXPos
+        || curPlayerPosX + randGapMax <= objSpawnerCurXPos)
         {
-            objSpawnerCurXPos = curPlayerPosX + Random.Range(25f, 30f);            
-        }   
+            // JIN : 위 함수 SpawnObjectAsync(~)에서도 CurXPos를 변환시킴. 하드코딩되어있으니 같이 수정하기.
+            objSpawnerCurXPos = curPlayerPosX + Random.Range(randGapMin, randGapMax);            
+        }
     }
 
     void SetActiveRecursive(GameObject other)
@@ -169,9 +203,9 @@ public class ObjectSpawner : MonoBehaviour
         }
 
         objSpawnerCurXPos = initObjStartXPos;
-        for(int i = 0 ; i < 10 ; i++)
+        for(int i = 0 ; i < 5 ; i++)
         {
-            SpawnObjectAsync(ObjectType.ITEM);
+            SpawnObjectInARowAsync();
         }
     }
 
