@@ -21,9 +21,14 @@ public class UIItemBar : UIBasic
 
     System.Collections.IEnumerator UIBarDurationFilling(float duration, string name)
     {
+        if(Mathf.Approximately(0f, duration))
+        {
+            yield break;
+        }
+        
         itemNameText.text = name;
         itemNameText.enabled = true;
-
+ 
         StartCoroutine(UIEnableCoroutine(duration));
         float curTime = 1f;
         while(curTime > 0)
