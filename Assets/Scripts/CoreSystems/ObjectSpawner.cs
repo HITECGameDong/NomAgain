@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework.Internal.Commands;
 using Unity.VisualScripting;
@@ -12,6 +13,7 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] Transform nextLocForGround;
     // TODO : seperate offset for ground / object
     [SerializeField] float offsetX = 0f;
+    int gapReduceLevel = 0;
 
     // POOLER
     [SerializeField] Transform objectParent;
@@ -43,8 +45,9 @@ public class ObjectSpawner : MonoBehaviour
         SpawnObjectAsync(ObjectType.GROUND);
     }
 
-    public void SpawnObject()
+    public void SpawnObject(int difficulty)
     {
+        gapReduceLevel = difficulty;
         SpawnObjectAsync(ObjectType.OBSTACLE);
     }
 
@@ -92,7 +95,7 @@ public class ObjectSpawner : MonoBehaviour
             }
 
             objToSpawn.transform.position += new Vector3(objSpawnerCurXPos, 0f, 0f);
-            objSpawnerCurXPos += Random.Range(20f, 30f);
+            objSpawnerCurXPos += Random.Range(25f - gapReduceLevel, 30f - gapReduceLevel);
             objToSpawn.SetActive(true);
         }
     }
@@ -103,7 +106,7 @@ public class ObjectSpawner : MonoBehaviour
         float curPlayerPosX = player.transform.position.x;
         if(curPlayerPosX + 25f >= objSpawnerCurXPos)
         {
-            objSpawnerCurXPos = curPlayerPosX + Random.Range(20f, 30f);            
+            objSpawnerCurXPos = curPlayerPosX + Random.Range(25f, 30f);            
         }   
     }
 
