@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    [SerializeField] ObstacleBrokenChecker brokenChecker;
     [SerializeField] GameObject outlineObject;
     [SerializeField] ParticleSystem brokenParticle;
 
@@ -33,6 +34,10 @@ public class Obstacle : MonoBehaviour
         }
 
         gameObject.SetActive(false);
+        if(brokenChecker != null)
+        {
+            brokenChecker.DisableMyselfWhenEveryChildDead();
+        }
     }
     public void DestroyObstacle(Weapon weapon)
     {
@@ -47,5 +52,9 @@ public class Obstacle : MonoBehaviour
         }
 
         gameObject.SetActive(false);
+        if(brokenChecker != null)
+        {
+            brokenChecker.DisableMyselfWhenEveryChildDead();
+        }
     }
 }
