@@ -11,7 +11,7 @@ public class Fist : Weapon
         if(currentTargetObstacle == null) return;
 
         Debug.Log("FIST ATTACK");
-        currentTargetObstacle.DestroyObstacle();
+        currentTargetObstacle.DestroyObstacle(this);
         currentTargetObstacle = null;
         weaponUser.OnObstacleBroken();
         weaponUser.GetHealth(healthAddition);

@@ -33,7 +33,7 @@ public class MissileWeapon : Weapon
         breakAmount = 5;
         while(breakAmount > 0 && everyColliders.Length > index)
         {
-            everyColliders[index].gameObject.GetComponent<Obstacle>().DestroyObstacle();
+            everyColliders[index].gameObject.GetComponent<Obstacle>().DestroyObstacle(this);
             
             index++;
             breakAmount--;

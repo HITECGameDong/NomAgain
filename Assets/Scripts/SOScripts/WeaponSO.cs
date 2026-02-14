@@ -8,6 +8,7 @@ public class WeaponSO : ItemSO
     // 실 장착 Weapon 프리팹임. ItemSO에 있는 itemPrefabList는 땅에 먹을수 있게 스폰되는 프리팹임!
     public GameObject weaponPrefab;
     public Sprite weaponUISprite;
+    public ParticleSystem obstacleBrokenParticle;
 
     public override void GetItem(Player player)
     {

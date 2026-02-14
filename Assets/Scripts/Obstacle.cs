@@ -34,4 +34,18 @@ public class Obstacle : MonoBehaviour
 
         gameObject.SetActive(false);
     }
+    public void DestroyObstacle(Weapon weapon)
+    {
+        if(weapon.weaponSO.obstacleBrokenParticle != null)
+        {
+            Instantiate(weapon.weaponSO.obstacleBrokenParticle, transform.position, Quaternion.AngleAxis(-90f, new Vector3(1f, 0f, 0f)));
+        }
+
+        else if(brokenParticle != null)
+        {
+            Instantiate(brokenParticle, transform.position, Quaternion.AngleAxis(-90f, new Vector3(1f, 0f, 0f)));
+        }
+
+        gameObject.SetActive(false);
+    }
 }
