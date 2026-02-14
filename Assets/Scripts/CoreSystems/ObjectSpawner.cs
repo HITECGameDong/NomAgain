@@ -92,7 +92,7 @@ public class ObjectSpawner : MonoBehaviour
             }
 
             objToSpawn.transform.position += new Vector3(objSpawnerCurXPos, 0f, 0f);
-            objSpawnerCurXPos += Random.Range(25f, 30f);
+            objSpawnerCurXPos += Random.Range(20f, 30f);
             objToSpawn.SetActive(true);
         }
     }
@@ -103,7 +103,7 @@ public class ObjectSpawner : MonoBehaviour
         float curPlayerPosX = player.transform.position.x;
         if(curPlayerPosX + 25f >= objSpawnerCurXPos)
         {
-            objSpawnerCurXPos = curPlayerPosX + Random.Range(25f, 30f);            
+            objSpawnerCurXPos = curPlayerPosX + Random.Range(20f, 30f);            
         }   
     }
 
