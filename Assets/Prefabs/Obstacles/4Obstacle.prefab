@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166698005724679332}
+  - component: {fileID: -7627296341876023016}
   m_Layer: 0
   m_Name: 4Obstacle
   m_TagString: Untagged
@@ -37,6 +38,18 @@ Transform:
   - {fileID: 8665727929531463293}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7627296341876023016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003619014509062226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6203aa96574d4246a9e3e21acea1425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObstacleBrokenChecker
 --- !u!1001 &691966502255388398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111,6 +124,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SingleObstacle (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4773036009314011289, guid: 7db2e73dbe62b414aa15e23beb3729f5, type: 3}
+      propertyPath: brokenChecker
+      value: 
+      objectReference: {fileID: -7627296341876023016}
     - target: {fileID: 5161179644579220848, guid: 7db2e73dbe62b414aa15e23beb3729f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.27
@@ -173,6 +190,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SingleObstacle (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4773036009314011289, guid: 7db2e73dbe62b414aa15e23beb3729f5, type: 3}
+      propertyPath: brokenChecker
+      value: 
+      objectReference: {fileID: -7627296341876023016}
     - target: {fileID: 5161179644579220848, guid: 7db2e73dbe62b414aa15e23beb3729f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.06
@@ -235,6 +256,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SingleObstacle (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4773036009314011289, guid: 7db2e73dbe62b414aa15e23beb3729f5, type: 3}
+      propertyPath: brokenChecker
+      value: 
+      objectReference: {fileID: -7627296341876023016}
     - target: {fileID: 5161179644579220848, guid: 7db2e73dbe62b414aa15e23beb3729f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.64
@@ -297,6 +322,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SingleObstacle (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4773036009314011289, guid: 7db2e73dbe62b414aa15e23beb3729f5, type: 3}
+      propertyPath: brokenChecker
+      value: 
+      objectReference: {fileID: -7627296341876023016}
     - target: {fileID: 5161179644579220848, guid: 7db2e73dbe62b414aa15e23beb3729f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.54
@@ -359,6 +388,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SingleObstacle
       objectReference: {fileID: 0}
+    - target: {fileID: 4773036009314011289, guid: 7db2e73dbe62b414aa15e23beb3729f5, type: 3}
+      propertyPath: brokenChecker
+      value: 
+      objectReference: {fileID: -7627296341876023016}
     - target: {fileID: 5161179644579220848, guid: 7db2e73dbe62b414aa15e23beb3729f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
