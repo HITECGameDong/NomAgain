@@ -74,7 +74,7 @@ public class ObjectSpawner : MonoBehaviour
             await Task.Yield();
         }
 
-        objToSpawn.transform.position = new Vector3(objSpawnerCurXPos, 0f, 0f);
+        objToSpawn.transform.position = new Vector3(objSpawnerCurXPos, 0f, 0f) + toSpawnSO.itemPrefabList[0].transform.localPosition;
         // JIN : ChangeSpawnLocByPlayerLoc()에서도 CurXPos 값을 변환시킴. 하드코딩되어있으므로 같이 수정하기.
         objSpawnerCurXPos += Random.Range(20f - gapReduceLevel, 30f - gapReduceLevel);
         objToSpawn.SetActive(true);
@@ -123,7 +123,7 @@ public class ObjectSpawner : MonoBehaviour
                 await Task.Yield();
             }
 
-            objToSpawn.transform.position = new Vector3(objSpawnerCurXPos, 0f, 0f);
+            objToSpawn.transform.position = new Vector3(objSpawnerCurXPos, 0f, 0f) + toSpawnSO.itemPrefabList[0].transform.localPosition;
             // JIN : 바로 밑 ChangeSpawnLocByPlayerLoc()에서도 CurXPos 값을 변환시킴. 하드코딩되어있으므로 같이 수정하기.
             objSpawnerCurXPos += Random.Range(20f - gapReduceLevel, 30f - gapReduceLevel);
             objToSpawn.SetActive(true);
