@@ -138,11 +138,14 @@ public class Player : MonoBehaviour
         // jin : Turn On When? -> RocketStomp() !
         InvulnerableOff();
         playerMovement.RocketBoost(speedAddition);
+        gainedItemDuration = 0f;
+        gainedItemName = name;
     }
 
     public void GetJumpOrb()
     {
         playerMovement.RefillJumpOnce();        
+        gainedItemDuration = 0f;
     }
 
     void ItemGrabCheck(Item item)
