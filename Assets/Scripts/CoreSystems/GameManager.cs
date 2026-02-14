@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     float spawnTimer = 0f;
     float curTimeScale = 1f;
     bool isGameStarted = false;
+    int difficulty = 0;
 
 
     // 25-11-27 TODO-jin : Player, Spawner, ScoreManager 등록되었는지 캐치하기
@@ -111,7 +112,7 @@ public class GameManager : MonoBehaviour
         spawnTimer += Time.fixedDeltaTime;
         if(spawnTimer >= curSpawnTimeSec)
         {
-            spawner.SpawnObject();
+            spawner.SpawnObject(difficulty);
             spawnTimer = 0f;
         }
     }
@@ -122,6 +123,7 @@ public class GameManager : MonoBehaviour
         onDifficultyUp.Invoke();
 
         curTimeScale *= difficultyMultiply;
+        difficulty++;
         Time.timeScale = curTimeScale;
     }
 
