@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     [Range(0.5f, 2f)][SerializeField] float minSpawnTimeSec = 1f;
     float curSpawnTimeSec;
     int tilePassCount = 0;
+    bool isSpawnTimerRunning = true;
     float spawnTimer = 0f;
     float curTimeScale = 1f;
     bool isGameStarted = false;
@@ -52,8 +53,12 @@ public class GameManager : MonoBehaviour
     void FixedUpdate()
     {
         if(!isGameStarted) return;
-        SpawnTimeSetBySpeed();
-        SpawnTimerRun();
+        if(isSpawnTimerRunning)
+        {
+            SpawnTimeSetBySpeed();
+            SpawnTimerRun();            
+        }
+        CheckGameClear();
     }
 
     public void GameStart()
@@ -75,9 +80,17 @@ public class GameManager : MonoBehaviour
         return checkPointX;
     }
 
+    void StopGame()
+    {
+        player.StopControl();
+        isSpawnTimerRunning = false;
+    }
+
     // Player Die Event에서 호출됩니다.
     void GameOver()
     {
+        // Player Die Event 호출시 player.stopcontrol() 중복
+        StopGame();
         uiManager.ShowGameOverUI(scoreManager.GetScore());
     }
 
@@ -114,6 +127,15 @@ public class GameManager : MonoBehaviour
         {
             spawner.SpawnObject(difficulty);
             spawnTimer = 0f;
+        }
+    }
+
+    void CheckGameClear()
+    {
+        if(player.transform.position.x >= 2000f)
+        {
+            StopGame();
+            uiManager.ShowGameClearUI(scoreManager.GetScore());
         }
     }
 
