@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
 
     void CheckGameClear()
     {
-        if(player.transform.position.x >= 500f)
+        if(player.transform.position.x >= 2000f)
         {
             StopGame();
             uiManager.ShowGameClearUI(scoreManager.GetScore());
