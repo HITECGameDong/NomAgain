@@ -183,9 +183,14 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        playerMovement.enabled = false;
+        StopControl();
         isDead = true;
         onPlayerDead.Invoke();
+    }
+
+    public void StopControl()
+    {
+        playerMovement.enabled = false;
     }
 
     public void GetHealth(float amount)

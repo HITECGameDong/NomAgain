@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
         if(!isGameStarted) return;
         SpawnTimeSetBySpeed();
         SpawnTimerRun();
+        CheckGameClear();
     }
 
     public void GameStart()
@@ -114,6 +115,15 @@ public class GameManager : MonoBehaviour
         {
             spawner.SpawnObject(difficulty);
             spawnTimer = 0f;
+        }
+    }
+
+    void CheckGameClear()
+    {
+        if(player.transform.position.x >= 500f)
+        {
+            player.StopControl();
+            uiManager.ShowGameClearUI(scoreManager.GetScore());
         }
     }
 
